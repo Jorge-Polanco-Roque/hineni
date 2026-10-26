@@ -16,6 +16,7 @@
 ![Duración](https://img.shields.io/badge/partida-15_min-555)
 ![Finales](https://img.shields.io/badge/finales-6-555)
 ![Plataformas](https://img.shields.io/badge/plataformas-macOS_·_Web_·_móvil-555)
+![Idiomas](https://img.shields.io/badge/idiomas-ES_·_EN_·_PT_·_中文_·_日本語-555)
 [![Licencia MIT](https://img.shields.io/badge/licencia-MIT-555)](LICENSE)
 
 </div>
@@ -31,9 +32,15 @@ Despiertas de un coma. Te llamas Álex, llevas diecinueve días en el Hospital d
 <br><sub>Mirar al techo. La imagen se desgarra y el hospital se convierte en un grabado.</sub>
 </div>
 
+<div align="center">
+<img src="Docs/media/00-prologo.jpg" alt="El prólogo: Apocalipsis 6:12–17 en rojo, sangrando, con desgarros" width="100%">
+<br><sub>Antes de despertar: el sexto sello (Apocalipsis 6:12–17), leído por la voz más grave, hasta que eliges continuar.</sub>
+</div>
+
 ## Índice
 
 - [Jugar](#jugar)
+- [Idiomas](#idiomas)
 - [Lo último que hagas](#lo-último-que-hagas)
 - [Seis finales](#seis-finales)
 - [El hospital](#el-hospital)
@@ -68,6 +75,20 @@ Usa auriculares: la música, las voces y la respiración del Testigo son posicio
 El juego detecta si se está jugando en un teléfono: muestra dos palancas flotantes, un botón contextual y el botón **CONTROLES**, que despliega el resto. En vertical pide girar el teléfono.
 
 <div align="center"><img src="Docs/media/movil.jpg" alt="Controles táctiles: palancas MOVER y MIRAR, fila de botones y botón CONTROLES" width="80%"></div>
+
+## Idiomas
+
+Texto y voces se eligen **por separado** en el menú (*Texto* y *Voces*): español, inglés, portugués, chino simplificado y japonés. Por defecto, texto en inglés y voces en japonés. En la web también por enlace: `?lang=pt&voice=es`.
+
+<table><tr>
+<td width="50%"><img src="Docs/media/idioma-ja.jpg" alt="Inés en japonés"><br>日本語</td>
+<td width="50%"><img src="Docs/media/idioma-zh.jpg" alt="Pintada en chino con pincel"><br>中文: las pintadas usan una fuente de pincel</td>
+</tr></table>
+
+- 401 textos por idioma (`Tools/i18n.py` los extrae del código; `Assets/Resources/Lang/<código>.json`).
+- 50 líneas habladas por idioma con Kokoro, mismo reparto de mujeres y hombres; chino y japonés con los fonemas de [misaki](https://github.com/hexgrad/misaki). El Testigo habla al revés en todos.
+- Chino y japonés se dibujan en la rejilla ASCII con caracteres de doble celda (atlas Noto Sans CJK); las pintadas, con Ma Shan Zheng y Yuji Syuku.
+- El pasaje inicial usa traducciones clásicas verificadas: Reina-Valera 1909, King James, Almeida Revista e Corrigida, 和合本 y 口語訳.
 
 ## Lo último que hagas
 
@@ -208,6 +229,9 @@ Las pruebas pausan el juego si otra ventana roba el foco: ejecútalas sin otra i
 | Voces | Generadas con [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) | Apache 2.0 |
 | Glifos | [Meslo LG](https://github.com/andreberg/Meslo-Font) (Nerd Font) | Apache 2.0 |
 | Pintadas (web) | [Rubik Wet Paint](https://github.com/NaN-xyz/Rubik-Filtered) | SIL OFL 1.1 |
+| Chino y japonés | Noto Sans SC/JP, Ma Shan Zheng, Yuji Syuku | SIL OFL 1.1 |
+| Fonemas chino/japonés | [misaki](https://github.com/hexgrad/misaki) (herramienta, no se distribuye) | Apache 2.0 |
+| Apocalipsis 6:12–17 | Reina-Valera 1909, King James, 和合本, 口語訳 (dominio público); Almeida Revista e Corrigida (cita breve, © SBB) | — |
 
 El código, el guion y los textos originales están bajo [licencia MIT](LICENSE). Los recursos de terceros conservan sus propias licencias (tabla de arriba), y la música se incluye con permiso de su autor. Detalle en [`Assets/Resources/THIRD_PARTY.txt`](Assets/Resources/THIRD_PARTY.txt). En macOS las pintadas usan la fuente del sistema Chalkduster, que no se distribuye.
 

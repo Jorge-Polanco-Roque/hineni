@@ -1,0 +1,1588 @@
+{
+"items": [
+{
+"es": "APOCALIPSIS 6:12–17 · Reina-Valera 1909",
+"t": "APOCALIPSE 6:12–17 · Almeida Revista e Corrigida"
+},
+{
+"es": "12 Y miré cuando él abrió el sexto sello, y he aquí fué hecho un gran terremoto; y el sol se puso negro como un saco de cilicio, y la luna se puso toda como sangre;\n13 Y las estrellas del cielo cayeron sobre la tierra, como la higuera echa sus higos cuando es movida de gran viento.\n14 Y el cielo se apartó como un libro que es envuelto; y todo monte y las islas fueron movidas de sus lugares.\n15 Y los reyes de la tierra, y los príncipes, y los ricos, y los capitanes, y los fuertes, y todo siervo y todo libre, se escondieron en las cuevas y entre las peñas de los montes;\n16 Y decían á los montes y á las peñas: Caed sobre nosotros, y escondednos de la cara de aquél que está sentado sobre el trono, y de la ira del Cordero:\n17 Porque el gran día de su ira es venido; ¿y quién podrá estar firme?",
+"t": "12 E, havendo aberto o sexto selo, olhei, e eis que houve um grande tremor de terra; e o sol tornou-se negro como saco de cilício, e a lua tornou-se como sangue.\n13 E as estrelas do céu caíram sobre a terra, como quando a figueira lança de si os seus figos verdes, abalada por um vento forte.\n14 E o céu retirou-se como um livro que se enrola; e todos os montes e ilhas foram removidos do seu lugar.\n15 E os reis da terra, e os grandes, e os ricos, e os tribunos, e os poderosos, e todo servo, e todo livre se esconderam nas cavernas e nas rochas das montanhas\n16 e diziam aos montes e aos rochedos: Caí sobre nós e escondei-nos do rosto daquele que está assentado sobre o trono e da ira do Cordeiro,\n17 porque é vindo o grande Dia da sua ira; e quem poderá subsistir?"
+},
+{
+"es": "back to the endings",
+"t": "voltar aos finais"
+},
+{
+"es": "MainCamera",
+"t": "MainCamera"
+},
+{
+"es": "Paso original",
+"t": "Passo original"
+},
+{
+"es": "Resonancia original",
+"t": "Ressonância original"
+},
+{
+"es": "«Una vez dejé ganar a mi hermano para que volviera.»",
+"t": "“Uma vez deixei meu irmão ganhar para que ele voltasse.”"
+},
+{
+"es": "«No sé si aquello era quererlo. Pero volvió.»",
+"t": "“Não sei se aquilo era amá-lo. Mas ele voltou.”"
+},
+{
+"es": "INÉS",
+"t": "INÉS"
+},
+{
+"es": "No intentes levantarte deprisa.\n\nTe llamas Álex. Estás en el Hospital del Umbral. Llevas diecinueve días aquí.\n\nVoy a decirte algo difícil. Puedes tomarte un momento.",
+"t": "Não tente se levantar depressa.\n\nVocê se chama Álex. Está no Hospital do Limiar. Faz dezenove dias que está aqui.\n\nVou te dizer uma coisa difícil. Pode tirar um momento."
+},
+{
+"es": "Dime qué está pasando.",
+"t": "Me diga o que está acontecendo."
+},
+{
+"es": "Solo necesito un momento.",
+"t": "Só preciso de um momento."
+},
+{
+"es": "Estoy aquí. No tienes que contestar enseguida.",
+"t": "Estou aqui. Não precisa responder agora."
+},
+{
+"es": "Estoy listo. Dímelo.",
+"t": "Estou pronto. Pode dizer."
+},
+{
+"es": "Quedan quince minutos. Para todos.\n\nLo confirmaron hace tres días. La radio lo llama el Juicio. No hay un lugar al que podamos ir.\n\nNo sé qué se hace en el fin del mundo. Sé cambiar estas sábanas.",
+"t": "Faltam quinze minutos. Para todos.\n\nConfirmaram há três dias. O rádio chama de o Juízo. Não existe um lugar para onde a gente possa ir.\n\nNão sei o que se faz no fim do mundo. Sei trocar estes lençóis."
+},
+{
+"es": "¿Por qué sigues aquí?",
+"t": "Por que você ainda está aqui?"
+},
+{
+"es": "Quiero levantarme.",
+"t": "Quero me levantar."
+},
+{
+"es": "Porque había alguien aquí.\n\nY porque todavía no he conseguido llamar a mi hermana.",
+"t": "Porque tinha alguém aqui.\n\nE porque ainda não consegui ligar para a minha irmã."
+},
+{
+"es": "Voy a intentarlo. Levantarme, quiero decir.",
+"t": "Vou tentar. Me levantar, quero dizer."
+},
+{
+"es": "Acércate a Inés. WASD para caminar · ratón para mirar · E para interactuar",
+"t": "Aproxime-se de Inés. WASD para andar · mouse para olhar · E para interagir"
+},
+{
+"es": "Doctor",
+"t": "Médico"
+},
+{
+"es": "Mujer",
+"t": "Mulher"
+},
+{
+"es": "Esquina",
+"t": "Canto"
+},
+{
+"es": "EL MÉDICO",
+"t": "O MÉDICO"
+},
+{
+"es": "Su análisis salió perfecto. Le faltan los dientes del martes, pero eso pasa.\n\n[No se da la vuelta. Apoya la frente en la pared y respira contra ella.]\n\nVuelva cuando haya terminado de nacer.",
+"t": "Seu exame saiu perfeito. Estão faltando os dentes de terça-feira, mas isso acontece.\n\n[Ele não se vira. Apoia a testa na parede e respira contra ela.]\n\nVolte quando tiver terminado de nascer."
+},
+{
+"es": "¿De qué está hablando?",
+"t": "Do que o senhor está falando?"
+},
+{
+"es": "Alejarme despacio.",
+"t": "Me afastar devagar."
+},
+{
+"es": "De la hora. Siempre hablo de la hora.\n\nLa hora tiene hambre y nosotros somos lo único caliente que queda en el edificio.\n\n[Golpea la pared con la frente. Una vez. Otra.]",
+"t": "Da hora. Eu sempre falo da hora.\n\nA hora tem fome, e nós somos a única coisa quente que resta no prédio.\n\n[Ele bate a testa na parede. Uma vez. Outra.]"
+},
+{
+"es": "Retroceder.",
+"t": "Recuar."
+},
+{
+"es": "LA MUJER DE LA SILLA",
+"t": "A MULHER DA CADEIRA"
+},
+{
+"es": "¿Me traes la sopa? La pedí antes de que existiera la cocina.\n\n[Su cabeza sigue inclinada. Sus ojos no se mueven contigo: te esperan.]\n\nSonríe. Están contando a los que sonríen.",
+"t": "Você me traz a sopa? Eu pedi antes de a cozinha existir.\n\n[A cabeça continua inclinada. Os olhos não te acompanham: te esperam.]\n\nSorria. Estão contando os que sorriem."
+},
+{
+"es": "No tengo sopa.",
+"t": "Não tenho sopa."
+},
+{
+"es": "Sonreír.",
+"t": "Sorrir."
+},
+{
+"es": "Entonces eres de los otros.\n\nLos otros también traían las manos vacías. Luego ya no traían manos.",
+"t": "Então você é dos outros.\n\nOs outros também vinham de mãos vazias. Depois já não vinham com mãos."
+},
+{
+"es": "Seguir caminando.",
+"t": "Continuar andando."
+},
+{
+"es": "Ella sonríe también. Demasiado tiempo. No deja de sonreír cuando te vas.",
+"t": "Ela sorri também. Tempo demais. Não para de sorrir quando você vai embora."
+},
+{
+"es": "EL HOMBRE DE LA ESQUINA",
+"t": "O HOMEM DO CANTO"
+},
+{
+"es": "No mires el techo.\n\nNo mires el techo.\n\n[Su cabeza ha girado demasiado. Su cuerpo sigue mirando la esquina.]\n\nYa nos ha visto. Escribe con nuestra letra.",
+"t": "Não olhe para o teto.\n\nNão olhe para o teto.\n\n[A cabeça dele girou demais. O corpo continua olhando para o canto.]\n\nEle já nos viu. Escreve com a nossa letra."
+},
+{
+"es": "¿Quién nos ha visto?",
+"t": "Quem nos viu?"
+},
+{
+"es": "El que llega a las cero.\n\nLlega tarde a todo, menos a esto.\n\n[Abre la boca más de lo que una boca se abre. No sale ningún sonido.]",
+"t": "O que chega à zero hora.\n\nChega atrasado a tudo, menos a isto.\n\n[Ele abre a boca mais do que uma boca se abre. Não sai som nenhum.]"
+},
+{
+"es": "Apartar la vista.",
+"t": "Desviar o olhar."
+},
+{
+"es": "El circuito de la sala común está fallando. Dejaron un fusible en la capilla, a la derecha del pasillo. El cuadro está en mantenimiento, al otro lado.\n\nLleva la linterna. F la enciende.\n\nDespués, si puedes, quédate con el hombre de la sala. Lleva toda la tarde preguntando por alguien.",
+"t": "O circuito da sala comum está falhando. Deixaram um fusível na capela, à direita do corredor. O quadro fica na manutenção, do outro lado.\n\nLeve a lanterna. F acende.\n\nDepois, se puder, fique com o homem da sala. Ele passou a tarde toda perguntando por alguém."
+},
+{
+"es": "Voy a buscar el fusible.",
+"t": "Vou buscar o fusível."
+},
+{
+"es": "Primero quiero mirar alrededor.",
+"t": "Primeiro quero olhar em volta."
+},
+{
+"es": "He oído su voz. La de mi hermana.\n\nNo hemos arreglado nada. Pero he oído su voz.\n\nGracias por quedarte.",
+"t": "Ouvi a voz dela. Da minha irmã.\n\nNão resolvemos nada. Mas ouvi a voz dela.\n\nObrigada por ficar."
+},
+{
+"es": "La sala común está al final del pasillo.\n\nSi necesitas parar, para. Acabas de volver.",
+"t": "A sala comum fica no fim do corredor.\n\nSe precisar parar, pare. Você acabou de voltar."
+},
+{
+"es": "Seguir.",
+"t": "Seguir."
+},
+{
+"es": "Llevas un vaso de agua. Puedes ofrecérselo al hombre de la sala común.",
+"t": "Você está levando um copo d’água. Pode oferecê-lo ao homem da sala comum."
+},
+{
+"es": "ÁLEX",
+"t": "ÁLEX"
+},
+{
+"es": "Necesito saber adónde voy antes de salir. Inés está junto a la cama.",
+"t": "Preciso saber para onde vou antes de sair. Inés está junto à cama."
+},
+{
+"es": "Volver.",
+"t": "Voltar."
+},
+{
+"es": "EL HOMBRE",
+"t": "O HOMEM"
+},
+{
+"es": "Todavía estás aquí.",
+"t": "Você ainda está aqui."
+},
+{
+"es": "Puedes volver a sentarte si quieres. No tienes que explicarme nada.",
+"t": "Pode voltar a se sentar, se quiser. Não precisa me explicar nada."
+},
+{
+"es": "Quedarme un instante.",
+"t": "Ficar um instante."
+},
+{
+"es": "Voy a mirar por la ventana.",
+"t": "Vou olhar pela janela."
+},
+{
+"es": "La luz de la sala está fallando. Recupera el fusible de la capilla y restablece el circuito.",
+"t": "A luz da sala está falhando. Recupere o fusível da capela e restabeleça o circuito."
+},
+{
+"es": "La ciudad sigue en su sitio.\n\nEn una ventana alguien sacude un mantel. Me sorprende que todavía haya migas.",
+"t": "A cidade continua no lugar.\n\nNuma janela, alguém sacode uma toalha de mesa. Me surpreende que ainda haja migalhas."
+},
+{
+"es": "Volver a la sala.",
+"t": "Voltar para a sala."
+},
+{
+"es": "La costura del pasillo también está en el cielo.\n\nNo parece una herida. Parece un intento de cerrar algo.\n\nDetrás de mí, alguien mueve una silla.",
+"t": "A costura do corredor também está no céu.\n\nNão parece uma ferida. Parece uma tentativa de fechar alguma coisa.\n\nAtrás de mim, alguém arrasta uma cadeira."
+},
+{
+"es": "Mirar hacia arriba. No hace falta ventana.",
+"t": "Olhar para cima. Não precisa de janela."
+},
+{
+"es": "Volver con ellos.",
+"t": "Voltar para junto deles."
+},
+{
+"es": "RADIO DE EMERGENCIAS",
+"t": "RÁDIO DE EMERGÊNCIA"
+},
+{
+"es": "…la hora estimada no ha cambiado.\n\nSi puede escuchar esta emisión, no tiene que responder. Seguiremos aquí mientras…\n\n[Una pausa. Se oye a alguien acercar un vaso al micrófono.]\n\n…mientras podamos.",
+"t": "…o horário estimado não mudou.\n\nSe você pode ouvir esta transmissão, não precisa responder. Continuaremos aqui enquanto…\n\n[Uma pausa. Ouve-se alguém aproximar um copo do microfone.]\n\n…enquanto pudermos."
+},
+{
+"es": "Escuchar el silencio un momento.",
+"t": "Escutar o silêncio por um momento."
+},
+{
+"es": "TU EXPEDIENTE",
+"t": "SEU PRONTUÁRIO"
+},
+{
+"es": "ÁLEX / RECUPERACIÓN\nIngreso: hace diecinueve días.\nContacto: Lucía.\n\nDentro hay una nota doblada:\n«Si despiertas, no intentes explicármelo todo de golpe.»\n\nReconoces la letra antes de recordar su voz.",
+"t": "ÁLEX / RECUPERAÇÃO\nInternação: há dezenove dias.\nContato: Lucía.\n\nDentro há um bilhete dobrado:\n“Se você acordar, não tente me explicar tudo de uma vez.”\n\nVocê reconhece a letra antes de lembrar a voz dela."
+},
+{
+"es": "Guardar la nota.",
+"t": "Guardar o bilhete."
+},
+{
+"es": "TELÉFONO",
+"t": "TELEFONE"
+},
+{
+"es": "La línea ya no conecta.\n\nLa conversación existió. No puedes repetirla hasta que salga perfecta.",
+"t": "A linha já não conecta.\n\nA conversa existiu. Você não pode repeti-la até que saia perfeita."
+},
+{
+"es": "Colgar.",
+"t": "Desligar."
+},
+{
+"es": "LUCÍA",
+"t": "LUCÍA"
+},
+{
+"es": "¿Quién…?\n\nNo. No me digas que eres tú si no eres tú.\n\n[Respira.]\n\nPodemos hablar. No sé si podemos arreglarlo. No me hagas prometer las dos cosas.",
+"t": "Quem…?\n\nNão. Não me diga que é você se não for você.\n\n[Ela respira.]\n\nA gente pode conversar. Não sei se a gente pode consertar. Não me faça prometer as duas coisas."
+},
+{
+"es": "No tienes que prometerme nada.",
+"t": "Você não precisa me prometer nada."
+},
+{
+"es": "Solo quería oírte.",
+"t": "Eu só queria te ouvir."
+},
+{
+"es": "Capilla a la derecha. Mantenimiento a la izquierda. F: linterna. E: puertas y objetos.",
+"t": "Capela à direita. Manutenção à esquerda. F: lanterna. E: portas e objetos."
+},
+{
+"es": "Estoy sentada en el suelo de la cocina.\n\nNo sé por qué te lo digo.\n\n…Quédate un momento. Quiero que haya alguien al otro lado.",
+"t": "Estou sentada no chão da cozinha.\n\nNão sei por que estou te contando isso.\n\n…Fica um pouco. Quero que tenha alguém do outro lado."
+},
+{
+"es": "Quedarme hasta que la línea se corte.",
+"t": "Ficar até a linha cair."
+},
+{
+"es": "¿Es para mí?\n\nNo tengo mucha sed. Pero me gusta que me lo preguntes.",
+"t": "É para mim?\n\nNão estou com muita sede. Mas gosto que você me pergunte."
+},
+{
+"es": "Ofrecerle el agua.",
+"t": "Oferecer a água."
+},
+{
+"es": "Sentarme junto a él.",
+"t": "Sentar ao lado dele."
+},
+{
+"es": "¿Crees que el cielo va a doler?\n\nNo hace falta que inventes una respuesta. Ya me han dado muchas hoy.",
+"t": "Você acha que o céu vai doer?\n\nNão precisa inventar uma resposta. Já me deram muitas hoje."
+},
+{
+"es": "No lo sé. Puedo quedarme.",
+"t": "Não sei. Posso ficar."
+},
+{
+"es": "Puedo acercar la silla.",
+"t": "Posso aproximar a cadeira."
+},
+{
+"es": "Ahora mismo no puedo quedarme.",
+"t": "Agora não posso ficar."
+},
+{
+"es": "Permanecer también es una acción. Puedes levantarte con E.",
+"t": "Permanecer também é uma ação. Você pode se levantar com E."
+},
+{
+"es": "He podido llamarla.\n\n[Inés deja una mano en el respaldo de la silla.]\n\n¿Esa línea estaba antes en el suelo?\n\n[Él mira el pasillo y después la ventana. «Prefiero mirar allí», dice.]",
+"t": "Consegui ligar para ela.\n\n[Inés apoia uma mão no encosto da cadeira.]\n\nEssa linha já estava no chão antes?\n\n[Ele olha para o corredor e depois para a janela. “Prefiro olhar para lá”, diz.]"
+},
+{
+"es": "Está bien.\n\n[No lo dice como un reproche. Tampoco como una absolución.]\n\n[Algo se mueve en el pasillo. Una línea negra atraviesa las baldosas. Él pide que giren la silla hacia la ventana.]",
+"t": "Tudo bem.\n\n[Ele não diz isso como uma censura. Nem como uma absolvição.]\n\n[Algo se move no corredor. Uma linha preta atravessa os ladrilhos. Ele pede que virem a cadeira para a janela.]"
+},
+{
+"es": "Mirar el cielo.",
+"t": "Olhar o céu."
+},
+{
+"es": "La ventana está al fondo de la sala. También puedes volver al pasillo.",
+"t": "A janela fica no fundo da sala. Você também pode voltar ao corredor."
+},
+{
+"es": ");\n            s=System.Text.RegularExpressions.Regex.Replace(s,@",
+"t": ");\n            s=System.Text.RegularExpressions.Regex.Replace(s,@"
+},
+{
+"es": "{0}   «{1}»",
+"t": "{0}   “{1}”"
+},
+{
+"es": "EL FRENTE",
+"t": "A FRENTE"
+},
+{
+"es": "FIN DEL PRIMER FRAGMENTO",
+"t": "FIM DO PRIMEIRO FRAGMENTO"
+},
+{
+"es": "El reloj llegó a cero. El mundo no esperaba una respuesta.",
+"t": "O relógio chegou a zero. O mundo não esperava uma resposta."
+},
+{
+"es": "La última hora acaba de empezar.",
+"t": "A última hora acaba de começar."
+},
+{
+"es": "Partida guardada en este equipo.",
+"t": "Jogo salvo neste dispositivo."
+},
+{
+"es": "Partida guardada.",
+"t": "Jogo salvo."
+},
+{
+"es": "No se pudo guardar: ",
+"t": "Não foi possível salvar: "
+},
+{
+"es": "No se pudo guardar la partida.",
+"t": "Não foi possível salvar o jogo."
+},
+{
+"es": "Guardado incompatible",
+"t": "Save incompatível"
+},
+{
+"es": "Has vuelto. El tiempo no avanzó mientras no estabas.",
+"t": "Você voltou. O tempo não passou enquanto você esteve fora."
+},
+{
+"es": "No se pudo cargar. Puedes iniciar una nueva partida.",
+"t": "Não foi possível carregar. Você pode iniciar um novo jogo."
+},
+{
+"es": "Continuar",
+"t": "Continuar"
+},
+{
+"es": "HINENI",
+"t": "HINENI"
+},
+{
+"es": "HOSPITAL DEL UMBRAL",
+"t": "HOSPITAL DO LIMIAR"
+},
+{
+"es": "01 · Habla con Inés",
+"t": "01 · Fale com Inés"
+},
+{
+"es": "Acompaña al hombre de la sala común",
+"t": "Faça companhia ao homem da sala comum"
+},
+{
+"es": "Mira por la ventana",
+"t": "Olhe pela janela"
+},
+{
+"es": "En las manos: un vaso de agua",
+"t": "Nas mãos: um copo d’água"
+},
+{
+"es": "LO ESTÁS SUJETANDO CON LA LUZ. RETROCEDE.",
+"t": "VOCÊ O ESTÁ SEGURANDO COM A LUZ. RECUE."
+},
+{
+"es": "LOS PASOS ESTÁN MÁS CERCA.",
+"t": "OS PASSOS ESTÃO MAIS PERTO."
+},
+{
+"es": "DENTRO DEL ARMARIO · E PARA SALIR",
+"t": "DENTRO DO ARMÁRIO · E PARA SAIR"
+},
+{
+"es": "ESTÁS AQUÍ   ·   E levantarte",
+"t": "VOCÊ ESTÁ AQUI   ·   E levantar-se"
+},
+{
+"es": "WASD",
+"t": "WASD"
+},
+{
+"es": "caminar",
+"t": "andar"
+},
+{
+"es": "RATÓN",
+"t": "MOUSE"
+},
+{
+"es": "mirar",
+"t": "olhar"
+},
+{
+"es": "interactuar",
+"t": "interagir"
+},
+{
+"es": "ESC",
+"t": "ESC"
+},
+{
+"es": "pausa",
+"t": "pausa"
+},
+{
+"es": "guardar",
+"t": "salvar"
+},
+{
+"es": "detenido",
+"t": "parado"
+},
+{
+"es": "espacio · clic para continuar",
+"t": "espaço · clique para continuar"
+},
+{
+"es": "El reloj se detiene mientras lees y eliges.",
+"t": "O relógio para enquanto você lê e escolhe."
+},
+{
+"es": "LOS ÚLTIMOS QUINCE MINUTOS",
+"t": "OS ÚLTIMOS QUINZE MINUTOS"
+},
+{
+"es": "«Heme aquí.» Lo dijo Isaías cuando vio a los serafines. Isaías 6:8",
+"t": "“Eis-me aqui.” Disse Isaías quando viu os serafins. Isaías 6:8"
+},
+{
+"es": "Vuelves a abrir los ojos.",
+"t": "Você volta a abrir os olhos."
+},
+{
+"es": "Al mundo le quedan quince minutos. Lo último que hagas decide cómo terminan.",
+"t": "Restam quinze minutos ao mundo. A última coisa que você fizer decide como eles terminam."
+},
+{
+"es": "Despertar",
+"t": "Despertar"
+},
+{
+"es": "Continuar el último despertar",
+"t": "Continuar o último despertar"
+},
+{
+"es": "Finales",
+"t": "Finais"
+},
+{
+"es": "{0} de {1} vistos",
+"t": "{0} de {1} vistos"
+},
+{
+"es": "Texto",
+"t": "Texto"
+},
+{
+"es": "Voces",
+"t": "Vozes"
+},
+{
+"es": "Salir",
+"t": "Sair"
+},
+{
+"es": "PROTOTIPO JUGABLE · 0.3",
+"t": "PROTÓTIPO JOGÁVEL · 0.3"
+},
+{
+"es": "Hospitalización · muerte · fin del mundo",
+"t": "Hospitalização · morte · fim do mundo"
+},
+{
+"es": "Juega en horizontal. Leer y elegir detiene el reloj.",
+"t": "Jogue na horizontal. Ler e escolher para o relógio."
+},
+{
+"es": "No hay combate. Leer y elegir detiene el reloj.",
+"t": "Não há combate. Ler e escolher para o relógio."
+},
+{
+"es": "ANTES DEL JUICIO",
+"t": "ANTES DO JUÍZO"
+},
+{
+"es": "A TU RITMO",
+"t": "NO SEU RITMO"
+},
+{
+"es": "EL TIEMPO ESTÁ DETENIDO.",
+"t": "O TEMPO ESTÁ PARADO."
+},
+{
+"es": "· tu ausencia no consume esta hora.",
+"t": "· sua ausência não consome esta hora."
+},
+{
+"es": "Sensibilidad del ratón",
+"t": "Sensibilidade do mouse"
+},
+{
+"es": "Volumen",
+"t": "Volume"
+},
+{
+"es": "Texto grande",
+"t": "Texto grande"
+},
+{
+"es": "sí",
+"t": "sim"
+},
+{
+"es": "no",
+"t": "não"
+},
+{
+"es": "Mundo en ASCII",
+"t": "Mundo em ASCII"
+},
+{
+"es": "Invertir mirada vertical",
+"t": "Inverter olhar vertical"
+},
+{
+"es": "Movimiento y parpadeos",
+"t": "Movimento e cintilações"
+},
+{
+"es": "reducidos",
+"t": "reduzidos"
+},
+{
+"es": "suaves",
+"t": "suaves"
+},
+{
+"es": "Volver",
+"t": "Voltar"
+},
+{
+"es": "Opciones",
+"t": "Opções"
+},
+{
+"es": "Guardar partida",
+"t": "Salvar jogo"
+},
+{
+"es": "Volver al inicio",
+"t": "Voltar ao início"
+},
+{
+"es": "Guardar y salir",
+"t": "Salvar e sair"
+},
+{
+"es": "No hay una respuesta perfecta que desbloquear.",
+"t": "Não há uma resposta perfeita para desbloquear."
+},
+{
+"es": "FINALES",
+"t": "FINAIS"
+},
+{
+"es": "visto",
+"t": "visto"
+},
+{
+"es": "Alguien recibió un vaso de agua.",
+"t": "Alguém recebeu um copo d’água."
+},
+{
+"es": "Lucía supo que estabas al otro lado.",
+"t": "Lucía soube que você estava do outro lado."
+},
+{
+"es": "Volver a los finales",
+"t": "Voltar aos finais"
+},
+{
+"es": "Capilla · recupera el fusible del altar",
+"t": "Capela · recupere o fusível do altar"
+},
+{
+"es": "Sala eléctrica · lleva el fusible al cuadro",
+"t": "Sala elétrica · leve o fusível ao quadro"
+},
+{
+"es": "Activa los interruptores: la pared conserva el orden",
+"t": "Acione os interruptores: a parede guarda a ordem"
+},
+{
+"es": "OCULTO · E para salir",
+"t": "ESCONDIDO · E para sair"
+},
+{
+"es": "F · apagar linterna",
+"t": "F · apagar lanterna"
+},
+{
+"es": "F · encender linterna",
+"t": "F · acender lanterna"
+},
+{
+"es": "FUSIBLE 03",
+"t": "FUSÍVEL 03"
+},
+{
+"es": "La luz lo sujeta. F: linterna. Míralo mientras retrocedes hacia el pasillo.",
+"t": "A luz o segura. F: lanterna. Olhe para ele enquanto recua para o corredor."
+},
+{
+"es": "El alojamiento está vacío. El fusible está en la capilla.",
+"t": "O encaixe está vazio. O fusível está na capela."
+},
+{
+"es": "Fusible colocado. La pintada marca el orden de los tres interruptores.",
+"t": "Fusível encaixado. A pichação marca a ordem dos três interruptores."
+},
+{
+"es": "El circuito ya alimenta la sala común.",
+"t": "O circuito já alimenta a sala comum."
+},
+{
+"es": "Tres negaciones. Un solo nombre. Dos testigos.",
+"t": "Três negações. Um só nome. Duas testemunhas."
+},
+{
+"es": "La palanca sigue abajo. Está tibia, como una mano.",
+"t": "A alavanca continua abaixada. Está morna, como uma mão."
+},
+{
+"es": "PALANCA 41",
+"t": "ALAVANCA 41"
+},
+{
+"es": "Una palanca roja, aparte del cuadro. No alimenta ningún circuito.\n\nEncima, escrito con un dedo: 41.\n\nAl otro lado de la pared, en el pasillo, alguien cuenta en voz baja. Cuarenta y uno. Cuarenta y uno.",
+"t": "Uma alavanca vermelha, separada do quadro. Não alimenta nenhum circuito.\n\nEm cima, escrito com um dedo: 41.\n\nDo outro lado da parede, no corredor, alguém conta em voz baixa. Quarenta e um. Quarenta e um."
+},
+{
+"es": "Bajar la palanca.",
+"t": "Abaixar a alavanca."
+},
+{
+"es": "Dejarla como está.",
+"t": "Deixá-la como está."
+},
+{
+"es": "AQUÍ APOYABA LA FRENTE. La pared todavía tiene la forma de su cara.",
+"t": "AQUI ELE APOIAVA A TESTA. A parede ainda tem a forma do rosto dele."
+},
+{
+"es": "{0} La sangre es nueva.",
+"t": "{0} O sangue é novo."
+},
+{
+"es": "TRES NEGACIONES / UN SOLO NOMBRE / DOS TESTIGOS. Las palancas están numeradas.",
+"t": "TRÊS NEGAÇÕES / UM SÓ NOME / DUAS TESTEMUNHAS. As alavancas estão numeradas."
+},
+{
+"es": "MÍRALO. LA LUZ LO SUJETA. La presencia se detiene si la iluminas y la miras.",
+"t": "OLHE PARA ELE. A LUZ O SEGURA. A presença para se você a ilumina e olha para ela."
+},
+{
+"es": "EL VERBO SE HIZO CARNE. LA CARNE SIGUE GRITANDO. Debajo hay marcas de uñas.",
+"t": "O VERBO SE FEZ CARNE. A CARNE CONTINUA GRITANDO. Embaixo há marcas de unhas."
+},
+{
+"es": "PADRE, NO CONTESTES CON MI VOZ. La última letra todavía escurre.",
+"t": "PAI, NÃO RESPONDA COM A MINHA VOZ. A última letra ainda escorre."
+},
+{
+"es": "EL SÉPTIMO DÍA NOS DEJÓ SOLOS. Alguien intentó borrar 'SOLOS'.",
+"t": "O SÉTIMO DIA NOS DEIXOU SÓS. Alguém tentou apagar 'SÓS'."
+},
+{
+"es": "NO FUE RESURRECCIÓN. ALGO APRENDIÓ A MOVERLOS.",
+"t": "NÃO FOI RESSURREIÇÃO. ALGO APRENDEU A MOVÊ-LOS."
+},
+{
+"es": "Al otro lado de la pared algo revienta. La cuenta se detiene en cuarenta.",
+"t": "Do outro lado da parede, algo arrebenta. A contagem para em quarenta."
+},
+{
+"es": "El circuito está estable.",
+"t": "O circuito está estável."
+},
+{
+"es": "Primero coloca el fusible en el alojamiento inferior.",
+"t": "Primeiro encaixe o fusível no encaixe de baixo."
+},
+{
+"es": "La corriente vuelve. La respiración se detiene. Vuelve con el hombre de la sala común.",
+"t": "A corrente volta. A respiração para. Volte para o homem da sala comum."
+},
+{
+"es": "Circuito {0} de 3. Quedan pasos al otro lado de la puerta.",
+"t": "Circuito {0} de 3. Ainda há passos do outro lado da porta."
+},
+{
+"es": "El cuadro golpea la pared. La presencia ha oído el error. El orden vuelve a empezar.",
+"t": "O quadro bate na parede. A presença ouviu o erro. A ordem recomeça."
+},
+{
+"es": "Has salido. Escucha antes de encender la luz.",
+"t": "Você saiu. Escute antes de acender a luz."
+},
+{
+"es": "Oculto. La luz se apaga. E para salir.",
+"t": "Escondido. A luz se apaga. E para sair."
+},
+{
+"es": "Estás de nuevo en recuperación. Faltan treinta segundos más. Conservas el fusible y el circuito.",
+"t": "Você está de novo na recuperação. Faltam mais trinta segundos. O fusível e o circuito continuam com você."
+},
+{
+"es": "HOSPITAL DEL UMBRAL RECUPERACIÓN / 03 SALA COMÚN NO DEJAR A NADIE SOLO",
+"t": "HOSPITAL DO LIMIAR RECUPERAÇÃO / 03 SALA COMUM NÃO DEIXAR NINGUÉM SOZINHO"
+},
+{
+"es": "TransparentCutout",
+"t": "TransparentCutout"
+},
+{
+"es": "Recuperacion",
+"t": "Recuperacao"
+},
+{
+"es": "Corredor",
+"t": "Corredor"
+},
+{
+"es": "Sala comun",
+"t": "Sala comum"
+},
+{
+"es": "RECUPERACIÓN  /  03",
+"t": "RECUPERAÇÃO  /  03"
+},
+{
+"es": "SALA COMÚN",
+"t": "SALA COMUM"
+},
+{
+"es": "NO DEJAR A NADIE SOLO",
+"t": "NÃO DEIXAR NINGUÉM SOZINHO"
+},
+{
+"es": "NO DEJAR A NADIE\nENTERO",
+"t": "NÃO DEIXAR NINGUÉM\nINTEIRO"
+},
+{
+"es": "Puerta de recuperación",
+"t": "Porta da recuperação"
+},
+{
+"es": "Abrir",
+"t": "Abrir"
+},
+{
+"es": "Un vaso de agua",
+"t": "Um copo d’água"
+},
+{
+"es": "Tomar",
+"t": "Pegar"
+},
+{
+"es": "Una línea al exterior",
+"t": "Uma linha para fora"
+},
+{
+"es": "Llamar",
+"t": "Ligar"
+},
+{
+"es": "Tu nombre en una carpeta",
+"t": "Seu nome numa pasta"
+},
+{
+"es": "Leer",
+"t": "Ler"
+},
+{
+"es": "Ya casi. Ya casi.",
+"t": "Já quase. Já quase."
+},
+{
+"es": "Te cambié las sábanas aunque no estuvieras dentro.",
+"t": "Troquei seus lençóis mesmo você não estando dentro."
+},
+{
+"es": "La hora también tiene fiebre.",
+"t": "A hora também está com febre."
+},
+{
+"es": "Inés · enfermera",
+"t": "Inés · enfermeira"
+},
+{
+"es": "Hablar",
+"t": "Falar"
+},
+{
+"es": "Lampara de cabecera",
+"t": "Abajur de cabeceira"
+},
+{
+"es": "Recorte Ines",
+"t": "Recorte Ines"
+},
+{
+"es": "Expediente",
+"t": "Prontuário"
+},
+{
+"es": "Mi hijo vuelve a las siete. Son las siete desde ayer.",
+"t": "Meu filho volta às sete. São sete horas desde ontem."
+},
+{
+"es": "No parpadees. Si parpadeas, se acomodan.",
+"t": "Não pisque. Se você piscar, eles se acomodam."
+},
+{
+"es": "Tienes la cara de alguien que ya se fue.",
+"t": "Você tem a cara de alguém que já foi embora."
+},
+{
+"es": "Empújame hacia la ventana. No. Hacia la otra ventana.",
+"t": "Me empurre até a janela. Não. Até a outra janela."
+},
+{
+"es": "Una mujer en silla de ruedas",
+"t": "Uma mulher em cadeira de rodas"
+},
+{
+"es": "Charco silla",
+"t": "Poça cadeira"
+},
+{
+"es": "Cuarenta y uno. Cuarenta y uno. Cuarenta y uno.",
+"t": "Quarenta e um. Quarenta e um. Quarenta e um."
+},
+{
+"es": "La pared está tibia. Alguien la respira desde el otro lado.",
+"t": "A parede está morna. Alguém a respira do outro lado."
+},
+{
+"es": "Ya firmé su alta. Firmé la de todos. También la mía.",
+"t": "Já assinei sua alta. Assinei a de todos. A minha também."
+},
+{
+"es": "No me mire la nuca. Ahí es donde se me olvida la cara.",
+"t": "Não olhe para a minha nuca. É ali que eu esqueço o rosto."
+},
+{
+"es": "Un médico de cara a la pared",
+"t": "Um médico de frente para a parede"
+},
+{
+"es": "Las sábanas cuentan hacia atrás.",
+"t": "Os lençóis contam de trás para frente."
+},
+{
+"es": "Ella me peinó con la otra mano.",
+"t": "Ela me penteou com a outra mão."
+},
+{
+"es": "¿Ya pasó? Huele a que ya pasó.",
+"t": "Já passou? Tem cheiro de que já passou."
+},
+{
+"es": "Ya nos ha visto.",
+"t": "Ele já nos viu."
+},
+{
+"es": "Tiene nuestra letra. Escribe con nuestra letra.",
+"t": "Tem a nossa letra. Escreve com a nossa letra."
+},
+{
+"es": "Si me doy la vuelta, la esquina se queda sola.",
+"t": "Se eu me virar, o canto fica sozinho."
+},
+{
+"es": "Un hombre en la esquina",
+"t": "Um homem no canto"
+},
+{
+"es": "Acercarse",
+"t": "Aproximar-se"
+},
+{
+"es": "El hombre de la sala común",
+"t": "O homem da sala comum"
+},
+{
+"es": "La silla junto a la cama",
+"t": "A cadeira ao lado da cama"
+},
+{
+"es": "Sentarse",
+"t": "Sentar-se"
+},
+{
+"es": "Radio de emergencias",
+"t": "Rádio de emergência"
+},
+{
+"es": "Escuchar",
+"t": "Escutar"
+},
+{
+"es": "El cielo sigue ahí",
+"t": "O céu continua lá"
+},
+{
+"es": "Cielo",
+"t": "Céu"
+},
+{
+"es": "Relleno sala",
+"t": "Preenchimento sala"
+},
+{
+"es": ");\n            if (!src) { Debug.LogWarning(",
+"t": ");\n            if (!src) { Debug.LogWarning("
+},
+{
+"es": " + id); return Cube(id, position, Vector3.one * .3f, steel); }\n            var o = Instantiate(src, position, Quaternion.Euler(tilt, yaw, 0) * src.transform.localRotation, transform); o.name = id;\n            // FBX root rotation contains its Z-up to Y-up conversion. Keep it before laying out the prop.\n            // On the floor, or resting on a surface whose height is position.y: the lowest vertex touches it.\n            if (Mathf.Abs(position.y)<.001f || rest) {\n                var bounds=VisualAudit.GeometryBounds(o);\n                o.transform.position+=Vector3.up*(position.y+.004f-bounds.min.y);\n            }\n            if (collide) AddBounds(o);\n            return o;\n        }\n\n        GameObject Character(string id, Vector3 position, float yaw, System.Action<Uncanny> mind)\n        {\n            var o = Instantiate(Resources.Load<GameObject>($",
+"t": " + id); return Cube(id, position, Vector3.one * .3f, steel); }\n            var o = Instantiate(src, position, Quaternion.Euler(tilt, yaw, 0) * src.transform.localRotation, transform); o.name = id;\n            // FBX root rotation contains its Z-up to Y-up conversion. Keep it before laying out the prop.\n            // On the floor, or resting on a surface whose height is position.y: the lowest vertex touches it.\n            if (Mathf.Abs(position.y)<.001f || rest) {\n                var bounds=VisualAudit.GeometryBounds(o);\n                o.transform.position+=Vector3.up*(position.y+.004f-bounds.min.y);\n            }\n            if (collide) AddBounds(o);\n            return o;\n        }\n\n        GameObject Character(string id, Vector3 position, float yaw, System.Action<Uncanny> mind)\n        {\n            var o = Instantiate(Resources.Load<GameObject>($"
+},
+{
+"es": "), position, Quaternion.Euler(0, yaw, 0), transform);\n            o.name = id;\n            // Skin carries a faint light of its own: faces stay the focal point in the ASCII image.\n            foreach (var r in o.GetComponentsInChildren<Renderer>())\n                foreach (var m in r.materials)\n                    if (m.name.StartsWith(",
+"t": "), position, Quaternion.Euler(0, yaw, 0), transform);\n            o.name = id;\n            // Skin carries a faint light of its own: faces stay the focal point in the ASCII image.\n            foreach (var r in o.GetComponentsInChildren<Renderer>())\n                foreach (var m in r.materials)\n                    if (m.name.StartsWith("
+},
+{
+"es": "Capilla",
+"t": "Capela"
+},
+{
+"es": "Sala eléctrica",
+"t": "Sala elétrica"
+},
+{
+"es": "Fusible 03 · aún está caliente",
+"t": "Fusível 03 · ainda está quente"
+},
+{
+"es": "Recoger",
+"t": "Recolher"
+},
+{
+"es": "Vela {0} de 7",
+"t": "Vela {0} de 7"
+},
+{
+"es": "Encender",
+"t": "Acender"
+},
+{
+"es": "EL VERBO\nSE HIZO CARNE.\nLA CARNE\nSIGUE GRITANDO.",
+"t": "O VERBO\nSE FEZ CARNE.\nA CARNE\nCONTINUA GRITANDO."
+},
+{
+"es": "EL VERBO\nSE HIZO CARNE.\nTÚ LA HICISTE\nPEDAZOS.",
+"t": "O VERBO\nSE FEZ CARNE.\nVOCÊ A FEZ\nEM PEDAÇOS."
+},
+{
+"es": "PADRE, NO CONTESTES\nCON MI VOZ.",
+"t": "PAI, NÃO RESPONDA\nCOM A MINHA VOZ."
+},
+{
+"es": "CUARENTA Y UNO.\nCUARENTA Y UNO.\nCUARENT",
+"t": "QUARENTA E UM.\nQUARENTA E UM.\nQUARENT"
+},
+{
+"es": "MÍRALO.\nLA LUZ LO SUJETA.",
+"t": "OLHE PARA ELE.\nA LUZ O SEGURA."
+},
+{
+"es": "Luz de altar",
+"t": "Luz do altar"
+},
+{
+"es": "Pared de la palabra",
+"t": "Parede da palavra"
+},
+{
+"es": "Circuito de la sala común",
+"t": "Circuito da sala comum"
+},
+{
+"es": "Colocar fusible",
+"t": "Encaixar fusível"
+},
+{
+"es": "Interruptor {0}",
+"t": "Disjuntor {0}"
+},
+{
+"es": "Accionar",
+"t": "Acionar"
+},
+{
+"es": "TRES NEGACIONES.\nUN SOLO NOMBRE.\nDOS TESTIGOS.",
+"t": "TRÊS NEGAÇÕES.\nUM SÓ NOME.\nDUAS TESTEMUNHAS."
+},
+{
+"es": "EL SÉPTIMO DÍA\nNOS DEJÓ SOLOS.",
+"t": "O SÉTIMO DIA\nNOS DEIXOU SÓS."
+},
+{
+"es": "EL SÉPTIMO DÍA\nTE DEJÓ LA PALANCA.",
+"t": "O SÉTIMO DIA\nTE DEIXOU A ALAVANCA."
+},
+{
+"es": "Armario de mantenimiento",
+"t": "Armário de manutenção"
+},
+{
+"es": "Ocultarte / E para salir",
+"t": "Esconder-se / E para sair"
+},
+{
+"es": "Luz de cuadro",
+"t": "Luz do quadro"
+},
+{
+"es": "NO FUE RESURRECCIÓN.\nALGO APRENDIÓ A MOVERLOS.",
+"t": "NÃO FOI RESSURREIÇÃO.\nALGO APRENDEU A MOVÊ-LOS."
+},
+{
+"es": "NO FUE RESURRECCIÓN.\nFUISTE TÚ.",
+"t": "NÃO FOI RESSURREIÇÃO.\nFOI VOCÊ."
+},
+{
+"es": "EL TESTIGO",
+"t": "A TESTEMUNHA"
+},
+{
+"es": ".riuges arap osimrep edip enrac aL",
+"t": ".raunitnoc arap açnecil edep enrac A"
+},
+{
+"es": ".saímrod sartneim setneid sol étnoc eT",
+"t": ".aimrod êcov otnauqne setned sues ietnoC"
+},
+{
+"es": ".erbmon ut ed erbmah eneit oleic lE",
+"t": ".emon ues od emof met uéc O"
+},
+{
+"es": ".ayut al írba aY .acob al erbA",
+"t": ".aus a irba áj uE .acob a arbA"
+},
+{
+"es": ".atreup anu se ,oremún nu se on onu y atnerauC",
+"t": ".atrop amu é ,oremún mu é oãn mu e atnerauQ"
+},
+{
+"es": ".abirra serim on euq ecid ámaM",
+"t": ".amic arap rahlo oãn arap zid eãmaM"
+},
+{
+"es": ".ómalcer al eidan y arac al noratiuq em reyA",
+"t": ".ol-ácsub iof méugnin e otsor uem mararit metnO"
+},
+{
+"es": "Abrir / cerrar",
+"t": "Abrir / fechar"
+},
+{
+"es": "Mirilla",
+"t": "Visor"
+},
+{
+"es": "Marco mirilla",
+"t": "Moldura visor"
+},
+{
+"es": "Alambre",
+"t": "Arame"
+},
+{
+"es": "Barra",
+"t": "Barra"
+},
+{
+"es": "Soporte",
+"t": "Suporte"
+},
+{
+"es": "Zocalo de puerta",
+"t": "Rodapé da porta"
+},
+{
+"es": "Junta",
+"t": "Junta"
+},
+{
+"es": "Chalkduster",
+"t": "Chalkduster"
+},
+{
+"es": "Marker Felt",
+"t": "Marker Felt"
+},
+{
+"es": "Arial",
+"t": "Arial"
+},
+{
+"es": "Leer la pintada",
+"t": "Ler a pichação"
+},
+{
+"es": "Lo oíste reventar. Contaba hasta cuarenta y uno.",
+"t": "Você o ouviu arrebentar. Ele contava até quarenta e um."
+},
+{
+"es": "Ahora nos mira con sus pedazos.",
+"t": "Agora ele nos olha com os pedaços."
+},
+{
+"es": "La palanca era para ver si bajabas la mano.",
+"t": "A alavanca era para ver se você baixava a mão."
+},
+{
+"es": "Una palanca roja, aparte del cuadro",
+"t": "Uma alavanca vermelha, separada do quadro"
+},
+{
+"es": "Examinar",
+"t": "Examinar"
+},
+{
+"es": "AQUÍ APOYABA\nLA FRENTE.",
+"t": "AQUI ELE APOIAVA\nA TESTA."
+},
+{
+"es": "Cerrar",
+"t": "Fechar"
+},
+{
+"es": "Quedarse",
+"t": "Ficar"
+},
+{
+"es": "La voz",
+"t": "A voz"
+},
+{
+"es": "Las velas",
+"t": "As velas"
+},
+{
+"es": "El armario",
+"t": "O armário"
+},
+{
+"es": "El cielo",
+"t": "O céu"
+},
+{
+"es": "quedarse",
+"t": "ficar"
+},
+{
+"es": "voz",
+"t": "voz"
+},
+{
+"es": "velas",
+"t": "velas"
+},
+{
+"es": "armario",
+"t": "armário"
+},
+{
+"es": "ojos",
+"t": "olhos"
+},
+{
+"es": "Ya arde. Las otras se están apagando.",
+"t": "Já está acesa. As outras estão se apagando."
+},
+{
+"es": "Una llama. Arden {0} segundos. La pared pide siete.",
+"t": "Uma chama. Ardem {0} segundos. A parede pede sete."
+},
+{
+"es": "Arden {0} de 7.",
+"t": "Ardem {0} de 7."
+},
+{
+"es": "Respiráis a la vez. {0} de {1}",
+"t": "Vocês respiram juntos. {0} de {1}"
+},
+{
+"es": "A destiempo. Él se ahoga un poco, y espera a que lo encuentres.",
+"t": "Fora do tempo. Ele se afoga um pouco e espera que você o encontre."
+},
+{
+"es": "Horizontal",
+"t": "Horizontal"
+},
+{
+"es": "Mouse X",
+"t": "Mouse X"
+},
+{
+"es": "Cuelgas. El tono sigue sonando dentro del auricular.",
+"t": "Você desliga. O tom continua soando dentro do fone."
+},
+{
+"es": "No rezan por ellos mismos.",
+"t": "Não rezam por si mesmos."
+},
+{
+"es": "Saben tu nombre. Lo pronuncian mal, con cuidado.",
+"t": "Sabem o seu nome. Pronunciam errado, com cuidado."
+},
+{
+"es": "Aquí dentro no te busca nadie. Todavía. El armario espera a que haya alguien fuera.",
+"t": "Aqui dentro ninguém te procura. Ainda. O armário espera que haja alguém lá fora."
+},
+{
+"es": "LO ÚLTIMO QUE HAGAS",
+"t": "A ÚLTIMA COISA QUE VOCÊ FIZER"
+},
+{
+"es": "LÍNEA AL EXTERIOR · busca la voz entre la estática",
+"t": "LINHA PARA FORA · procure a voz no meio da estática"
+},
+{
+"es": "SEÑAL",
+"t": "SINAL"
+},
+{
+"es": "palanca izquierda o derecha · sintonizar      COLGAR",
+"t": "alavanca esquerda ou direita · sintonizar      DESLIGAR"
+},
+{
+"es": "A / D o ratón · sintonizar      Q · colgar",
+"t": "A / D ou mouse · sintonizar      Q · desligar"
+},
+{
+"es": "RESPIRA CON ÉL · RESPIRAR arriba del todo",
+"t": "RESPIRE COM ELE · RESPIRAR lá no alto"
+},
+{
+"es": "RESPIRA CON ÉL · ESPACIO arriba del todo",
+"t": "RESPIRE COM ELE · ESPAÇO lá no alto"
+},
+{
+"es": "CONTIENES EL ALIENTO",
+"t": "VOCÊ PRENDE A RESPIRAÇÃO"
+},
+{
+"es": "ESTÁ AHÍ FUERA · mantén CONTENER",
+"t": "ESTÁ LÁ FORA · segure PRENDER"
+},
+{
+"es": "ESTÁ AHÍ FUERA · mantén ESPACIO",
+"t": "ESTÁ LÁ FORA · segure ESPAÇO"
+},
+{
+"es": "Respira. Despacio.",
+"t": "Respire. Devagar."
+},
+{
+"es": "AIRE",
+"t": "AR"
+},
+{
+"es": "TE OYE",
+"t": "ELE TE OUVE"
+},
+{
+"es": "QUEDARSE",
+"t": "FICAR"
+},
+{
+"es": "FINAL · LA VIGILIA",
+"t": "FINAL · A VIGÍLIA"
+},
+{
+"es": "Respiraste con él hasta que el aire dejó de hacer falta.",
+"t": "Você respirou com ele até que o ar deixou de ser necessário."
+},
+{
+"es": "No le dijiste que todo iba a estar bien. Le diste la mano.",
+"t": "Você não disse a ele que tudo ia ficar bem. Você segurou a mão dele."
+},
+{
+"es": "Cuando llegó el Juicio, encontró a dos personas que no estaban solas.",
+"t": "Quando o Juízo chegou, encontrou duas pessoas que não estavam sozinhas."
+},
+{
+"es": "En el pasillo seguía la sangre del médico. Él no preguntó. Tú tampoco.",
+"t": "No corredor ainda estava o sangue do médico. Ele não perguntou. Você também não."
+},
+{
+"es": "LA VOZ",
+"t": "A VOZ"
+},
+{
+"es": "FINAL · LA LÍNEA",
+"t": "FINAL · A LINHA"
+},
+{
+"es": "La línea aguantó más de lo que nadie esperaba.",
+"t": "A linha aguentou mais do que alguém esperava."
+},
+{
+"es": "Lucía habló de la cocina, de una taza rota, de vuestra madre.",
+"t": "Lucía falou da cozinha, de uma xícara quebrada, da mãe de vocês."
+},
+{
+"es": "No arreglasteis nada. Pero al final del mundo había alguien al otro lado.",
+"t": "Vocês não consertaram nada. Mas no fim do mundo havia alguém do outro lado."
+},
+{
+"es": "No le contaste lo de la palanca. Hay cosas que se llevan solas.",
+"t": "Você não contou a ela sobre a alavanca. Há coisas que se carregam sozinho."
+},
+{
+"es": "LAS VELAS",
+"t": "AS VELAS"
+},
+{
+"es": "FINAL · EL SÉPTIMO DÍA",
+"t": "FINAL · O SÉTIMO DIA"
+},
+{
+"es": "Siete llamas a la vez, como pedía la pared.",
+"t": "Sete chamas ao mesmo tempo, como a parede pedia."
+},
+{
+"es": "La capilla se llenó de una luz que no venía de las velas.",
+"t": "A capela se encheu de uma luz que não vinha das velas."
+},
+{
+"es": "El séptimo día no os dejó solos. Solo llegó tarde.",
+"t": "O sétimo dia não deixou vocês sós. Só chegou atrasado."
+},
+{
+"es": "La luz también alumbró tus manos. Seguían rojas.",
+"t": "A luz iluminou também as suas mãos. Continuavam vermelhas."
+},
+{
+"es": "EL ARMARIO",
+"t": "O ARMÁRIO"
+},
+{
+"es": "FINAL · EL ESCONDITE",
+"t": "FINAL · O ESCONDERIJO"
+},
+{
+"es": "Contuviste el aliento hasta que el Testigo se cansó de esperar.",
+"t": "Você prendeu a respiração até a Testemunha se cansar de esperar."
+},
+{
+"es": "Por las rendijas viste pasar la luz del final, de lado, como bajo una puerta.",
+"t": "Pelas frestas você viu passar a luz do fim, de lado, como por baixo de uma porta."
+},
+{
+"es": "Nadie te encontró. Nadie te juzgó. Nadie.",
+"t": "Ninguém te encontrou. Ninguém te julgou. Ninguém."
+},
+{
+"es": "Ahí dentro olía a hierro. No sabías si era el armario o eras tú.",
+"t": "Lá dentro cheirava a ferro. Você não sabia se era o armário ou se era você."
+},
+{
+"es": "LOS OJOS",
+"t": "OS OLHOS"
+},
+{
+"es": "FINAL · LO QUE ESTABA ESCRITO",
+"t": "FINAL · O QUE ESTAVA ESCRITO"
+},
+{
+"es": "Miraste hacia arriba más tiempo del que se puede mirar.",
+"t": "Você olhou para cima por mais tempo do que se pode olhar."
+},
+{
+"es": "Rezaban por el mundo. Al final rezaron por ti, con tu nombre mal pronunciado.",
+"t": "Rezavam pelo mundo. No fim rezaram por você, com o seu nome mal pronunciado."
+},
+{
+"es": "No eran ángeles de estampa. Eran exactamente lo que estaba escrito.",
+"t": "Não eram anjos de santinho. Eram exatamente o que estava escrito."
+},
+{
+"es": "Cuarenta y uno de sus ojos lloraban por el médico.",
+"t": "Quarenta e um dos seus olhos choravam pelo médico."
+},
+{
+"es": "EL JUICIO",
+"t": "O JUÍZO"
+},
+{
+"es": "FINAL · EL RELOJ",
+"t": "FINAL · O RELÓGIO"
+},
+{
+"es": "El reloj llegó a cero mientras todavía estabas decidiendo.",
+"t": "O relógio chegou a zero enquanto você ainda estava decidindo."
+},
+{
+"es": "No hubo trompetas. Hubo un ruido como de páginas.",
+"t": "Não houve trombetas. Houve um ruído como de páginas."
+},
+{
+"es": "Todo lo que no hiciste también fue pesado.",
+"t": "Tudo o que você não fez também foi pesado."
+},
+{
+"es": "La palanca 41 pesó más que todo lo demás.",
+"t": "A alavanca 41 pesou mais do que todo o resto."
+},
+{
+"es": "--touch",
+"t": "--touch"
+},
+{
+"es": "CERRAR",
+"t": "FECHAR"
+},
+{
+"es": "CONTROLES",
+"t": "CONTROLES"
+},
+{
+"es": "CONTENER",
+"t": "PRENDER"
+},
+{
+"es": "RESPIRAR",
+"t": "RESPIRAR"
+},
+{
+"es": "COLGAR",
+"t": "DESLIGAR"
+},
+{
+"es": "USAR",
+"t": "USAR"
+},
+{
+"es": "SALIR",
+"t": "SAIR"
+},
+{
+"es": "LEVANTARSE",
+"t": "LEVANTAR-SE"
+},
+{
+"es": "USAR  E",
+"t": "USAR  E"
+},
+{
+"es": "LINTERNA  F",
+"t": "LANTERNA  F"
+},
+{
+"es": "ESPACIO",
+"t": "ESPAÇO"
+},
+{
+"es": "COLGAR  Q",
+"t": "DESLIGAR  Q"
+},
+{
+"es": "PAUSA",
+"t": "PAUSA"
+},
+{
+"es": "GIRA EL TELÉFONO",
+"t": "GIRE O TELEFONE"
+},
+{
+"es": "HINENI se juega en horizontal",
+"t": "HINENI se joga na horizontal"
+},
+{
+"es": "MOVER",
+"t": "MOVER"
+},
+{
+"es": "MIRAR",
+"t": "OLHAR"
+},
+{
+"es": "Ines",
+"t": "Ines"
+},
+{
+"es": "Paciente",
+"t": "Paciente"
+}
+]
+}

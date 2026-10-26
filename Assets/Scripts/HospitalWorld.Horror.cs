@@ -53,7 +53,7 @@ namespace LosQueQuedan
             {
                 float z=8.9f+i*.36f;
                 var candle=Cylinder("Vela",new Vector3(8.55f,1.51f,z),new Vector3(.07f,.18f,.07f),pale);
-                Target(candle,"candle-"+i,"Vela "+(i+1)+" de 7","Encender");
+                Target(candle,"candle-"+i,Loc.F("Vela {0} de 7",i+1),"Encender");
                 flames[i]=Cube("Llama",new Vector3(8.55f,1.74f,z),new Vector3(.03f,.08f,.03f),flameMat);Destroy(flames[i].GetComponent<Collider>());
                 var l=new GameObject("Luz de vela").AddComponent<Light>();l.transform.SetParent(transform);l.transform.position=new Vector3(8.4f,1.85f,z);
                 l.type=LightType.Point;l.range=2.2f;l.intensity=0;l.color=new Color(1,.68f,.32f);candleLights[i]=l;
@@ -75,7 +75,7 @@ namespace LosQueQuedan
             {
                 float z=13.3f+i*.7f;
                 var handle=Cube("Interruptor "+(i+1),new Vector3(-9.41f,1.7f,z),new Vector3(.18f,.42f,.22f),pale);
-                Target(handle,"breaker-"+(i+1),"Interruptor "+(i+1),"Accionar");breakers[i]=handle.transform;
+                Target(handle,"breaker-"+(i+1),Loc.F("Interruptor {0}",i+1),"Accionar");breakers[i]=handle.transform;
                 breakerLights[i]=Mat("Indicador "+i,new Color(.12f,.015f,.008f),0,true);
                 Cube("Indicador",new Vector3(-9.47f,2.12f,z),new Vector3(.07f,.09f,.13f),breakerLights[i]);
                 Bleed(SmallLabel((i+1).ToString(),new Vector3(-9.605f,2.5f,z),Vector3.right,.045f),Vector3.right,.1f,1);
@@ -135,7 +135,7 @@ namespace LosQueQuedan
             Target(handle,id,label,"Abrir / cerrar");
             var inside=Cube("Pulsador interior "+label,p+new Vector3(p.x>0?.18f:-.18f,1.15f,1.35f),new Vector3(.12f,.22f,.16f),pale);
             Target(inside,id,label,"Abrir / cerrar");
-            var plaque=SmallLabel(label.ToUpperInvariant(),p+new Vector3(p.x>0?-.11f:.11f,3.05f,0),p.x>0?Vector3.left:Vector3.right,.08f);Bleed(plaque,p.x>0?Vector3.left:Vector3.right,1.6f,4);
+            var plaque=SmallLabel(Loc.T(label).ToUpperInvariant(),p+new Vector3(p.x>0?-.11f:.11f,3.05f,0),p.x>0?Vector3.left:Vector3.right,.08f);Bleed(plaque,p.x>0?Vector3.left:Vector3.right,1.6f,4);
             return leaf;
         }
         Material glass;
@@ -174,7 +174,7 @@ namespace LosQueQuedan
         GameObject SmallLabel(string text,Vector3 pos,Vector3 normal,float scale)
         {
             var o=new GameObject(text);o.transform.SetParent(transform);o.transform.position=pos;o.transform.rotation=Quaternion.LookRotation(-normal);
-            var mesh=o.AddComponent<TextMesh>();mesh.text=text;mesh.font=font;mesh.fontSize=64;mesh.characterSize=scale;
+            var mesh=o.AddComponent<TextMesh>();mesh.text=Loc.T(text);mesh.font=font;mesh.fontSize=64;mesh.characterSize=scale;
             mesh.anchor=TextAnchor.MiddleCenter;mesh.color=new Color(.65f,.63f,.54f);
             o.GetComponent<MeshRenderer>().sharedMaterial=worldFont;
             return o;
@@ -183,6 +183,11 @@ namespace LosQueQuedan
         void Bleed(GameObject o,Vector3 normal,float width,int drips){StyleBlood(o);Drips(o,normal,width,drips);}
         void StyleBlood(GameObject o)
         {
+            if(!hand&&Loc.CJK)
+            {
+                hand=font;   // Chinese and Japanese write in a bundled brush face (see HospitalWorld.Build)
+                bloodFont=new Material(worldTextShader){mainTexture=hand.material.mainTexture};owned.Add(bloodFont);
+            }
             if(!hand)
             {
 #if UNITY_WEBGL
@@ -224,9 +229,9 @@ namespace LosQueQuedan
             StyleBlood(o);Fit(text,maxWidth);
             var hit=o.AddComponent<BoxCollider>();hit.center=Vector3.zero;
             float inv=1/o.transform.localScale.x;hit.size=new Vector3(maxWidth*inv,1.25f*inv,.06f*inv);
-            Target(o,id,words.Replace('\n',' '),"Leer la pintada");
+            Target(o,id,text.text.Replace('\n',' '),"Leer la pintada");
             Drips(o,normal,maxWidth,17);
-            if(after!=null)writings[id]=(text,maxWidth,words,after);
+            if(after!=null)writings[id]=(text,maxWidth,Loc.T(words),Loc.T(after));
             return o;
         }
         static void Fit(TextMesh text,float maxWidth)
@@ -234,7 +239,7 @@ namespace LosQueQuedan
             text.transform.localScale=Vector3.one;
             var bounds=text.GetComponent<Renderer>().bounds;
             float span=Mathf.Max(bounds.size.x,bounds.size.z);
-            if(span>.01f)text.transform.localScale=Vector3.one*Mathf.Min(1.6f,maxWidth/span);
+            if(span>.01f)text.transform.localScale=Vector3.one*Mathf.Min(Loc.CJK?1f:1.6f,maxWidth/span);   // short CJK lines would otherwise blow up
         }
         public string WritingText(string id)=>writings.TryGetValue(id,out var w)?w.text.text.Replace('\n',' '):null;
         public void Rewrite(bool after)

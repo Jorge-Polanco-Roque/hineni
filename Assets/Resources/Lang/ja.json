@@ -1,0 +1,1588 @@
+{
+"items": [
+{
+"es": "APOCALIPSIS 6:12–17 · Reina-Valera 1909",
+"t": "ヨハネの黙示録 6:12–17 · 口語訳"
+},
+{
+"es": "12 Y miré cuando él abrió el sexto sello, y he aquí fué hecho un gran terremoto; y el sol se puso negro como un saco de cilicio, y la luna se puso toda como sangre;\n13 Y las estrellas del cielo cayeron sobre la tierra, como la higuera echa sus higos cuando es movida de gran viento.\n14 Y el cielo se apartó como un libro que es envuelto; y todo monte y las islas fueron movidas de sus lugares.\n15 Y los reyes de la tierra, y los príncipes, y los ricos, y los capitanes, y los fuertes, y todo siervo y todo libre, se escondieron en las cuevas y entre las peñas de los montes;\n16 Y decían á los montes y á las peñas: Caed sobre nosotros, y escondednos de la cara de aquél que está sentado sobre el trono, y de la ira del Cordero:\n17 Porque el gran día de su ira es venido; ¿y quién podrá estar firme?",
+"t": "12 小羊が第六の封印を解いた時、わたしが見ていると、大地震が起って、太陽は毛織の荒布のように黒くなり、月は全面、血のようになり、\n13 天の星は、いちじくのまだ青い実が大風に揺られて振り落されるように、地に落ちた。\n14 天は巻物が巻かれるように消えていき、すべての山と島とはその場所から移されてしまった。\n15 地の王たち、高官、千卒長、富める者、勇者、奴隷、自由人らはみな、ほら穴や山の岩かげに、身をかくした。\n16 そして、山と岩とにむかって言った、「さあ、われわれをおおって、御座にいますかたの御顔と小羊の怒りとから、かくまってくれ。\n17 御怒りの大いなる日が、すでにきたのだ。だれが、その前に立つことができようか」。"
+},
+{
+"es": "back to the endings",
+"t": "back to the endings"
+},
+{
+"es": "MainCamera",
+"t": "MainCamera"
+},
+{
+"es": "Paso original",
+"t": "Paso original"
+},
+{
+"es": "Resonancia original",
+"t": "Resonancia original"
+},
+{
+"es": "«Una vez dejé ganar a mi hermano para que volviera.»",
+"t": "「一度、弟をわざと勝たせた。戻ってきてほしかったから」"
+},
+{
+"es": "«No sé si aquello era quererlo. Pero volvió.»",
+"t": "「あれが愛だったのかはわからない。でも、弟は戻ってきた」"
+},
+{
+"es": "INÉS",
+"t": "イネス"
+},
+{
+"es": "No intentes levantarte deprisa.\n\nTe llamas Álex. Estás en el Hospital del Umbral. Llevas diecinueve días aquí.\n\nVoy a decirte algo difícil. Puedes tomarte un momento.",
+"t": "急に起き上がろうとしないで。\n\nあなたはアレックス。ここは境界病院。もう十九日もここにいるの。\n\nこれからつらいことを話すわ。少し時間をとってもいい。"
+},
+{
+"es": "Dime qué está pasando.",
+"t": "何が起きているのか教えてくれ。"
+},
+{
+"es": "Solo necesito un momento.",
+"t": "少しだけ時間がほしい。"
+},
+{
+"es": "Estoy aquí. No tienes que contestar enseguida.",
+"t": "ここにいるわ。すぐに答えなくていい。"
+},
+{
+"es": "Estoy listo. Dímelo.",
+"t": "もう大丈夫だ。話してくれ。"
+},
+{
+"es": "Quedan quince minutos. Para todos.\n\nLo confirmaron hace tres días. La radio lo llama el Juicio. No hay un lugar al que podamos ir.\n\nNo sé qué se hace en el fin del mundo. Sé cambiar estas sábanas.",
+"t": "あと十五分。みんなにとって。\n\n三日前に確定したの。ラジオは「審判」と呼んでる。逃げられる場所はどこにもない。\n\n世界の終わりに何をすればいいのか、わからない。わかるのは、このシーツの替え方だけ。"
+},
+{
+"es": "¿Por qué sigues aquí?",
+"t": "どうしてまだここに？"
+},
+{
+"es": "Quiero levantarme.",
+"t": "起き上がりたい。"
+},
+{
+"es": "Porque había alguien aquí.\n\nY porque todavía no he conseguido llamar a mi hermana.",
+"t": "ここに、人がいたから。\n\nそれに、まだ妹に電話がつながらないの。"
+},
+{
+"es": "Voy a intentarlo. Levantarme, quiero decir.",
+"t": "やってみる。起き上がる、ってことだ。"
+},
+{
+"es": "Acércate a Inés. WASD para caminar · ratón para mirar · E para interactuar",
+"t": "イネスに近づく。WASDで歩く · マウスで見る · Eで調べる"
+},
+{
+"es": "Doctor",
+"t": "Doctor"
+},
+{
+"es": "Mujer",
+"t": "Mujer"
+},
+{
+"es": "Esquina",
+"t": "Esquina"
+},
+{
+"es": "EL MÉDICO",
+"t": "医師"
+},
+{
+"es": "Su análisis salió perfecto. Le faltan los dientes del martes, pero eso pasa.\n\n[No se da la vuelta. Apoya la frente en la pared y respira contra ella.]\n\nVuelva cuando haya terminado de nacer.",
+"t": "検査結果は完璧でした。火曜日の歯が足りませんが、よくあることです。\n\n[彼は振り向かない。額を壁に押しつけ、壁に向かって息をしている。]\n\n生まれ終わったら、また来てください。"
+},
+{
+"es": "¿De qué está hablando?",
+"t": "何の話をしているんです？"
+},
+{
+"es": "Alejarme despacio.",
+"t": "ゆっくり離れる。"
+},
+{
+"es": "De la hora. Siempre hablo de la hora.\n\nLa hora tiene hambre y nosotros somos lo único caliente que queda en el edificio.\n\n[Golpea la pared con la frente. Una vez. Otra.]",
+"t": "時間の話です。私はいつも時間の話をしています。\n\n時間は腹を空かせていて、この建物で温かいものは、もう私たちしか残っていない。\n\n[額で壁を打つ。一度。もう一度。]"
+},
+{
+"es": "Retroceder.",
+"t": "後ずさる。"
+},
+{
+"es": "LA MUJER DE LA SILLA",
+"t": "車椅子の女"
+},
+{
+"es": "¿Me traes la sopa? La pedí antes de que existiera la cocina.\n\n[Su cabeza sigue inclinada. Sus ojos no se mueven contigo: te esperan.]\n\nSonríe. Están contando a los que sonríen.",
+"t": "スープ持ってきてくれた？　台所ができる前に頼んだのよ。\n\n[首は傾いたまま。目はあなたを追わない。先回りして待っている。]\n\n笑って。笑ってる人を数えてるんだって。"
+},
+{
+"es": "No tengo sopa.",
+"t": "スープはない。"
+},
+{
+"es": "Sonreír.",
+"t": "笑う。"
+},
+{
+"es": "Entonces eres de los otros.\n\nLos otros también traían las manos vacías. Luego ya no traían manos.",
+"t": "じゃあ、あなたはあっちの人たちね。\n\nあっちの人たちも、手ぶらで来たの。そのうち、手そのものを持ってこなくなった。"
+},
+{
+"es": "Seguir caminando.",
+"t": "歩き続ける。"
+},
+{
+"es": "Ella sonríe también. Demasiado tiempo. No deja de sonreír cuando te vas.",
+"t": "彼女も笑う。長すぎるほどに。あなたが去っても、笑うのをやめない。"
+},
+{
+"es": "EL HOMBRE DE LA ESQUINA",
+"t": "隅の男"
+},
+{
+"es": "No mires el techo.\n\nNo mires el techo.\n\n[Su cabeza ha girado demasiado. Su cuerpo sigue mirando la esquina.]\n\nYa nos ha visto. Escribe con nuestra letra.",
+"t": "天井を見るな。\n\n天井を見るな。\n\n[首が回りすぎている。体は隅を向いたまま。]\n\nもう見られた。あいつは俺たちの字で書くんだ。"
+},
+{
+"es": "¿Quién nos ha visto?",
+"t": "誰に見られたって？"
+},
+{
+"es": "El que llega a las cero.\n\nLlega tarde a todo, menos a esto.\n\n[Abre la boca más de lo que una boca se abre. No sale ningún sonido.]",
+"t": "零時に来るやつだ。\n\nなんにでも遅れてくるのに、これにだけは遅れない。\n\n[口が、口の開く以上に開く。音は出ない。]"
+},
+{
+"es": "Apartar la vista.",
+"t": "目をそらす。"
+},
+{
+"es": "El circuito de la sala común está fallando. Dejaron un fusible en la capilla, a la derecha del pasillo. El cuadro está en mantenimiento, al otro lado.\n\nLleva la linterna. F la enciende.\n\nDespués, si puedes, quédate con el hombre de la sala. Lleva toda la tarde preguntando por alguien.",
+"t": "談話室の回路が落ちかけてるの。ヒューズは礼拝堂に置いてあるわ、廊下の右。配電盤は反対側の保守室。\n\n懐中電灯を持っていって。Fで点くから。\n\nそのあと、できたら談話室の男の人のそばにいてあげて。午後のあいだずっと、誰かのことを尋ねてるの。"
+},
+{
+"es": "Voy a buscar el fusible.",
+"t": "ヒューズを探しに行く。"
+},
+{
+"es": "Primero quiero mirar alrededor.",
+"t": "先に周りを見ておきたい。"
+},
+{
+"es": "He oído su voz. La de mi hermana.\n\nNo hemos arreglado nada. Pero he oído su voz.\n\nGracias por quedarte.",
+"t": "声が聞けたの。妹の声。\n\n何も解決はしてない。でも、あの子の声が聞けた。\n\nそばにいてくれて、ありがとう。"
+},
+{
+"es": "La sala común está al final del pasillo.\n\nSi necesitas parar, para. Acabas de volver.",
+"t": "談話室は廊下の突き当たりよ。\n\n休みたくなったら、休んで。戻ってきたばかりなんだから。"
+},
+{
+"es": "Seguir.",
+"t": "進む。"
+},
+{
+"es": "Llevas un vaso de agua. Puedes ofrecérselo al hombre de la sala común.",
+"t": "水の入ったコップを持っている。談話室の男に差し出せる。"
+},
+{
+"es": "ÁLEX",
+"t": "アレックス"
+},
+{
+"es": "Necesito saber adónde voy antes de salir. Inés está junto a la cama.",
+"t": "出る前に、どこへ行くのか知っておきたい。イネスはベッドのそばにいる。"
+},
+{
+"es": "Volver.",
+"t": "戻る。"
+},
+{
+"es": "EL HOMBRE",
+"t": "男"
+},
+{
+"es": "Todavía estás aquí.",
+"t": "まだ、いるんだね。"
+},
+{
+"es": "Puedes volver a sentarte si quieres. No tienes que explicarme nada.",
+"t": "よかったら、また座っていい。何も説明しなくていいから。"
+},
+{
+"es": "Quedarme un instante.",
+"t": "少しここにいる。"
+},
+{
+"es": "Voy a mirar por la ventana.",
+"t": "窓の外を見てくる。"
+},
+{
+"es": "La luz de la sala está fallando. Recupera el fusible de la capilla y restablece el circuito.",
+"t": "談話室の明かりが落ちかけている。礼拝堂のヒューズを取り戻し、回路を復旧させよう。"
+},
+{
+"es": "La ciudad sigue en su sitio.\n\nEn una ventana alguien sacude un mantel. Me sorprende que todavía haya migas.",
+"t": "街はまだそこにある。\n\nどこかの窓で、誰かがテーブルクロスをはたいている。まだパンくずがあることに驚く。"
+},
+{
+"es": "Volver a la sala.",
+"t": "談話室に戻る。"
+},
+{
+"es": "La costura del pasillo también está en el cielo.\n\nNo parece una herida. Parece un intento de cerrar algo.\n\nDetrás de mí, alguien mueve una silla.",
+"t": "廊下の縫い目は、空にもある。\n\n傷には見えない。何かを閉じようとした跡に見える。\n\n背後で、誰かが椅子を動かす。"
+},
+{
+"es": "Mirar hacia arriba. No hace falta ventana.",
+"t": "上を見る。窓はいらない。"
+},
+{
+"es": "Volver con ellos.",
+"t": "二人のところへ戻る。"
+},
+{
+"es": "RADIO DE EMERGENCIAS",
+"t": "緊急放送"
+},
+{
+"es": "…la hora estimada no ha cambiado.\n\nSi puede escuchar esta emisión, no tiene que responder. Seguiremos aquí mientras…\n\n[Una pausa. Se oye a alguien acercar un vaso al micrófono.]\n\n…mientras podamos.",
+"t": "……推定時刻に変更はありません。\n\nこの放送が聞こえていても、応答の必要はありません。私たちはここにいます、できる限り……\n\n[間。誰かがマイクにコップを近づける音。]\n\n……できる限り。"
+},
+{
+"es": "Escuchar el silencio un momento.",
+"t": "しばらく沈黙に耳を傾ける。"
+},
+{
+"es": "TU EXPEDIENTE",
+"t": "あなたのカルテ"
+},
+{
+"es": "ÁLEX / RECUPERACIÓN\nIngreso: hace diecinueve días.\nContacto: Lucía.\n\nDentro hay una nota doblada:\n«Si despiertas, no intentes explicármelo todo de golpe.»\n\nReconoces la letra antes de recordar su voz.",
+"t": "アレックス／回復室\n入院：十九日前\n連絡先：ルシア\n\n中に折りたたんだメモがある：\n「目が覚めても、いっぺんに全部説明しようとしないで」\n\n声を思い出すより先に、その筆跡がわかる。"
+},
+{
+"es": "Guardar la nota.",
+"t": "メモをしまう。"
+},
+{
+"es": "TELÉFONO",
+"t": "電話"
+},
+{
+"es": "La línea ya no conecta.\n\nLa conversación existió. No puedes repetirla hasta que salga perfecta.",
+"t": "もう回線はつながらない。\n\nあの会話は確かにあった。完璧になるまでやり直すことはできない。"
+},
+{
+"es": "Colgar.",
+"t": "切る。"
+},
+{
+"es": "LUCÍA",
+"t": "ルシア"
+},
+{
+"es": "¿Quién…?\n\nNo. No me digas que eres tú si no eres tú.\n\n[Respira.]\n\nPodemos hablar. No sé si podemos arreglarlo. No me hagas prometer las dos cosas.",
+"t": "誰……？\n\nやめて。あなたじゃないなら、あなただなんて言わないで。\n\n[息をつく。]\n\n話はできる。やり直せるかはわからない。両方は約束させないで。"
+},
+{
+"es": "No tienes que prometerme nada.",
+"t": "何も約束しなくていい。"
+},
+{
+"es": "Solo quería oírte.",
+"t": "声が聞きたかっただけだ。"
+},
+{
+"es": "Capilla a la derecha. Mantenimiento a la izquierda. F: linterna. E: puertas y objetos.",
+"t": "右に礼拝堂。左に保守室。F：懐中電灯。E：ドアと物。"
+},
+{
+"es": "Estoy sentada en el suelo de la cocina.\n\nNo sé por qué te lo digo.\n\n…Quédate un momento. Quiero que haya alguien al otro lado.",
+"t": "いま、台所の床に座ってるの。\n\nなんでこんなこと話してるんだろ。\n\n……もう少しだけいて。向こう側に誰かいてほしいの。"
+},
+{
+"es": "Quedarme hasta que la línea se corte.",
+"t": "回線が切れるまで、ここにいる。"
+},
+{
+"es": "¿Es para mí?\n\nNo tengo mucha sed. Pero me gusta que me lo preguntes.",
+"t": "僕に？\n\nあまり喉は渇いてないんだ。でも、訊いてくれるのは嬉しい。"
+},
+{
+"es": "Ofrecerle el agua.",
+"t": "水を差し出す。"
+},
+{
+"es": "Sentarme junto a él.",
+"t": "彼の隣に座る。"
+},
+{
+"es": "¿Crees que el cielo va a doler?\n\nNo hace falta que inventes una respuesta. Ya me han dado muchas hoy.",
+"t": "空は痛いと思うかい？\n\n答えを作らなくていいよ。今日はもう、たくさんもらったから。"
+},
+{
+"es": "No lo sé. Puedo quedarme.",
+"t": "わからない。でも、ここにいられる。"
+},
+{
+"es": "Puedo acercar la silla.",
+"t": "椅子を寄せようか。"
+},
+{
+"es": "Ahora mismo no puedo quedarme.",
+"t": "今はここにいられない。"
+},
+{
+"es": "Permanecer también es una acción. Puedes levantarte con E.",
+"t": "とどまることも、ひとつの行動だ。Eで立ち上がれる。"
+},
+{
+"es": "He podido llamarla.\n\n[Inés deja una mano en el respaldo de la silla.]\n\n¿Esa línea estaba antes en el suelo?\n\n[Él mira el pasillo y después la ventana. «Prefiero mirar allí», dice.]",
+"t": "電話、つながったの。\n\n[イネスが椅子の背に片手を置く。]\n\nあの線、前から床にあった？\n\n[彼は廊下を見て、それから窓を見る。「あっちを見ていたい」と言う。]"
+},
+{
+"es": "Está bien.\n\n[No lo dice como un reproche. Tampoco como una absolución.]\n\n[Algo se mueve en el pasillo. Una línea negra atraviesa las baldosas. Él pide que giren la silla hacia la ventana.]",
+"t": "いいのよ。\n\n[責める口調ではない。赦す口調でもない。]\n\n[廊下で何かが動く。黒い線がタイルを横切る。彼は椅子を窓のほうへ向けてほしいと頼む。]"
+},
+{
+"es": "Mirar el cielo.",
+"t": "空を見る。"
+},
+{
+"es": "La ventana está al fondo de la sala. También puedes volver al pasillo.",
+"t": "窓は部屋の奥にある。廊下に戻ることもできる。"
+},
+{
+"es": ");\n            s=System.Text.RegularExpressions.Regex.Replace(s,@",
+"t": ");\n            s=System.Text.RegularExpressions.Regex.Replace(s,@"
+},
+{
+"es": "{0}   «{1}»",
+"t": "{0}　「{1}」"
+},
+{
+"es": "EL FRENTE",
+"t": "前線"
+},
+{
+"es": "FIN DEL PRIMER FRAGMENTO",
+"t": "第一の断章　終"
+},
+{
+"es": "El reloj llegó a cero. El mundo no esperaba una respuesta.",
+"t": "時計はゼロになった。世界は答えを待っていなかった。"
+},
+{
+"es": "La última hora acaba de empezar.",
+"t": "最後の一時間が、いま始まった。"
+},
+{
+"es": "Partida guardada en este equipo.",
+"t": "このデバイスにセーブしました。"
+},
+{
+"es": "Partida guardada.",
+"t": "セーブしました。"
+},
+{
+"es": "No se pudo guardar: ",
+"t": "セーブできませんでした："
+},
+{
+"es": "No se pudo guardar la partida.",
+"t": "セーブできませんでした。"
+},
+{
+"es": "Guardado incompatible",
+"t": "互換性のないセーブデータ"
+},
+{
+"es": "Has vuelto. El tiempo no avanzó mientras no estabas.",
+"t": "おかえり。あなたのいないあいだ、時間は進まなかった。"
+},
+{
+"es": "No se pudo cargar. Puedes iniciar una nueva partida.",
+"t": "ロードできませんでした。新しく始めることができます。"
+},
+{
+"es": "Continuar",
+"t": "続ける"
+},
+{
+"es": "HINENI",
+"t": "HINENI"
+},
+{
+"es": "HOSPITAL DEL UMBRAL",
+"t": "境界病院"
+},
+{
+"es": "01 · Habla con Inés",
+"t": "01 · イネスと話す"
+},
+{
+"es": "Acompaña al hombre de la sala común",
+"t": "談話室の男に寄り添う"
+},
+{
+"es": "Mira por la ventana",
+"t": "窓の外を見る"
+},
+{
+"es": "En las manos: un vaso de agua",
+"t": "手に：水の入ったコップ"
+},
+{
+"es": "LO ESTÁS SUJETANDO CON LA LUZ. RETROCEDE.",
+"t": "光で押さえている。下がれ。"
+},
+{
+"es": "LOS PASOS ESTÁN MÁS CERCA.",
+"t": "足音が近づいている。"
+},
+{
+"es": "DENTRO DEL ARMARIO · E PARA SALIR",
+"t": "ロッカーの中 · Eで出る"
+},
+{
+"es": "ESTÁS AQUÍ   ·   E levantarte",
+"t": "ここにいる　·　Eで立ち上がる"
+},
+{
+"es": "WASD",
+"t": "WASD"
+},
+{
+"es": "caminar",
+"t": "歩く"
+},
+{
+"es": "RATÓN",
+"t": "マウス"
+},
+{
+"es": "mirar",
+"t": "見る"
+},
+{
+"es": "interactuar",
+"t": "調べる"
+},
+{
+"es": "ESC",
+"t": "ESC"
+},
+{
+"es": "pausa",
+"t": "ポーズ"
+},
+{
+"es": "guardar",
+"t": "セーブ"
+},
+{
+"es": "detenido",
+"t": "停止中"
+},
+{
+"es": "espacio · clic para continuar",
+"t": "スペース · クリックで続ける"
+},
+{
+"es": "El reloj se detiene mientras lees y eliges.",
+"t": "読んで選んでいるあいだ、時計は止まる。"
+},
+{
+"es": "LOS ÚLTIMOS QUINCE MINUTOS",
+"t": "最後の十五分"
+},
+{
+"es": "«Heme aquí.» Lo dijo Isaías cuando vio a los serafines. Isaías 6:8",
+"t": "「ここにわたしがおります」　セラフィムを見たとき、イザヤはそう言った。イザヤ書6:8"
+},
+{
+"es": "Vuelves a abrir los ojos.",
+"t": "ふたたび目を開ける。"
+},
+{
+"es": "Al mundo le quedan quince minutos. Lo último que hagas decide cómo terminan.",
+"t": "世界に残された時間は十五分。最後に何をするかで、終わり方が決まる。"
+},
+{
+"es": "Despertar",
+"t": "目覚める"
+},
+{
+"es": "Continuar el último despertar",
+"t": "最後の目覚めから続ける"
+},
+{
+"es": "Finales",
+"t": "エンディング"
+},
+{
+"es": "{0} de {1} vistos",
+"t": "{0}／{1} 到達"
+},
+{
+"es": "Texto",
+"t": "テキスト"
+},
+{
+"es": "Voces",
+"t": "音声"
+},
+{
+"es": "Salir",
+"t": "終了"
+},
+{
+"es": "PROTOTIPO JUGABLE · 0.3",
+"t": "プレイアブル試作版 · 0.3"
+},
+{
+"es": "Hospitalización · muerte · fin del mundo",
+"t": "入院 · 死 · 世界の終わり"
+},
+{
+"es": "Juega en horizontal. Leer y elegir detiene el reloj.",
+"t": "横画面でプレイ。読む・選ぶ間は時計が止まる。"
+},
+{
+"es": "No hay combate. Leer y elegir detiene el reloj.",
+"t": "戦闘はない。読む・選ぶ間は時計が止まる。"
+},
+{
+"es": "ANTES DEL JUICIO",
+"t": "審判の前に"
+},
+{
+"es": "A TU RITMO",
+"t": "あなたのペースで"
+},
+{
+"es": "EL TIEMPO ESTÁ DETENIDO.",
+"t": "時間は止まっている。"
+},
+{
+"es": "· tu ausencia no consume esta hora.",
+"t": "· あなたの不在は、この時間を消費しない。"
+},
+{
+"es": "Sensibilidad del ratón",
+"t": "マウス感度"
+},
+{
+"es": "Volumen",
+"t": "音量"
+},
+{
+"es": "Texto grande",
+"t": "大きな文字"
+},
+{
+"es": "sí",
+"t": "はい"
+},
+{
+"es": "no",
+"t": "いいえ"
+},
+{
+"es": "Mundo en ASCII",
+"t": "ASCIIの世界"
+},
+{
+"es": "Invertir mirada vertical",
+"t": "視点の上下反転"
+},
+{
+"es": "Movimiento y parpadeos",
+"t": "動きと点滅"
+},
+{
+"es": "reducidos",
+"t": "控えめ"
+},
+{
+"es": "suaves",
+"t": "穏やか"
+},
+{
+"es": "Volver",
+"t": "戻る"
+},
+{
+"es": "Opciones",
+"t": "設定"
+},
+{
+"es": "Guardar partida",
+"t": "セーブする"
+},
+{
+"es": "Volver al inicio",
+"t": "タイトルへ戻る"
+},
+{
+"es": "Guardar y salir",
+"t": "セーブして終了"
+},
+{
+"es": "No hay una respuesta perfecta que desbloquear.",
+"t": "解き明かすべき完璧な答えはない。"
+},
+{
+"es": "FINALES",
+"t": "エンディング"
+},
+{
+"es": "visto",
+"t": "到達"
+},
+{
+"es": "Alguien recibió un vaso de agua.",
+"t": "誰かが一杯の水を受け取った。"
+},
+{
+"es": "Lucía supo que estabas al otro lado.",
+"t": "ルシアは、向こう側にあなたがいると知った。"
+},
+{
+"es": "Volver a los finales",
+"t": "エンディング一覧へ"
+},
+{
+"es": "Capilla · recupera el fusible del altar",
+"t": "礼拝堂 · 祭壇のヒューズを回収する"
+},
+{
+"es": "Sala eléctrica · lleva el fusible al cuadro",
+"t": "配電室 · ヒューズを配電盤へ"
+},
+{
+"es": "Activa los interruptores: la pared conserva el orden",
+"t": "スイッチを入れる：順番は壁が覚えている"
+},
+{
+"es": "OCULTO · E para salir",
+"t": "隠れている · Eで出る"
+},
+{
+"es": "F · apagar linterna",
+"t": "F · ライトを消す"
+},
+{
+"es": "F · encender linterna",
+"t": "F · ライトを点ける"
+},
+{
+"es": "FUSIBLE 03",
+"t": "ヒューズ 03"
+},
+{
+"es": "La luz lo sujeta. F: linterna. Míralo mientras retrocedes hacia el pasillo.",
+"t": "光が奴を押さえている。F：懐中電灯。見つめたまま廊下へ下がれ。"
+},
+{
+"es": "El alojamiento está vacío. El fusible está en la capilla.",
+"t": "ソケットは空だ。ヒューズは礼拝堂にある。"
+},
+{
+"es": "Fusible colocado. La pintada marca el orden de los tres interruptores.",
+"t": "ヒューズをはめた。落書きが三つのスイッチの順番を示している。"
+},
+{
+"es": "El circuito ya alimenta la sala común.",
+"t": "回路はもう談話室に電気を送っている。"
+},
+{
+"es": "Tres negaciones. Un solo nombre. Dos testigos.",
+"t": "三度の否認。ただ一つの名。二人の証人。"
+},
+{
+"es": "La palanca sigue abajo. Está tibia, como una mano.",
+"t": "レバーは下りたまま。生温かい。手のように。"
+},
+{
+"es": "PALANCA 41",
+"t": "レバー41"
+},
+{
+"es": "Una palanca roja, aparte del cuadro. No alimenta ningún circuito.\n\nEncima, escrito con un dedo: 41.\n\nAl otro lado de la pared, en el pasillo, alguien cuenta en voz baja. Cuarenta y uno. Cuarenta y uno.",
+"t": "配電盤から離れた、赤いレバー。どの回路にもつながっていない。\n\nその上に、指で書かれている：41。\n\n壁の向こう、廊下で、誰かが小声で数えている。四十一。四十一。"
+},
+{
+"es": "Bajar la palanca.",
+"t": "レバーを下ろす。"
+},
+{
+"es": "Dejarla como está.",
+"t": "そのままにしておく。"
+},
+{
+"es": "AQUÍ APOYABA LA FRENTE. La pared todavía tiene la forma de su cara.",
+"t": "ここに額をつけていた。壁にはまだ、彼の顔の形が残っている。"
+},
+{
+"es": "{0} La sangre es nueva.",
+"t": "{0} 血はまだ新しい。"
+},
+{
+"es": "TRES NEGACIONES / UN SOLO NOMBRE / DOS TESTIGOS. Las palancas están numeradas.",
+"t": "三度の否認／ただ一つの名／二人の証人。レバーには番号がふられている。"
+},
+{
+"es": "MÍRALO. LA LUZ LO SUJETA. La presencia se detiene si la iluminas y la miras.",
+"t": "見つめろ。光が奴を押さえる。照らして見つめれば、あの気配は止まる。"
+},
+{
+"es": "EL VERBO SE HIZO CARNE. LA CARNE SIGUE GRITANDO. Debajo hay marcas de uñas.",
+"t": "言は肉となった。肉は叫び続けている。下に爪の跡がある。"
+},
+{
+"es": "PADRE, NO CONTESTES CON MI VOZ. La última letra todavía escurre.",
+"t": "父よ、わたしの声で答えるな。最後の一文字がまだ垂れている。"
+},
+{
+"es": "EL SÉPTIMO DÍA NOS DEJÓ SOLOS. Alguien intentó borrar 'SOLOS'.",
+"t": "第七の日は我らを孤独にした。誰かが「孤独」を消そうとした。"
+},
+{
+"es": "NO FUE RESURRECCIÓN. ALGO APRENDIÓ A MOVERLOS.",
+"t": "復活ではなかった。何かが、彼らの動かし方を覚えた。"
+},
+{
+"es": "Al otro lado de la pared algo revienta. La cuenta se detiene en cuarenta.",
+"t": "壁の向こうで何かが破裂する。数えていた声は四十で止まる。"
+},
+{
+"es": "El circuito está estable.",
+"t": "回路は安定している。"
+},
+{
+"es": "Primero coloca el fusible en el alojamiento inferior.",
+"t": "まず下のソケットにヒューズをはめよう。"
+},
+{
+"es": "La corriente vuelve. La respiración se detiene. Vuelve con el hombre de la sala común.",
+"t": "電気が戻る。呼吸が止まる。談話室の男のところへ戻ろう。"
+},
+{
+"es": "Circuito {0} de 3. Quedan pasos al otro lado de la puerta.",
+"t": "回路 {0}／3。ドアの向こうにまだ足音がある。"
+},
+{
+"es": "El cuadro golpea la pared. La presencia ha oído el error. El orden vuelve a empezar.",
+"t": "配電盤が壁を打つ。気配が間違いを聞きつけた。順番は最初からやり直しだ。"
+},
+{
+"es": "Has salido. Escucha antes de encender la luz.",
+"t": "外に出た。明かりを点ける前に、耳を澄ませ。"
+},
+{
+"es": "Oculto. La luz se apaga. E para salir.",
+"t": "隠れている。明かりが消える。Eで出る。"
+},
+{
+"es": "Estás de nuevo en recuperación. Faltan treinta segundos más. Conservas el fusible y el circuito.",
+"t": "回復室に戻った。三十秒が加わる。ヒューズと回路はそのままだ。"
+},
+{
+"es": "HOSPITAL DEL UMBRAL RECUPERACIÓN / 03 SALA COMÚN NO DEJAR A NADIE SOLO",
+"t": "境界病院 回復室／03 談話室 誰ひとり独りにしないこと"
+},
+{
+"es": "TransparentCutout",
+"t": "TransparentCutout"
+},
+{
+"es": "Recuperacion",
+"t": "Recuperacion"
+},
+{
+"es": "Corredor",
+"t": "Corredor"
+},
+{
+"es": "Sala comun",
+"t": "Sala comun"
+},
+{
+"es": "RECUPERACIÓN  /  03",
+"t": "回復室　／　03"
+},
+{
+"es": "SALA COMÚN",
+"t": "談話室"
+},
+{
+"es": "NO DEJAR A NADIE SOLO",
+"t": "誰ひとり独りにしないこと"
+},
+{
+"es": "NO DEJAR A NADIE\nENTERO",
+"t": "誰ひとり\nまるごと残さないこと"
+},
+{
+"es": "Puerta de recuperación",
+"t": "回復室のドア"
+},
+{
+"es": "Abrir",
+"t": "開ける"
+},
+{
+"es": "Un vaso de agua",
+"t": "水の入ったコップ"
+},
+{
+"es": "Tomar",
+"t": "取る"
+},
+{
+"es": "Una línea al exterior",
+"t": "外線"
+},
+{
+"es": "Llamar",
+"t": "かける"
+},
+{
+"es": "Tu nombre en una carpeta",
+"t": "フォルダにあなたの名前"
+},
+{
+"es": "Leer",
+"t": "読む"
+},
+{
+"es": "Ya casi. Ya casi.",
+"t": "もうすぐ。もうすぐ。"
+},
+{
+"es": "Te cambié las sábanas aunque no estuvieras dentro.",
+"t": "あなたがいなくても、シーツは替えておいたわ。"
+},
+{
+"es": "La hora también tiene fiebre.",
+"t": "時間も熱を出してるの。"
+},
+{
+"es": "Inés · enfermera",
+"t": "イネス · 看護師"
+},
+{
+"es": "Hablar",
+"t": "話す"
+},
+{
+"es": "Lampara de cabecera",
+"t": "Lampara de cabecera"
+},
+{
+"es": "Recorte Ines",
+"t": "Recorte Ines"
+},
+{
+"es": "Expediente",
+"t": "Expediente"
+},
+{
+"es": "Mi hijo vuelve a las siete. Son las siete desde ayer.",
+"t": "息子は七時に帰ってくるの。昨日からずっと七時なのよ。"
+},
+{
+"es": "No parpadees. Si parpadeas, se acomodan.",
+"t": "まばたきしちゃだめ。まばたきすると、あの人たち座り直すから。"
+},
+{
+"es": "Tienes la cara de alguien que ya se fue.",
+"t": "もう行っちゃった人の顔してる。"
+},
+{
+"es": "Empújame hacia la ventana. No. Hacia la otra ventana.",
+"t": "窓のほうへ押して。ちがう。もうひとつの窓のほう。"
+},
+{
+"es": "Una mujer en silla de ruedas",
+"t": "車椅子の女"
+},
+{
+"es": "Charco silla",
+"t": "Charco silla"
+},
+{
+"es": "Cuarenta y uno. Cuarenta y uno. Cuarenta y uno.",
+"t": "四十一。四十一。四十一。"
+},
+{
+"es": "La pared está tibia. Alguien la respira desde el otro lado.",
+"t": "壁が温かい。向こう側から誰かが壁を呼吸している。"
+},
+{
+"es": "Ya firmé su alta. Firmé la de todos. También la mía.",
+"t": "あなたの退院許可には署名しました。全員分に署名した。私のにも。"
+},
+{
+"es": "No me mire la nuca. Ahí es donde se me olvida la cara.",
+"t": "うなじを見ないでください。そこで顔を忘れてしまうんです。"
+},
+{
+"es": "Un médico de cara a la pared",
+"t": "壁に向かって立つ医師"
+},
+{
+"es": "Las sábanas cuentan hacia atrás.",
+"t": "シーツが逆に数えてる。"
+},
+{
+"es": "Ella me peinó con la otra mano.",
+"t": "あの人は、もう片方の手で私の髪を梳かしたの。"
+},
+{
+"es": "¿Ya pasó? Huele a que ya pasó.",
+"t": "もう終わった？　終わったにおいがする。"
+},
+{
+"es": "Ya nos ha visto.",
+"t": "もう見られた。"
+},
+{
+"es": "Tiene nuestra letra. Escribe con nuestra letra.",
+"t": "あいつは俺たちの字を持ってる。俺たちの字で書くんだ。"
+},
+{
+"es": "Si me doy la vuelta, la esquina se queda sola.",
+"t": "俺が振り向いたら、隅がひとりきりになる。"
+},
+{
+"es": "Un hombre en la esquina",
+"t": "隅にいる男"
+},
+{
+"es": "Acercarse",
+"t": "近づく"
+},
+{
+"es": "El hombre de la sala común",
+"t": "談話室の男"
+},
+{
+"es": "La silla junto a la cama",
+"t": "ベッドのそばの椅子"
+},
+{
+"es": "Sentarse",
+"t": "座る"
+},
+{
+"es": "Radio de emergencias",
+"t": "緊急放送"
+},
+{
+"es": "Escuchar",
+"t": "聴く"
+},
+{
+"es": "El cielo sigue ahí",
+"t": "空はまだそこにある"
+},
+{
+"es": "Cielo",
+"t": "Cielo"
+},
+{
+"es": "Relleno sala",
+"t": "Relleno sala"
+},
+{
+"es": ");\n            if (!src) { Debug.LogWarning(",
+"t": ");\n            if (!src) { Debug.LogWarning("
+},
+{
+"es": " + id); return Cube(id, position, Vector3.one * .3f, steel); }\n            var o = Instantiate(src, position, Quaternion.Euler(tilt, yaw, 0) * src.transform.localRotation, transform); o.name = id;\n            // FBX root rotation contains its Z-up to Y-up conversion. Keep it before laying out the prop.\n            // On the floor, or resting on a surface whose height is position.y: the lowest vertex touches it.\n            if (Mathf.Abs(position.y)<.001f || rest) {\n                var bounds=VisualAudit.GeometryBounds(o);\n                o.transform.position+=Vector3.up*(position.y+.004f-bounds.min.y);\n            }\n            if (collide) AddBounds(o);\n            return o;\n        }\n\n        GameObject Character(string id, Vector3 position, float yaw, System.Action<Uncanny> mind)\n        {\n            var o = Instantiate(Resources.Load<GameObject>($",
+"t": " + id); return Cube(id, position, Vector3.one * .3f, steel); }\n            var o = Instantiate(src, position, Quaternion.Euler(tilt, yaw, 0) * src.transform.localRotation, transform); o.name = id;\n            // FBX root rotation contains its Z-up to Y-up conversion. Keep it before laying out the prop.\n            // On the floor, or resting on a surface whose height is position.y: the lowest vertex touches it.\n            if (Mathf.Abs(position.y)<.001f || rest) {\n                var bounds=VisualAudit.GeometryBounds(o);\n                o.transform.position+=Vector3.up*(position.y+.004f-bounds.min.y);\n            }\n            if (collide) AddBounds(o);\n            return o;\n        }\n\n        GameObject Character(string id, Vector3 position, float yaw, System.Action<Uncanny> mind)\n        {\n            var o = Instantiate(Resources.Load<GameObject>($"
+},
+{
+"es": "), position, Quaternion.Euler(0, yaw, 0), transform);\n            o.name = id;\n            // Skin carries a faint light of its own: faces stay the focal point in the ASCII image.\n            foreach (var r in o.GetComponentsInChildren<Renderer>())\n                foreach (var m in r.materials)\n                    if (m.name.StartsWith(",
+"t": "), position, Quaternion.Euler(0, yaw, 0), transform);\n            o.name = id;\n            // Skin carries a faint light of its own: faces stay the focal point in the ASCII image.\n            foreach (var r in o.GetComponentsInChildren<Renderer>())\n                foreach (var m in r.materials)\n                    if (m.name.StartsWith("
+},
+{
+"es": "Capilla",
+"t": "礼拝堂"
+},
+{
+"es": "Sala eléctrica",
+"t": "配電室"
+},
+{
+"es": "Fusible 03 · aún está caliente",
+"t": "ヒューズ03 · まだ熱い"
+},
+{
+"es": "Recoger",
+"t": "拾う"
+},
+{
+"es": "Vela {0} de 7",
+"t": "ろうそく {0}/7"
+},
+{
+"es": "Encender",
+"t": "灯す"
+},
+{
+"es": "EL VERBO\nSE HIZO CARNE.\nLA CARNE\nSIGUE GRITANDO.",
+"t": "言は\n肉となった。\n肉は\n叫び続けている。"
+},
+{
+"es": "EL VERBO\nSE HIZO CARNE.\nTÚ LA HICISTE\nPEDAZOS.",
+"t": "言は\n肉となった。\nお前がそれを\n引き裂いた。"
+},
+{
+"es": "PADRE, NO CONTESTES\nCON MI VOZ.",
+"t": "父よ、わたしの声で\n答えるな。"
+},
+{
+"es": "CUARENTA Y UNO.\nCUARENTA Y UNO.\nCUARENT",
+"t": "ヨンジュウイチ。\nヨンジュウイチ。\nヨンジュ"
+},
+{
+"es": "MÍRALO.\nLA LUZ LO SUJETA.",
+"t": "見つめろ。\n光が奴を押さえる。"
+},
+{
+"es": "Luz de altar",
+"t": "Luz de altar"
+},
+{
+"es": "Pared de la palabra",
+"t": "Pared de la palabra"
+},
+{
+"es": "Circuito de la sala común",
+"t": "談話室の回路"
+},
+{
+"es": "Colocar fusible",
+"t": "ヒューズをはめる"
+},
+{
+"es": "Interruptor {0}",
+"t": "ブレーカー {0}"
+},
+{
+"es": "Accionar",
+"t": "入れる"
+},
+{
+"es": "TRES NEGACIONES.\nUN SOLO NOMBRE.\nDOS TESTIGOS.",
+"t": "三度の否認。\nただ一つの名。\n二人の証人。"
+},
+{
+"es": "EL SÉPTIMO DÍA\nNOS DEJÓ SOLOS.",
+"t": "第七の日は\n我らを孤独にした。"
+},
+{
+"es": "EL SÉPTIMO DÍA\nTE DEJÓ LA PALANCA.",
+"t": "第七の日は\nお前にレバーを遺した。"
+},
+{
+"es": "Armario de mantenimiento",
+"t": "保守用ロッカー"
+},
+{
+"es": "Ocultarte / E para salir",
+"t": "隠れる / Eで出る"
+},
+{
+"es": "Luz de cuadro",
+"t": "Luz de cuadro"
+},
+{
+"es": "NO FUE RESURRECCIÓN.\nALGO APRENDIÓ A MOVERLOS.",
+"t": "復活ではなかった。\n何かが彼らの動かし方を覚えた。"
+},
+{
+"es": "NO FUE RESURRECCIÓN.\nFUISTE TÚ.",
+"t": "復活ではなかった。\nお前がやった。"
+},
+{
+"es": "EL TESTIGO",
+"t": "証人"
+},
+{
+"es": ".riuges arap osimrep edip enrac aL",
+"t": "。るいてう乞をし許るけ続、が肉"
+},
+{
+"es": ".saímrod sartneim setneid sol étnoc eT",
+"t": "。たえ数を歯の前お、にだいあるいてっ眠"
+},
+{
+"es": ".erbmon ut ed erbmah eneit oleic lE",
+"t": "。るいてえ飢に名の前おは空"
+},
+{
+"es": ".ayut al írba aY .acob al erbA",
+"t": "。たけ開うもは口の前お。ろけ開を口"
+},
+{
+"es": ".atreup anu se ,oremún nu se on onu y atnerauC",
+"t": "。だ扉。いなはで数は一十四"
+},
+{
+"es": ".abirra serim on euq ecid ámaM",
+"t": "。てっだめだゃち見を上、がママ"
+},
+{
+"es": ".ómalcer al eidan y arac al noratiuq em reyA",
+"t": "。たっかな来にり取き引も誰。たれら取を顔うのき"
+},
+{
+"es": "Abrir / cerrar",
+"t": "開ける / 閉める"
+},
+{
+"es": "Mirilla",
+"t": "Mirilla"
+},
+{
+"es": "Marco mirilla",
+"t": "Marco mirilla"
+},
+{
+"es": "Alambre",
+"t": "Alambre"
+},
+{
+"es": "Barra",
+"t": "Barra"
+},
+{
+"es": "Soporte",
+"t": "Soporte"
+},
+{
+"es": "Zocalo de puerta",
+"t": "Zocalo de puerta"
+},
+{
+"es": "Junta",
+"t": "Junta"
+},
+{
+"es": "Chalkduster",
+"t": "Chalkduster"
+},
+{
+"es": "Marker Felt",
+"t": "Marker Felt"
+},
+{
+"es": "Arial",
+"t": "Arial"
+},
+{
+"es": "Leer la pintada",
+"t": "落書きを読む"
+},
+{
+"es": "Lo oíste reventar. Contaba hasta cuarenta y uno.",
+"t": "あれが破裂するのを聞いただろう。四十一まで数えていたんだ。"
+},
+{
+"es": "Ahora nos mira con sus pedazos.",
+"t": "今は、ばらばらになった体で俺たちを見てる。"
+},
+{
+"es": "La palanca era para ver si bajabas la mano.",
+"t": "あのレバーは、お前が手を下ろすかどうか試すためのものだった。"
+},
+{
+"es": "Una palanca roja, aparte del cuadro",
+"t": "配電盤から離れた、赤いレバー"
+},
+{
+"es": "Examinar",
+"t": "調べる"
+},
+{
+"es": "AQUÍ APOYABA\nLA FRENTE.",
+"t": "ここに額を\nつけていた。"
+},
+{
+"es": "Cerrar",
+"t": "閉じる"
+},
+{
+"es": "Quedarse",
+"t": "とどまる"
+},
+{
+"es": "La voz",
+"t": "声"
+},
+{
+"es": "Las velas",
+"t": "ろうそく"
+},
+{
+"es": "El armario",
+"t": "ロッカー"
+},
+{
+"es": "El cielo",
+"t": "空"
+},
+{
+"es": "quedarse",
+"t": "とどまる"
+},
+{
+"es": "voz",
+"t": "声"
+},
+{
+"es": "velas",
+"t": "ろうそく"
+},
+{
+"es": "armario",
+"t": "ロッカー"
+},
+{
+"es": "ojos",
+"t": "目"
+},
+{
+"es": "Ya arde. Las otras se están apagando.",
+"t": "もう灯っている。ほかの火が消えていく。"
+},
+{
+"es": "Una llama. Arden {0} segundos. La pared pide siete.",
+"t": "炎がひとつ。燃えているのは{0}秒。壁は七つを求めている。"
+},
+{
+"es": "Arden {0} de 7.",
+"t": "灯っているのは{0}／7。"
+},
+{
+"es": "Respiráis a la vez. {0} de {1}",
+"t": "呼吸が重なる。{0}／{1}"
+},
+{
+"es": "A destiempo. Él se ahoga un poco, y espera a que lo encuentres.",
+"t": "ずれている。彼は少し息を詰まらせ、あなたが合わせてくれるのを待つ。"
+},
+{
+"es": "Horizontal",
+"t": "Horizontal"
+},
+{
+"es": "Mouse X",
+"t": "Mouse X"
+},
+{
+"es": "Cuelgas. El tono sigue sonando dentro del auricular.",
+"t": "電話を切る。受話器の中で、発信音が鳴り続けている。"
+},
+{
+"es": "No rezan por ellos mismos.",
+"t": "彼らは自分のためには祈っていない。"
+},
+{
+"es": "Saben tu nombre. Lo pronuncian mal, con cuidado.",
+"t": "彼らはあなたの名前を知っている。発音を間違えながら、丁寧に呼ぶ。"
+},
+{
+"es": "Aquí dentro no te busca nadie. Todavía. El armario espera a que haya alguien fuera.",
+"t": "ここでは誰もあなたを探さない。まだ。ロッカーは、外に誰かが来るのを待っている。"
+},
+{
+"es": "LO ÚLTIMO QUE HAGAS",
+"t": "最後にすること"
+},
+{
+"es": "LÍNEA AL EXTERIOR · busca la voz entre la estática",
+"t": "外線 · 雑音の中から声を探す"
+},
+{
+"es": "SEÑAL",
+"t": "信号"
+},
+{
+"es": "palanca izquierda o derecha · sintonizar      COLGAR",
+"t": "左右のスティック · 同調      切る"
+},
+{
+"es": "A / D o ratón · sintonizar      Q · colgar",
+"t": "A / D かマウス · 同調      Q · 切る"
+},
+{
+"es": "RESPIRA CON ÉL · RESPIRAR arriba del todo",
+"t": "彼と呼吸を · いちばん上で「吸う」"
+},
+{
+"es": "RESPIRA CON ÉL · ESPACIO arriba del todo",
+"t": "彼と呼吸を · いちばん上でスペース"
+},
+{
+"es": "CONTIENES EL ALIENTO",
+"t": "息を止めている"
+},
+{
+"es": "ESTÁ AHÍ FUERA · mantén CONTENER",
+"t": "外にいる · 「止める」を押し続けろ"
+},
+{
+"es": "ESTÁ AHÍ FUERA · mantén ESPACIO",
+"t": "外にいる · スペースを押し続けろ"
+},
+{
+"es": "Respira. Despacio.",
+"t": "息をして。ゆっくり。"
+},
+{
+"es": "AIRE",
+"t": "息"
+},
+{
+"es": "TE OYE",
+"t": "聞かれている"
+},
+{
+"es": "QUEDARSE",
+"t": "とどまる"
+},
+{
+"es": "FINAL · LA VIGILIA",
+"t": "結末 · 夜伽"
+},
+{
+"es": "Respiraste con él hasta que el aire dejó de hacer falta.",
+"t": "空気が要らなくなるまで、あなたは彼と一緒に呼吸した。"
+},
+{
+"es": "No le dijiste que todo iba a estar bien. Le diste la mano.",
+"t": "大丈夫だとは言わなかった。手を握った。"
+},
+{
+"es": "Cuando llegó el Juicio, encontró a dos personas que no estaban solas.",
+"t": "審判が来たとき、そこにいたのは独りではない二人だった。"
+},
+{
+"es": "En el pasillo seguía la sangre del médico. Él no preguntó. Tú tampoco.",
+"t": "廊下には医師の血が残っていた。彼は訊かなかった。あなたも。"
+},
+{
+"es": "LA VOZ",
+"t": "声"
+},
+{
+"es": "FINAL · LA LÍNEA",
+"t": "結末 · 回線"
+},
+{
+"es": "La línea aguantó más de lo que nadie esperaba.",
+"t": "回線は、誰が思ったよりも長くもった。"
+},
+{
+"es": "Lucía habló de la cocina, de una taza rota, de vuestra madre.",
+"t": "ルシアは台所のことを、割れたカップのことを、ふたりの母のことを話した。"
+},
+{
+"es": "No arreglasteis nada. Pero al final del mundo había alguien al otro lado.",
+"t": "何も解決しなかった。それでも世界の終わりに、向こう側には誰かがいた。"
+},
+{
+"es": "No le contaste lo de la palanca. Hay cosas que se llevan solas.",
+"t": "レバーのことは話さなかった。独りで抱えていくものもある。"
+},
+{
+"es": "LAS VELAS",
+"t": "ろうそく"
+},
+{
+"es": "FINAL · EL SÉPTIMO DÍA",
+"t": "結末 · 第七の日"
+},
+{
+"es": "Siete llamas a la vez, como pedía la pared.",
+"t": "七つの炎がいっせいに。壁が求めたとおりに。"
+},
+{
+"es": "La capilla se llenó de una luz que no venía de las velas.",
+"t": "礼拝堂は、ろうそくから来たのではない光で満たされた。"
+},
+{
+"es": "El séptimo día no os dejó solos. Solo llegó tarde.",
+"t": "第七の日は、あなたたちを孤独にはしなかった。ただ遅れて来ただけだった。"
+},
+{
+"es": "La luz también alumbró tus manos. Seguían rojas.",
+"t": "その光は、あなたの手も照らした。まだ赤かった。"
+},
+{
+"es": "EL ARMARIO",
+"t": "ロッカー"
+},
+{
+"es": "FINAL · EL ESCONDITE",
+"t": "結末 · 隠れ場所"
+},
+{
+"es": "Contuviste el aliento hasta que el Testigo se cansó de esperar.",
+"t": "証人が待ちくたびれるまで、あなたは息を止めていた。"
+},
+{
+"es": "Por las rendijas viste pasar la luz del final, de lado, como bajo una puerta.",
+"t": "隙間から、終わりの光が横向きに過ぎていくのが見えた。ドアの下を通るように。"
+},
+{
+"es": "Nadie te encontró. Nadie te juzgó. Nadie.",
+"t": "誰にも見つからなかった。誰にも裁かれなかった。誰にも。"
+},
+{
+"es": "Ahí dentro olía a hierro. No sabías si era el armario o eras tú.",
+"t": "中は鉄のにおいがした。ロッカーなのか、自分なのか、わからなかった。"
+},
+{
+"es": "LOS OJOS",
+"t": "目"
+},
+{
+"es": "FINAL · LO QUE ESTABA ESCRITO",
+"t": "結末 · 書かれていたこと"
+},
+{
+"es": "Miraste hacia arriba más tiempo del que se puede mirar.",
+"t": "見ていられる時間よりも長く、あなたは上を見つめた。"
+},
+{
+"es": "Rezaban por el mundo. Al final rezaron por ti, con tu nombre mal pronunciado.",
+"t": "彼らは世界のために祈っていた。最後には、あなたの名を間違えながら、あなたのために祈った。"
+},
+{
+"es": "No eran ángeles de estampa. Eran exactamente lo que estaba escrito.",
+"t": "聖画の天使ではなかった。書かれていたとおりのものだった。"
+},
+{
+"es": "Cuarenta y uno de sus ojos lloraban por el médico.",
+"t": "彼らの目のうち四十一が、医師のために泣いていた。"
+},
+{
+"es": "EL JUICIO",
+"t": "審判"
+},
+{
+"es": "FINAL · EL RELOJ",
+"t": "結末 · 時計"
+},
+{
+"es": "El reloj llegó a cero mientras todavía estabas decidiendo.",
+"t": "あなたがまだ迷っているうちに、時計はゼロになった。"
+},
+{
+"es": "No hubo trompetas. Hubo un ruido como de páginas.",
+"t": "ラッパは鳴らなかった。ページをめくるような音がした。"
+},
+{
+"es": "Todo lo que no hiciste también fue pesado.",
+"t": "しなかったことも、すべて量られた。"
+},
+{
+"es": "La palanca 41 pesó más que todo lo demás.",
+"t": "レバー41は、ほかのすべてより重かった。"
+},
+{
+"es": "--touch",
+"t": "--touch"
+},
+{
+"es": "CERRAR",
+"t": "閉じる"
+},
+{
+"es": "CONTROLES",
+"t": "操作"
+},
+{
+"es": "CONTENER",
+"t": "止める"
+},
+{
+"es": "RESPIRAR",
+"t": "吸う"
+},
+{
+"es": "COLGAR",
+"t": "切る"
+},
+{
+"es": "USAR",
+"t": "使う"
+},
+{
+"es": "SALIR",
+"t": "出る"
+},
+{
+"es": "LEVANTARSE",
+"t": "立つ"
+},
+{
+"es": "USAR  E",
+"t": "使う  E"
+},
+{
+"es": "LINTERNA  F",
+"t": "ライト  F"
+},
+{
+"es": "ESPACIO",
+"t": "スペース"
+},
+{
+"es": "COLGAR  Q",
+"t": "切る  Q"
+},
+{
+"es": "PAUSA",
+"t": "ポーズ"
+},
+{
+"es": "GIRA EL TELÉFONO",
+"t": "端末を横に"
+},
+{
+"es": "HINENI se juega en horizontal",
+"t": "HINENIは横画面でプレイ"
+},
+{
+"es": "MOVER",
+"t": "移動"
+},
+{
+"es": "MIRAR",
+"t": "視点"
+},
+{
+"es": "Ines",
+"t": "Ines"
+},
+{
+"es": "Paciente",
+"t": "Paciente"
+}
+]
+}

@@ -95,6 +95,9 @@ namespace LosQueQuedan
 #endif
                 }
                 yield return new WaitForSeconds(3); yield return Snap("01-menu");
+                // The opening passage, early and once the blood has run.
+                g.Begin(true); yield return new WaitForSeconds(5); yield return Snap("00a-prologo"); yield return new WaitForSeconds(16); yield return Snap("00b-prologo");
+                typeof(DemoGame).GetField("prologue", f).SetValue(g, false); g.Ink.glitch = 0; g.Ink.largeText = false;
                 g.Begin(); typeof(DemoGame).GetField("fade", f).SetValue(g, 0f); yield return new WaitForSeconds(5.5f); yield return Snap("02-ines");
                 Call("StartWalking"); typeof(DemoGame).GetField("toastTime", f).SetValue(g, 0f);
                 g.player.Teleport(new Vector3(.3f, .06f, 1.6f), 0); pitch.SetValue(g.player, 2f); yield return new WaitForSeconds(1.2f); yield return Snap("02b-puerta");

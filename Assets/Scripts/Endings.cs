@@ -102,7 +102,7 @@ namespace LosQueQuedan
 
         void PlayVoice(string speaker, string text)
         {
-            var clip = Resources.Load<AudioClip>("Voices/" + DemoGame.VoiceKey(speaker, text));
+            var clip = DemoGame.Voice(speaker, text);
             if (clip) { sound.clip = clip; sound.volume = game.MasterVolume * 1.6f; sound.Play(); }
         }
 

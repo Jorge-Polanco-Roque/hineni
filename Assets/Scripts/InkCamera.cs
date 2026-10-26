@@ -60,6 +60,12 @@ namespace LosQueQuedan
             string all = lines[0] + lines[1];
             glyphCount = all.Length;
             for (int i = 0; i < all.Length; i++) index[all[i]] = i;
+            // Chinese / Japanese: wide characters from their own atlas, two cells each (Tools/BakeCJKAtlas.swift).
+            // Latin languages still need the CJK atlas for the names 中文 / 日本語 in the language selector.
+            {
+                var list = Resources.Load<TextAsset>("Glyphs/cjk-" + (Loc.CJK ? Loc.Lang : "ja") + "-chars");
+                if (list) { var t = list.text.Replace("\n", ""); for (int i = 0; i < t.Length; i++) wide[t[i]] = i; }
+            }
             var preset = Resources.Load<TextAsset>("LookPreset");   // written by ArtDirector --tune
             if (preset) JsonUtility.FromJsonOverwrite(preset.text, this);
             GetComponent<Camera>().depthTextureMode |= DepthTextureMode.DepthNormals;
@@ -67,9 +73,10 @@ namespace LosQueQuedan
         }
 
         // Glyph atlases baked at several cell heights (Tools/BakeAsciiAtlas.swift, Meslo LG S): w = world (bold), u = interface.
-        static readonly int[] Sizes = { 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 36 };
+        static readonly int[] Sizes = { 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 36, 48, 56 };
         readonly Dictionary<string, Texture2D> atlases = new Dictionary<string, Texture2D>();
-        Texture2D worldAtlas, uiAtlas;
+        Texture2D worldAtlas, uiAtlas, cjkAtlas;
+        readonly Dictionary<char, int> wide = new Dictionary<char, int>();
         int shapesFor;
         [Tooltip("World grid rows the screen height is divided into; more rows = finer image.")] public float worldDensity = 165;
         [Tooltip("Interface rows; the menu needs about 46.")] public float uiDensity = 48;
@@ -129,6 +136,7 @@ namespace LosQueQuedan
             int uh = Snap(Mathf.Min(Screen.height / (largeText ? uiDensity * .6f : uiDensity), 2f * Screen.width / 104));
             cellPx = new Vector2Int(uh / 2, uh);
             uiAtlas = Atlas("u", uh);
+            if (wide.Count > 0) cjkAtlas = Atlas("cjk-" + (Loc.CJK ? Loc.Lang : "ja") + "-", uh);
             int c = Mathf.CeilToInt(Screen.width / (float)cellPx.x), r = Mathf.CeilToInt(Screen.height / (float)cellPx.y);
             Cols = Screen.width / cellPx.x; Rows = Screen.height / cellPx.y;
             if (c == uiCols && r == uiRows && ui) return;
@@ -152,23 +160,31 @@ namespace LosQueQuedan
         int Offset(int x, int y) => ((uiRows - 1 - y) * uiCols + x) * 4;
         bool Inside(int x, int y) => x >= 0 && y >= 0 && x < uiCols && y < uiRows;
 
+        // Glyph indices are 14-bit: low byte in R, the rest above the two mode bits in B. Index 256+ is the wide atlas.
         public void Put(int x, int y, string text, float bright = 1, bool accentColor = false)
         {
-            for (int i = 0; i < text.Length; i++)
+            int cx = x;
+            foreach (char c in text)
             {
-                if (!Inside(x + i, y)) continue;
-                int o = Offset(x + i, y);
-                cells[o] = (byte)((index.TryGetValue(text[i], out int g) ? g : index['?']) + 1);
-                cells[o + 1] = (byte)(Mathf.Clamp01(bright) * 255);
-                cells[o + 3] = (byte)(accentColor ? 255 : 0);
+                if (wide.TryGetValue(c, out int w)) { Glyph(cx, y, 256 + w * 2, bright, accentColor); Glyph(cx + 1, y, 257 + w * 2, bright, accentColor); cx += 2; continue; }
+                Glyph(cx, y, index.TryGetValue(c, out int g) ? g : index['?'], bright, accentColor); cx += Loc.Wide(c) ? 2 : 1;
             }
+        }
+        void Glyph(int x, int y, int glyph, float bright, bool accentColor)
+        {
+            if (!Inside(x, y)) return;
+            int o = Offset(x, y), v = glyph + 1;
+            cells[o] = (byte)(v & 255);
+            cells[o + 1] = (byte)(Mathf.Clamp01(bright) * 255);
+            cells[o + 2] = (byte)((cells[o + 2] & 3) | ((v >> 8) << 2));
+            cells[o + 3] = (byte)(accentColor ? 255 : 0);
         }
 
         public void Fill(int x, int y, int w, int h, int mode, float bright = 1)
         {
             for (int j = y; j < y + h; j++)
                 for (int i = x; i < x + w; i++)
-                    if (Inside(i, j)) { int o = Offset(i, j); cells[o + 2] = (byte)mode; if (mode == Inverted) cells[o + 1] = (byte)(bright * 255); }
+                    if (Inside(i, j)) { int o = Offset(i, j); cells[o + 2] = (byte)((cells[o + 2] & ~3) | mode); if (mode == Inverted) cells[o + 1] = (byte)(bright * 255); }
         }
 
         public void Frame(int x, int y, int w, int h, float bright, bool fill = true)
@@ -206,6 +222,7 @@ namespace LosQueQuedan
             material.SetColor("_Ink", ink); material.SetColor("_Paper", paper); material.SetColor("_Accent", accent);
             material.SetTexture("_Glyphs", worldAtlas);
             material.SetTexture("_UIGlyphs", uiAtlas);
+            if (cjkAtlas) { material.SetTexture("_CJKGlyphs", cjkAtlas); material.SetVector("_CJKGrid", new Vector4(64, cjkAtlas.height / cellPx.y, 0, 0)); }
             material.SetTexture("_UI", ui);
             if (!mean)
             {

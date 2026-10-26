@@ -10,7 +10,9 @@ Shader "Hidden/LosQueQuedan/Ink"
  float4 _MainTex_TexelSize;
  sampler2D _CameraDepthNormalsTexture;
  sampler2D _Cells;     // R = glyph index, G = scene tone, B = 1 when matched by shape
- sampler2D _UI;        // R = glyph+1, G = brightness, B = mode, A = accent
+ sampler2D _UI;        // R = (glyph+1) low byte, G = brightness, B = mode | high bits << 2, A = accent
+ sampler2D _CJKGlyphs; // wide characters, two cells each, in a grid of _CJKGrid.x columns
+ float4 _CJKGrid;
  sampler2D _Glyphs, _UIGlyphs;
  float4 _Grid;         // world: cols, rows, cell width px, cell height px
  float4 _UIGrid;       // interface: cols, rows, cell width px, cell height px
@@ -138,7 +140,7 @@ Shader "Hidden/LosQueQuedan/Ink"
     if (Hash(cell + tick * 1.37) < _Glitch.x * .22) { w.x = floor(Hash(cell * 1.7 + tick) * _Shape.z); w.y = max(w.y, .5); }
     float2 q = px / _UIGrid.zw, uiCell = floor(q), uf = frac(q);
     float4 ui = tex2D(_UI, float2((uiCell.x + .5) / _UIGrid.x, 1 - (uiCell.y + .5) / _UIGrid.y));
-    float uiGlyph = round(ui.r * 255) - 1, mode = round(ui.b * 255);
+    float ub = round(ui.b * 255), mode = fmod(ub, 4), uiGlyph = round(ui.r * 255) + floor(ub / 4) * 256 - 1;
 
     float grain = 1 - Hash(cell) * .1;                          // hand-set texture, stable over time
     float bright = lerp(_Tone.w, 1, saturate(w.y * 1.75)) * grain;
@@ -172,7 +174,13 @@ Shader "Hidden/LosQueQuedan/Ink"
     {
      float3 tint = lerp(_Ink.rgb, _Accent.rgb, ui.a) * ui.g;
      if (_Glitch.z > .5) tint = lerp(float3(.12, .02, .02), float3(.5, .03, .02), ui.a) * ui.g - _Paper.rgb;
-     float m = Mask(_UIGlyphs, uiGlyph, uf);
+     float m;
+     if (uiGlyph >= 256)
+     {
+      float k = uiGlyph - 256, col = fmod(k, _CJKGrid.x), row = floor(k / _CJKGrid.x);
+      m = tex2D(_CJKGlyphs, float2((col + uf.x) / _CJKGrid.x, 1 - (row + uf.y) / _CJKGrid.y)).a;
+     }
+     else m = Mask(_UIGlyphs, uiGlyph, uf);
      col = mode > 1.5 ? lerp(tint, _Paper.rgb, m) : lerp(world, tint, m);
     }
     else if (mode > 1.5) col = lerp(_Ink.rgb, _Accent.rgb, ui.a) * ui.g;

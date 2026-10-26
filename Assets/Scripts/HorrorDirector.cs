@@ -21,8 +21,8 @@ namespace LosQueQuedan
         public float ThreatDistance { get; private set; }=99;
         public string Objective=>Data.phase==0?"Capilla · recupera el fusible del altar":Data.phase==1?
             "Sala eléctrica · lleva el fusible al cuadro":Data.phase==2?"Activa los interruptores: la pared conserva el orden":null;
-        public string Equipment=>Hidden?"OCULTO · E para salir":
-            (Data.lightOn?"F · apagar linterna":"F · encender linterna")+(Data.phase==1?"  /  FUSIBLE 03":"");
+        public string Equipment=>Hidden?Loc.T("OCULTO · E para salir"):
+            Loc.T(Data.lightOn?"F · apagar linterna":"F · encender linterna")+(Data.phase==1?"  /  "+Loc.T("FUSIBLE 03"):"");
 
         DemoGame game;
         HospitalWorld world;
@@ -101,7 +101,7 @@ namespace LosQueQuedan
                     return true;
                 case "graffiti-forehead":game.Notify("AQUÍ APOYABA LA FRENTE. La pared todavía tiene la forma de su cara.",7);return true;
                 case "graffiti-word":case "graffiti-father":case "graffiti-seventh":case "graffiti-risen":
-                    if(Data.lever){game.Notify(world.WritingText(id)+" La sangre es nueva.",7);return true;}
+                    if(Data.lever){game.Notify(Loc.F("{0} La sangre es nueva.",world.WritingText(id)),7);return true;}
                     break;
             }
             switch(id)
@@ -134,7 +134,7 @@ namespace LosQueQuedan
                     Data.phase=3;world.Restore();world.witness.SetActive(false);Hidden=false;
                     game.Notify("La corriente vuelve. La respiración se detiene. Vuelve con el hombre de la sala común.",9);
                 }
-                else game.Notify("Circuito "+Data.breakerProgress+" de 3. Quedan pasos al otro lado de la puerta.",4);
+                else game.Notify(Loc.F("Circuito {0} de 3. Quedan pasos al otro lado de la puerta.",Data.breakerProgress),4);
             }
             else
             {

@@ -53,7 +53,7 @@ namespace LosQueQuedan
             if (candleUntil[i] > clock) { game.Notify("Ya arde. Las otras se están apagando.", 3); return true; }
             candleUntil[i] = clock + CandleBurn;
             int lit = Lit();
-            game.Notify(lit == 1 ? "Una llama. Arden " + CandleBurn + " segundos. La pared pide siete." : "Arden " + lit + " de 7.", 3);
+            game.Notify(lit == 1 ? Loc.F("Una llama. Arden {0} segundos. La pared pide siete.", CandleBurn) : Loc.F("Arden {0} de 7.", lit), 3);
             if (lit == 7) game.EndWith("velas");
             return true;
         }
@@ -75,8 +75,8 @@ namespace LosQueQuedan
             if (Controls.Down(KeyCode.Space) && breathClock - lastBreath > .6f)
             {
                 lastBreath = breathClock;
-                if (BreathLevel > .8f) { breaths++; breathNote = breaths < BreathsNeeded ? "Respiráis a la vez. " + breaths + " de " + BreathsNeeded : null; }
-                else { breathNote = "A destiempo. Él se ahoga un poco, y espera a que lo encuentres."; }
+                if (BreathLevel > .8f) { breaths++; breathNote = breaths < BreathsNeeded ? Loc.F("Respiráis a la vez. {0} de {1}", breaths, BreathsNeeded) : null; }
+                else { breathNote = Loc.T("A destiempo. Él se ahoga un poco, y espera a que lo encuentres."); }
                 if (breaths >= BreathsNeeded) game.EndWith("quedarse");
             }
         }
@@ -147,35 +147,35 @@ namespace LosQueQuedan
             // What you could still do: unknown acts stay as a question.
             int x = C - 30, y = 4;
             ink.Fill(x - 2, y - 1, 30, 8, InkCamera.Panel);
-            ink.Put(x, y - 1, "LO ÚLTIMO QUE HAGAS", .55f);
+            ink.Put(x, y - 1, Loc.T("LO ÚLTIMO QUE HAGAS"), .55f);
             for (int i = 0; i < 5; i++)
             {
-                string label = known[i] ? Names[i] : "· · ·", progress = "";
+                string label = known[i] ? Loc.T(Names[i]) : "· · ·", progress = "";
                 if (known[i])
                     progress = i == 0 ? breaths + "/" + BreathsNeeded : i == 2 ? Lit() + "/7" : i == 3 ? Mathf.FloorToInt(hidden / HideNeeded * 100) + "%" : i == 4 ? Mathf.FloorToInt(sky / SkyNeeded * 100) + "%" : "";
                 ink.Put(x, y + 1 + i, (known[i] ? "○ " : "  ") + label, known[i] ? .8f : .3f);
-                if (progress.Length > 0) ink.Put(x + 22, y + 1 + i, progress, .6f, true);
+                if (progress.Length > 0) ink.Put(x + 23, y + 1 + i, progress, .6f, true);
             }
             int cx = C / 2;
             if (Tuning)
             {
                 int w = Mathf.Min(70, C - 10), bx = cx - w / 2, by = R / 2 + 6;
                 ink.Fill(bx - 3, by - 3, w + 6, 9, InkCamera.Panel);
-                ink.Put(bx, by - 2, "LÍNEA AL EXTERIOR · busca la voz entre la estática", .85f);
+                ink.Put(bx, by - 2, Loc.T("LÍNEA AL EXTERIOR · busca la voz entre la estática"), .85f);
                 var rng = new System.Random(Mathf.FloorToInt(clock * 20));
                 float off = Mathf.Abs(dial - Target);
                 var noise = new char[w];
                 for (int i = 0; i < w; i++) noise[i] = rng.NextDouble() < off * 2.2f ? "░▒▓·:"[rng.Next(5)] : '─';
                 ink.Put(bx, by, new string(noise), .5f);
                 ink.Put(bx + Mathf.RoundToInt(dial * (w - 1)), by, "█", 1, off < .07f);
-                ink.Put(bx, by + 2, "SEÑAL " + new string('█', Mathf.RoundToInt(inBand / 4 * 20)).PadRight(20, '░'), .7f, true);
-                ink.Put(bx, by + 4, Controls.Touch ? "palanca izquierda o derecha · sintonizar      COLGAR" : "A / D o ratón · sintonizar      Q · colgar", .4f);
+                ink.Put(bx, by + 2, Loc.T("SEÑAL") + " " + new string('█', Mathf.RoundToInt(inBand / 4 * 20)).PadRight(20, '░'), .7f, true);
+                ink.Put(bx, by + 4, Loc.T(Controls.Touch ? "palanca izquierda o derecha · sintonizar      COLGAR" : "A / D o ratón · sintonizar      Q · colgar"), .4f);
             }
             if (game.Sitting)
             {
                 int w = 40, bx = cx - w / 2, by = R - 9;
                 ink.Fill(bx - 3, by - 2, w + 6, 6, InkCamera.Panel);
-                ink.Put(bx, by - 1, Controls.Touch ? "RESPIRA CON ÉL · RESPIRAR arriba del todo" : "RESPIRA CON ÉL · ESPACIO arriba del todo", .8f);
+                ink.Put(bx, by - 1, Loc.T(Controls.Touch ? "RESPIRA CON ÉL · RESPIRAR arriba del todo" : "RESPIRA CON ÉL · ESPACIO arriba del todo"), .8f);
                 int fill = Mathf.RoundToInt(BreathLevel * w);
                 ink.Put(bx, by, new string('▓', fill).PadRight(w, '·'), .4f + BreathLevel * .6f, BreathLevel > .8f);
                 ink.Put(bx + Mathf.RoundToInt(w * .8f), by + 1, "▲", .5f);
@@ -186,9 +186,9 @@ namespace LosQueQuedan
             {
                 int w = 30, bx = cx - w / 2, by = R - 12;
                 ink.Fill(bx - 3, by - 2, w + 6, 6, InkCamera.Panel);
-                ink.Put(bx, by - 1, holding ? "CONTIENES EL ALIENTO" : h.ThreatDistance < 4.5f ? Controls.Touch ? "ESTÁ AHÍ FUERA · mantén CONTENER" : "ESTÁ AHÍ FUERA · mantén ESPACIO" : "Respira. Despacio.", .85f, h.ThreatDistance < 4.5f);
-                ink.Put(bx, by, "AIRE    " + new string('█', Mathf.RoundToInt(air * 20)).PadRight(20, '░'), .7f);
-                ink.Put(bx, by + 1, "TE OYE  " + new string('█', Mathf.RoundToInt(suspicion * 20)).PadRight(20, '░'), .7f, true);
+                ink.Put(bx, by - 1, Loc.T(holding ? "CONTIENES EL ALIENTO" : h.ThreatDistance < 4.5f ? Controls.Touch ? "ESTÁ AHÍ FUERA · mantén CONTENER" : "ESTÁ AHÍ FUERA · mantén ESPACIO" : "Respira. Despacio."), .85f, h.ThreatDistance < 4.5f);
+                ink.Put(bx, by, Loc.T("AIRE").PadRight(8) + new string('█', Mathf.RoundToInt(air * 20)).PadRight(20, '░'), .7f);
+                ink.Put(bx, by + 1, Loc.T("TE OYE").PadRight(8) + new string('█', Mathf.RoundToInt(suspicion * 20)).PadRight(20, '░'), .7f, true);
                 ink.Put(bx, by + 2, Mathf.FloorToInt(hidden) + " / " + HideNeeded + " s", .4f);
             }
         }

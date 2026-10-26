@@ -26,6 +26,52 @@ CAST = {
     "RADIO DE EMERGENCIAS":    dict(mix={"em_alex": .6, "pm_alex": .4}, speed=1.0, pitch=1.0, radio=True),
     # Its lines are written backwards; the voice says them forwards and the recording is played in reverse.
     "EL TESTIGO":              dict(mix={"em_santa": .5, "pm_santa": .3, "em_alex": .2}, speed=.82, pitch=.74, backwards=True),
+    # The opening passage (Revelation 6:12-17): the gravest voice, slow, lowered, in a stone nave.
+    "APOCALIPSIS":             dict(mix={"em_santa": .7, "em_alex": .3}, speed=.8, pitch=.84, nave=True),
+}
+# Other languages: same people, same sex and age, voices of that language (Kokoro has one male Japanese voice,
+# so the Japanese men differ by pitch and pace). Lines are the translations in Assets/Resources/Lang/<code>.json.
+LANGS = {
+    "en": dict(lang="en-us", cast={
+        "INÉS": dict(mix={"af_heart": 1}, speed=.95, pitch=1),
+        "LA MUJER DE LA SILLA": dict(mix={"af_nicole": .6, "af_sky": .4}, speed=.85, pitch=.95),
+        "LUCÍA": dict(mix={"af_bella": 1}, speed=.97, pitch=1),
+        "EL MÉDICO": dict(mix={"am_michael": 1}, speed=1.05, pitch=1),
+        "EL HOMBRE": dict(mix={"am_santa": .6, "bm_george": .4}, speed=.85, pitch=.95),
+        "EL HOMBRE DE LA ESQUINA": dict(mix={"am_onyx": 1}, speed=.8, pitch=.86),
+        "RADIO DE EMERGENCIAS": dict(mix={"am_adam": 1}, speed=1, pitch=1, radio=True),
+        "EL TESTIGO": dict(mix={"bm_george": .5, "am_onyx": .5}, speed=.82, pitch=.74, backwards=True),
+        "APOCALIPSIS": dict(mix={"am_onyx": .7, "bm_george": .3}, speed=.82, pitch=.85, nave=True)}),
+    "pt": dict(lang="pt-br", cast={
+        "INÉS": dict(mix={"pf_dora": 1}, speed=.95, pitch=1),
+        "LA MUJER DE LA SILLA": dict(mix={"pf_dora": .5, "if_sara": .5}, speed=.82, pitch=.93),
+        "LUCÍA": dict(mix={"pf_dora": .6, "ef_dora": .4}, speed=.97, pitch=1.04),
+        "EL MÉDICO": dict(mix={"pm_alex": 1}, speed=1.05, pitch=1),
+        "EL HOMBRE": dict(mix={"pm_santa": .7, "im_nicola": .3}, speed=.85, pitch=.95),
+        "EL HOMBRE DE LA ESQUINA": dict(mix={"pm_santa": .5, "em_santa": .5}, speed=.78, pitch=.86),
+        "RADIO DE EMERGENCIAS": dict(mix={"pm_alex": 1}, speed=1, pitch=1, radio=True),
+        "EL TESTIGO": dict(mix={"pm_santa": .5, "pm_alex": .5}, speed=.82, pitch=.74, backwards=True),
+        "APOCALIPSIS": dict(mix={"pm_santa": .7, "pm_alex": .3}, speed=.82, pitch=.85, nave=True)}),
+    "zh": dict(lang="cmn", g2p="zh", cast={
+        "INÉS": dict(mix={"zf_xiaoxiao": 1}, speed=.95, pitch=1),
+        "LA MUJER DE LA SILLA": dict(mix={"zf_xiaobei": 1}, speed=.9, pitch=1),
+        "LUCÍA": dict(mix={"zf_xiaoyi": 1}, speed=.97, pitch=1),
+        "EL MÉDICO": dict(mix={"zm_yunjian": 1}, speed=1.05, pitch=1),
+        "EL HOMBRE": dict(mix={"zm_yunxi": 1}, speed=.85, pitch=.95),
+        "EL HOMBRE DE LA ESQUINA": dict(mix={"zm_yunyang": 1}, speed=.8, pitch=.86),
+        "RADIO DE EMERGENCIAS": dict(mix={"zm_yunxia": 1}, speed=1, pitch=1, radio=True),
+        "EL TESTIGO": dict(mix={"zm_yunyang": .5, "zm_yunjian": .5}, speed=.82, pitch=.74, backwards=True),
+        "APOCALIPSIS": dict(mix={"zm_yunyang": .7, "zm_yunjian": .3}, speed=.82, pitch=.85, nave=True)}),
+    "ja": dict(lang="ja", g2p="ja", cast={
+        "INÉS": dict(mix={"jf_alpha": 1}, speed=.95, pitch=1),
+        "LA MUJER DE LA SILLA": dict(mix={"jf_gongitsune": 1}, speed=.85, pitch=.95),
+        "LUCÍA": dict(mix={"jf_tebukuro": 1}, speed=.97, pitch=1),
+        "EL MÉDICO": dict(mix={"jm_kumo": 1}, speed=1.05, pitch=1.04),
+        "EL HOMBRE": dict(mix={"jm_kumo": 1}, speed=.85, pitch=.92),
+        "EL HOMBRE DE LA ESQUINA": dict(mix={"jm_kumo": 1}, speed=.78, pitch=.84),
+        "RADIO DE EMERGENCIAS": dict(mix={"jm_kumo": 1}, speed=1, pitch=1, radio=True),
+        "EL TESTIGO": dict(mix={"jm_kumo": 1}, speed=.82, pitch=.72, backwards=True),
+        "APOCALIPSIS": dict(mix={"jm_kumo": 1}, speed=.82, pitch=.85, nave=True)}),
 }
 # Whispered lines are attached to characters by object, not by speaker name.
 WHISPERER = {"Esquina": "EL HOMBRE DE LA ESQUINA"}
@@ -68,6 +114,8 @@ def call_args(src, start):
 def dialogue():
     lines = []
     src = open("Assets/Scripts/DemoGame.cs", encoding="utf-8").read()
+    m = re.search(r'const string Passage="((?:[^"\\]|\\.)*)"', src)   # the opening passage, read by APOCALIPSIS
+    if m: lines.append(("APOCALIPSIS", literals('"' + m.group(1) + '"')[0]))
     for m in re.finditer(r"\bSay\(", src):
         args = call_args(src, m.end() - 1)
         if len(args) < 2: continue
@@ -86,13 +134,67 @@ def dialogue():
 
 def speakable(text):
     text = re.sub(r"\[[^\]]*\]", " ", text)           # stage directions are read, not heard
-    text = text.replace("«", "").replace("»", "").replace("…", "... ")
+    text = re.sub(r"(?m)^\d+\s+", "", text)              # verse numbers are shown, not read
+    for q in "«»“”「」":
+        text = text.replace(q, "")
+    text = text.replace("…", "... ")
     return re.sub(r"\s+", " ", text).strip()
+
+
+def render(tts, cast, text, dest, lang="es", g2p=None):
+    style = sum(tts.get_voice_style(v) * w for v, w in cast["mix"].items())
+    said = speakable(text)[::-1] if cast.get("backwards") else speakable(text)
+    if g2p:
+        ph = g2p(said); ph = ph[0] if isinstance(ph, tuple) else ph
+        audio, rate = tts.create(ph, voice=style, speed=cast["speed"], lang=lang, is_phonemes=True)
+    else:
+        audio, rate = tts.create(said, voice=style, speed=cast["speed"], lang=lang)
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
+        pcm = (np.clip(audio, -1, 1) * 32767).astype("<i2")
+        import wave
+        with wave.open(tmp.name, "wb") as w:
+            w.setnchannels(1); w.setsampwidth(2); w.setframerate(rate); w.writeframes(pcm.tobytes())
+    p = cast["pitch"]
+    filters = [f"asetrate={int(rate * p)}", f"aresample={rate}", f"atempo={1 / p:.4f}"] if p != 1 else []
+    if cast.get("backwards"): filters += ["areverse", "aecho=0.8:0.7:90|210:0.4|0.25", "lowpass=f=3800"]
+    if cast.get("nave"): filters += ["lowpass=f=3200", "aecho=0.8:0.6:140|420:0.28|0.14", "bass=g=4:f=110"]
+    if cast.get("radio"): filters += ["highpass=f=450", "lowpass=f=2800", "acrusher=bits=10:mix=.35", "volume=1.6"]
+    filters += ["apad=pad_dur=0.15", "loudnorm=I=-18:TP=-2"]
+    subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", tmp.name, "-af", ",".join(filters),
+                    "-ar", "24000", "-ac", "1", "-c:a", "pcm_s16le", dest], check=True)
+    os.remove(tmp.name)
+
+
+def translations():
+    import json
+    for code, spec in LANGS.items():
+        path = f"Assets/Resources/Lang/{code}.json"
+        if not os.path.exists(path): continue
+        table = {i["es"]: i["t"] for i in json.load(open(path, encoding="utf-8"))["items"]}
+        g2p = None
+        if spec.get("g2p") == "zh":
+            from misaki import zh; g2p = zh.ZHG2P()
+        elif spec.get("g2p") == "ja":
+            from misaki import ja; g2p = ja.JAG2P()
+        out = os.path.join(OUT, code); os.makedirs(out, exist_ok=True)
+        wanted = {}
+        for speaker, text in dialogue():
+            t = table.get(text)
+            if t: wanted[key(speaker, t)] = (speaker, t)
+        for f in os.listdir(out):
+            if f.endswith(".wav") and f[:-4] not in wanted:
+                os.remove(os.path.join(out, f))
+        made = 0
+        for k, (speaker, text) in wanted.items():
+            dest = os.path.join(out, k + ".wav")
+            if os.path.exists(dest): continue
+            render(TTS, spec["cast"][speaker], text, dest, spec["lang"], g2p); made += 1
+        print(code, len(wanted), "lines,", made, "generated")
 
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    tts = Kokoro(MODEL, VOICES_BIN)
+    tts = TTS
     wanted = {}
     for speaker, text in dialogue():
         wanted[key(speaker, text)] = (speaker, text)
@@ -116,6 +218,7 @@ def main():
         p = cast["pitch"]
         filters = [f"asetrate={int(rate * p)}", f"aresample={rate}", f"atempo={1 / p:.4f}"] if p != 1 else []
         if cast.get("backwards"): filters += ["areverse", "aecho=0.8:0.7:90|210:0.4|0.25", "lowpass=f=3800"]
+        if cast.get("nave"): filters += ["lowpass=f=3200", "aecho=0.8:0.6:140|420:0.28|0.14", "bass=g=4:f=110"]
         if cast.get("radio"): filters += ["highpass=f=450", "lowpass=f=2800", "acrusher=bits=10:mix=.35", "volume=1.6"]
         filters += ["apad=pad_dur=0.15", "loudnorm=I=-18:TP=-2"]
         subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", tmp.name, "-af", ",".join(filters),
@@ -161,5 +264,7 @@ def tongues(tts):
 
 
 if __name__ == "__main__":
+    TTS = Kokoro(MODEL, VOICES_BIN)
     main()
-    tongues(Kokoro(MODEL, VOICES_BIN))
+    tongues(TTS)
+    translations()

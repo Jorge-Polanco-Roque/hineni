@@ -15,8 +15,8 @@ namespace LosQueQuedan
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Boot()
         {
-            if(Array.IndexOf(Environment.GetCommandLineArgs(),"--horror-test")>=0)
-            {Application.runInBackground=true;new GameObject("Horror QA").AddComponent<HorrorPlaytest>();}
+            if(DemoGame.TestRequested("horror"))
+            {DemoGame.QA="horror";Application.runInBackground=true;new GameObject("Horror QA").AddComponent<HorrorPlaytest>();}
         }
         void Awake(){Application.logMessageReceived+=Log;}
         void OnDestroy(){Application.logMessageReceived-=Log;}
@@ -28,7 +28,7 @@ namespace LosQueQuedan
         {
             g.player.Teleport(p,yaw);Set(g,"paused",true);DemoGame.HideInterface=true;
             yield return new WaitForSeconds(.7f);yield return new WaitForEndOfFrame();
-            ScreenCapture.CaptureScreenshot("/tmp/spooky-horror-qa/"+name+".png");
+            if(Application.platform!=RuntimePlatform.WebGLPlayer)ScreenCapture.CaptureScreenshot("/tmp/spooky-horror-qa/"+name+".png");
             yield return new WaitForSeconds(.25f);Set(g,"paused",false);DemoGame.HideInterface=false;
         }
         IEnumerator Start()
@@ -69,7 +69,7 @@ namespace LosQueQuedan
             yield return Shot("05-orden",new Vector3(-6.3f,.06f,14.5f),180);
             h.TryInteract("hide");Check(h.Hidden,"Hiding cabinet can be entered");
             Set(g,"paused",false);Set(h,"grace",999f);DemoGame.HideInterface=false;
-            yield return new WaitForSeconds(.3f);yield return new WaitForEndOfFrame();ScreenCapture.CaptureScreenshot("/tmp/spooky-horror-qa/06-escondite.png");
+            yield return new WaitForSeconds(.3f);yield return new WaitForEndOfFrame();if(Application.platform!=RuntimePlatform.WebGLPlayer)ScreenCapture.CaptureScreenshot("/tmp/spooky-horror-qa/06-escondite.png");
             h.TryInteract("hide");Check(!h.Hidden,"Hiding cabinet has an exit");
             h.TryInteract("fuse-slot");Check(h.Data.phase==2,"Fuse installs in physical panel");
             h.PressBreaker(1);Check(h.Data.breakerProgress==0,"Incorrect breaker order resets safely");

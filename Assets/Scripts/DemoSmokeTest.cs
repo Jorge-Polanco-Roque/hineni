@@ -16,8 +16,8 @@ namespace LosQueQuedan
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Boot()
         {
-            if(Array.IndexOf(Environment.GetCommandLineArgs(),"--smoke-test")>=0)
-                new GameObject("Opt-in QA").AddComponent<DemoSmokeTest>();
+            if(DemoGame.TestRequested("smoke"))
+            {DemoGame.QA="smoke";new GameObject("Opt-in QA").AddComponent<DemoSmokeTest>();}
         }
         void Awake(){Application.logMessageReceived+=Log;}
         void OnDestroy(){Application.logMessageReceived-=Log;}
@@ -31,7 +31,7 @@ namespace LosQueQuedan
         IEnumerator Capture(string file)
         {
             yield return new WaitForSeconds(.3f);yield return new WaitForEndOfFrame();
-            ScreenCapture.CaptureScreenshot("/tmp/spooky-qa/"+file+".png");
+            if(Application.platform!=RuntimePlatform.WebGLPlayer)ScreenCapture.CaptureScreenshot("/tmp/spooky-qa/"+file+".png");
             yield return new WaitForSeconds(.3f);
         }
         IEnumerator Start()

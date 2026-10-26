@@ -117,8 +117,8 @@ namespace LosQueQuedan
             if (Screen.height > Screen.width)
             {
                 ink.Clear(); ink.Fill(0, 0, C, R + 1, InkCamera.Panel);
-                string a = "GIRA EL TELÉFONO", b = "HINENI se juega en horizontal";
-                ink.Put((C - a.Length) / 2, R / 2 - 1, a, 1, true); ink.Put((C - b.Length) / 2, R / 2 + 1, b, .6f);
+                string a = Loc.T("GIRA EL TELÉFONO"), b = Loc.T("HINENI se juega en horizontal");
+                ink.Put((C - Loc.W(a)) / 2, R / 2 - 1, a, 1, true); ink.Put((C - Loc.W(b)) / 2, R / 2 + 1, b, .6f);
                 return;
             }
             if (!Playing) return;
@@ -134,7 +134,7 @@ namespace LosQueQuedan
                 }
                 var k = Cell(o + Vector2.ClampMagnitude(pad.now - pad.origin, r) * (pad.id >= 0 ? 1 : 0));
                 ink.Put(k.x - 1, k.y - 1, "▄▄▄", pad.id >= 0 ? 1 : .6f); ink.Put(k.x - 1, k.y, "███", pad.id >= 0 ? 1 : .6f);
-                var l = Cell(o - new Vector2(0, r * 1.25f)); ink.Put(l.x - label.Length / 2, l.y, label, .6f);
+                var l = Cell(o - new Vector2(0, r * 1.25f)); label = Loc.T(label); ink.Put(l.x - Loc.W(label) / 2, l.y, label, .6f);
             }
             Stick(I.move, new Vector2(Screen.width * .14f, Screen.height * .32f), "MOVER");
             Stick(I.look, new Vector2(Screen.width * .86f, Screen.height * .22f), "MIRAR");
@@ -146,7 +146,7 @@ namespace LosQueQuedan
                 bool on = I.pressing.ContainsValue(k);
                 ink.Frame(a.x, a.y, w, h, on ? .9f : .45f);
                 if (on) ink.Fill(a.x + 1, a.y + 1, w - 2, h - 2, InkCamera.Inverted, .9f);
-                ink.Put(a.x + (w - k.label.Length) / 2, a.y + h / 2, k.label, on ? .05f : .9f, k.code == KeyCode.Space || k == I.toggle);
+                var text = Loc.T(k.label); ink.Put(a.x + (w - Loc.W(text)) / 2, a.y + h / 2, text, on ? .05f : .9f, k.code == KeyCode.Space || k == I.toggle);
             }
         }
     }

@@ -17,7 +17,11 @@ namespace LosQueQuedan
         public bool DialogueOpen => dialogBody != null;
         public bool Started => started;
         public int Stage => stage;
-        public bool SimulationActive => started&&!paused&&!DialogueOpen&&!ended;
+        public bool SimulationActive => started&&!paused&&!DialogueOpen&&!ended&&!prologue;
+        // Before Inés speaks: the sixth seal (Revelation 6:12-17), quoted, read aloud, on black, until "Continue".
+        const string PassageRef="APOCALIPSIS 6:12–17 · Reina-Valera 1909";
+        const string Passage="12 Y miré cuando él abrió el sexto sello, y he aquí fué hecho un gran terremoto; y el sol se puso negro como un saco de cilicio, y la luna se puso toda como sangre;\n13 Y las estrellas del cielo cayeron sobre la tierra, como la higuera echa sus higos cuando es movida de gran viento.\n14 Y el cielo se apartó como un libro que es envuelto; y todo monte y las islas fueron movidas de sus lugares.\n15 Y los reyes de la tierra, y los príncipes, y los ricos, y los capitanes, y los fuertes, y todo siervo y todo libre, se escondieron en las cuevas y entre las peñas de los montes;\n16 Y decían á los montes y á las peñas: Caed sobre nosotros, y escondednos de la cara de aquél que está sentado sobre el trono, y de la ira del Cordero:\n17 Porque el gran día de su ira es venido; ¿y quién podrá estar firme?";
+        bool prologue;float prologueStart;
         public float MasterVolume => volume;
         public HorrorDirector horror;
         public Heaven heaven;
@@ -49,8 +53,11 @@ namespace LosQueQuedan
         const float MusicCrossfade=5;
         float musicClock;   // our own playhead: browsers cannot report AudioSource.time for compressed audio
         AudioClip foot, tone;
-        string SavePath => Array.IndexOf(Environment.GetCommandLineArgs(),"--horror-test")>=0 ? "/tmp/spooky-horror-save.json" : Array.IndexOf(Environment.GetCommandLineArgs(),"--smoke-test")>=0
-            ? "/tmp/spooky-qa-save.json" : Path.Combine(Application.persistentDataPath,"los-que-quedan-demo.json");
+        public static string QA;   // "smoke" / "horror" while an automated test runs (set by the test itself)
+        // True when started with --<name>-test, or in a browser with ?qa=<name>.
+        public static bool TestRequested(string name)=>Array.IndexOf(Environment.GetCommandLineArgs(),"--"+name+"-test")>=0
+            ||(Application.platform==RuntimePlatform.WebGLPlayer&&Application.absoluteURL.Contains("qa="+name));
+        string SavePath => QA=="horror" ? "/tmp/spooky-horror-save.json" : QA=="smoke" ? "/tmp/spooky-qa-save.json" : Path.Combine(Application.persistentDataPath,"los-que-quedan-demo.json");
 
         [Serializable] public class SaveData
         {
@@ -62,7 +69,7 @@ namespace LosQueQuedan
 
         void Awake()
         {
-            Instance=this; Application.targetFrameRate=60;
+            Instance=this; Application.targetFrameRate=60; Loc.Init();
             world=new GameObject("Hospital del Umbral").AddComponent<HospitalWorld>();world.surfaceTemplate=surfaceTemplate;world.cutoutTemplate=cutoutTemplate;world.worldTextShader=worldTextShader;world.Build();
             var p=new GameObject("Alex");p.transform.position=new Vector3(0,.06f,-2.7f);
             var c=p.AddComponent<CharacterController>();c.height=1.72f;c.radius=.25f;c.center=new Vector3(0,.86f,0);c.stepOffset=.24f;
@@ -111,10 +118,10 @@ namespace LosQueQuedan
         {
             fade=Mathf.MoveTowards(fade,0,Time.unscaledDeltaTime*.35f);
             if(toastTime>0)toastTime-=Time.unscaledDeltaTime;
-            if(Controls.Down(KeyCode.Escape)&&started&&!ended&&!DialogueOpen)
+            if(Controls.Down(KeyCode.Escape)&&started&&!ended&&!DialogueOpen&&!prologue)
             {paused=!paused;settings=false;if(paused)Unlock();else Lock();}
-            player.CanMove=started&&!paused&&!DialogueOpen&&!ended&&!sat&&!(horror&&horror.Hidden)&&!(acts&&acts.Tuning);
-            if(started&&!paused&&!DialogueOpen&&!ended)
+            player.CanMove=started&&!paused&&!DialogueOpen&&!ended&&!prologue&&!sat&&!(horror&&horror.Hidden)&&!(acts&&acts.Tuning);
+            if(started&&!paused&&!DialogueOpen&&!ended&&!prologue)
             {
                 remaining=Mathf.Max(0,remaining-Time.deltaTime);
                 if(remaining<=0){EndWith("juicio");return;}
@@ -139,9 +146,15 @@ namespace LosQueQuedan
         }
         void Lock(){if(Controls.Touch)return;Cursor.lockState=CursorLockMode.Locked;Cursor.visible=false;}
         void Unlock(){Cursor.lockState=CursorLockMode.None;Cursor.visible=true;}
-        public void Begin()
+        // From the menu the game opens on the passage; automated tests go straight to Inés.
+        public void Begin(bool withPrologue=false)
         {
             started=true;stage=0;remaining=Minutes;player.Teleport(new Vector3(0,.06f,-2.7f),15);fade=1;
+            if(withPrologue){prologue=true;prologueStart=Time.unscaledTime;Unlock();Speak("APOCALIPSIS",Passage);return;}
+            WakeUp();
+        }
+        void WakeUp()
+        {
             Say("INÉS", "No intentes levantarte deprisa.\n\nTe llamas Álex. Estás en el Hospital del Umbral. Llevas diecinueve días aquí.\n\nVoy a decirte algo difícil. Puedes tomarte un momento.",
                 new[]{"Dime qué está pasando.","Solo necesito un momento."},
                 new Action[]{TellTruth,()=>Say("INÉS","Estoy aquí. No tienes que contestar enseguida.",new[]{"Estoy listo. Dímelo."},new Action[]{TellTruth})});
@@ -240,7 +253,11 @@ namespace LosQueQuedan
         public void Ask(string speaker,string body,string[] options,Action[] actions)=>Say(speaker,body,options,actions);
         public void CloseDialog()=>Close();
         void Say(string speaker,string body,string[] options,Action[] actions)
-        {dialogSpeaker=speaker;dialogBody=Spoken(body);choices=options;callbacks=actions;typeStart=Time.unscaledTime;Unlock();Speak(speaker,body);}
+        {
+            var said=Loc.T(body);
+            dialogSpeaker=Loc.T(speaker);dialogBody=Spoken(said);choices=Array.ConvertAll(options,Loc.T);callbacks=actions;
+            typeStart=Time.unscaledTime;Unlock();Speak(speaker,body);
+        }
         // Stage directions in [brackets] stay in the script for the voices tool; the player reads only the words.
         static string Spoken(string body)
         {
@@ -254,7 +271,13 @@ namespace LosQueQuedan
             uint h=2166136261;foreach(byte b in System.Text.Encoding.UTF8.GetBytes(speaker+"\n"+text)){h^=b;h*=16777619;}
             return h.ToString("x8");
         }
-        static AudioClip Voice(string speaker,string text)=>Resources.Load<AudioClip>("Voices/"+VoiceKey(speaker,text));
+        // A Spanish line, spoken in the voice language: Voices/ for Spanish, Voices/<code>/ for the rest, keyed by the
+        // line as written in that language. Text and voice languages are independent.
+        public static AudioClip Voice(string speaker,string spanish)
+        {
+            var code=Loc.VoiceLang;
+            return Resources.Load<AudioClip>((code=="es"?"Voices/":"Voices/"+code+"/")+VoiceKey(speaker,Loc.In(code,spanish)));
+        }
         void Speak(string speaker,string body){voice.Stop();var clip=Voice(speaker,body);if(clip){voice.clip=clip;voice.Play();}}
         void Close(){voice.Stop();dialogBody=null;choices=null;callbacks=null;if(speaker)speaker.Talking=false;speaker=null;if(!paused&&!ended)Lock();}
         // Lines said under the breath arrive as subtitles; the speaker's mouth moves while they last.
@@ -268,9 +291,9 @@ namespace LosQueQuedan
                 if(!who.TryGetComponent(out AudioSource mouth)){mouth=who.gameObject.AddComponent<AudioSource>();mouth.spatialBlend=1;mouth.minDistance=1.5f;mouth.maxDistance=10;mouth.rolloffMode=AudioRolloffMode.Linear;}
                 mouth.Stop();mouth.PlayOneShot(clip,volume*1.4f);who.talkUntil=Time.time+clip.length;
             }
-            Toast(who.displayName+"   «"+text+"»",5.5f);
+            Toast(Loc.F("{0}   «{1}»",Loc.T(who.displayName),Loc.T(text)),5.5f);
         }
-        void Toast(string text,float duration=4){toast=text;toastTime=duration;}
+        void Toast(string text,float duration=4){toast=Loc.T(text);toastTime=duration;}
         // The last thing you finish decides the ending.
         public void EndWith(string id)
         {
@@ -309,7 +332,7 @@ namespace LosQueQuedan
         }
         void OnApplicationQuit(){Save(false);}
         void OnApplicationFocus(bool focus)
-        {if(!focus&&started&&!ended&&!DialogueOpen){paused=true;Unlock();}}
+        {if(!focus&&started&&!ended&&!DialogueOpen&&QA==null){paused=true;Unlock();}}   // tests run without focus
         // ---- Interface: every element is text on the same character grid as the world. ----
         static readonly System.Collections.Generic.Dictionary<char,string[]> Letters=new System.Collections.Generic.Dictionary<char,string[]>
         {
@@ -323,6 +346,15 @@ namespace LosQueQuedan
             {'A',new[]{".###.","#...#","#...#","#####","#...#","#...#","#...#"}},
             {'N',new[]{"#...#","##..#","#.#.#","#..##","#...#","#...#","#...#"}},
             {'H',new[]{"#...#","#...#","#...#","#####","#...#","#...#","#...#"}},
+            {'B',new[]{"####.","#...#","#...#","####.","#...#","#...#","####."}},
+            {'F',new[]{"#####","#....","#....","####.","#....","#....","#...."}},
+            {'G',new[]{".####","#....","#....","#.###","#...#","#...#",".###."}},
+            {'K',new[]{"#...#","#..#.","#.#..","##...","#.#..","#..#.","#...#"}},
+            {'P',new[]{"####.","#...#","#...#","####.","#....","#....","#...."}},
+            {'T',new[]{"#####","..#..","..#..","..#..","..#..","..#..","..#.."}},
+            {'W',new[]{"#...#","#...#","#...#","#.#.#","#.#.#","##.##","#...#"}},
+            {'X',new[]{"#...#","#...#",".#.#.","..#..",".#.#.","#...#","#...#"}},
+            {'Y',new[]{"#...#","#...#",".#.#.","..#..","..#..","..#..","..#.."}},
             {'R',new[]{"####.","#...#","#...#","####.","#.#..","#..#.","#...#"}},
             {'V',new[]{"#...#","#...#","#...#","#...#","#...#",".#.#.","..#.."}},
             {'Z',new[]{"#####","....#","...#.","..#..",".#...","#....","#####"}},
@@ -374,8 +406,9 @@ namespace LosQueQuedan
                 if(faceLight)faceLight.intensity=Mathf.MoveTowards(faceLight.intensity,0,Time.unscaledDeltaTime*6);
             }
         }
-        void T(int x,int y,string text,float bright=1,bool accent=false)=>ink.Put(x,y,text,bright,accent);
-        void Center(int y,string text,float bright=1,bool accent=false)=>ink.Put((ink.Cols-text.Length)/2,y,text,bright,accent);
+        // Every string drawn is looked up in the current language; widths count wide (CJK) characters as two cells.
+        void T(int x,int y,string text,float bright=1,bool accent=false)=>ink.Put(x,y,Loc.T(text),bright,accent);
+        void Center(int y,string text,float bright=1,bool accent=false){var s=Loc.T(text);ink.Put((ink.Cols-Loc.W(s))/2,y,s,bright,accent);}
         string ClockText()=>Mathf.FloorToInt(remaining/60).ToString("00")+":"+Mathf.FloorToInt(remaining%60).ToString("00");
 
         static System.Collections.Generic.List<string> Wrap(string text,int width)
@@ -383,11 +416,23 @@ namespace LosQueQuedan
             var lines=new System.Collections.Generic.List<string>();
             foreach(var paragraph in text.Split('\n'))
             {
-                string line="";
-                foreach(var word in paragraph.Split(' '))
+                // Tokens: Latin words, or single wide characters (Chinese and Japanese break between any two).
+                var tokens=new System.Collections.Generic.List<(string s,bool space)>();
+                string cur="";bool curSpace=false,pending=false;
+                foreach(char c in paragraph)
                 {
-                    if(line.Length>0&&line.Length+1+word.Length>width){lines.Add(line);line=word;}
-                    else line=line.Length>0?line+" "+word:word;
+                    if(c==' '){if(cur.Length>0){tokens.Add((cur,curSpace));cur="";}pending=true;continue;}
+                    if(Loc.Wide(c)){if(cur.Length>0){tokens.Add((cur,curSpace));cur="";}tokens.Add((c.ToString(),pending));pending=false;continue;}
+                    if(cur.Length==0){curSpace=pending;pending=false;}
+                    cur+=c;
+                }
+                if(cur.Length>0)tokens.Add((cur,curSpace));
+                string line="";int lineW=0;
+                foreach(var (tok,space) in tokens)
+                {
+                    int add=Loc.W(tok)+(line.Length>0&&space?1:0);
+                    if(line.Length>0&&lineW+add>width){lines.Add(line);line=tok;lineW=Loc.W(tok);}
+                    else{line+=(line.Length>0&&space?" ":"")+tok;lineW+=add;}
                 }
                 lines.Add(line);
             }
@@ -399,7 +444,7 @@ namespace LosQueQuedan
             for(int pass=0;pass<2;pass++)
                 for(int i=0;i<text.Length;i++)
                 {
-                    char ch=text[i]=='Á'?'A':text[i]=='É'?'E':text[i]=='Í'?'I':text[i]=='Ó'?'O':text[i]=='Ú'?'U':text[i];
+                    char ch="ÁÀÂÃÉÊÍÓÔÕÚÜÇ".IndexOf(text[i])>=0?"AAAAEEIOOOUUC"["ÁÀÂÃÉÊÍÓÔÕÚÜÇ".IndexOf(text[i])]:text[i];
                     if(ch!=text[i]&&pass==1)T(x+i*LetterWidth+5,y-2,"▄▀",bright);
                     if(!Letters.TryGetValue(ch,out var rows))continue;
                     for(int r=0;r<7;r++)for(int c=0;c<5;c++)
@@ -414,17 +459,17 @@ namespace LosQueQuedan
         void Rule(int y,int x0,int x1,float bright,params (int x,string text,float b,bool a)[] labels)
         {
             T(x0,y,new string('─',Mathf.Max(0,x1-x0)),bright);
-            foreach(var l in labels)T(l.x,y," "+l.text+" ",l.b,l.a);
+            foreach(var l in labels)T(l.x,y," "+Loc.T(l.text)+" ",l.b,l.a);
         }
         bool KeyPressed(int n)=>n>0&&n<10&&(Input.GetKeyDown(KeyCode.Alpha0+n)||Input.GetKeyDown(KeyCode.Keypad0+n));
         bool Button(int x,int y,int w,int key,string label,string value=null)
         {
             var m=ink.Mouse;bool hover=(m.y==y||(Controls.Touch&&m.y==y+1))&&m.x>=x&&m.x<x+w;   // fingers get the empty row below too
-            float b=hover?.95f:.86f;
+            float b=hover?.95f:.86f;label=Loc.T(label);value=Loc.T(value);
             ink.Fill(x,y,w,1,hover?InkCamera.Inverted:InkCamera.Panel,.92f);
             if(key>0)T(x+2,y,key.ToString(),hover?b:.42f);
             T(x+6,y,label,b);
-            if(value!=null)T(x+w-2-value.Length,y,value,hover?b:.6f);
+            if(value!=null)T(x+w-2-Loc.W(value),y,value,hover?b:.6f);
             else if(hover)T(x+w-3,y,"→",b);
             bool fire=!consumed&&((hover&&Input.GetMouseButtonDown(0))||KeyPressed(key));
             if(fire)consumed=true;
@@ -452,6 +497,7 @@ namespace LosQueQuedan
             ink.reveal=1-fade;
             int C=ink.Cols,R=ink.Rows;
             if(!started)DrawMenu(C,R);
+            else if(prologue){DrawPrologue(C,R);return;}
             else if(ended){endings.DrawOverlay(ink,C,R);DrawEnd(C,R);}
             else
             {
@@ -462,7 +508,7 @@ namespace LosQueQuedan
             }
             if(toastTime>0&&!DialogueOpen&&!paused&&!ended&&started)
             {
-                var lines=Wrap(toast,Mathf.Min(84,C-12));int w=0;foreach(var l in lines)w=Mathf.Max(w,l.Length);
+                var lines=Wrap(toast,Mathf.Min(84,C-12));int w=0;foreach(var l in lines)w=Mathf.Max(w,Loc.W(l));
                 int x=(C-w-6)/2,y=Controls.Touch?5:R-5-lines.Count;   // on phones the bottom belongs to the sticks
                 ink.Frame(x,y,w+6,lines.Count+2,.3f);
                 for(int i=0;i<lines.Count;i++)T(x+3,y+1+i,lines[i],.85f);
@@ -472,13 +518,61 @@ namespace LosQueQuedan
             {int x=(C-tongue.Length)/2,y=R-4;ink.Fill(x-3,y-1,tongue.Length+6,3,InkCamera.Panel);T(x,y,tongue,1,true);}
             Controls.Draw(ink,C,R);   // last: on a phone held upright it asks to be turned
         }
+        // Black, red words bleeding downwards, the image tearing now and then. Leaves only through "Continue".
+        void DrawPrologue(int C,int R)
+        {
+            float t=Time.unscaledTime-prologueStart;
+            ink.largeText=true;   // the passage in large letters (restored on Continue)
+            ink.Fill(0,0,C,R+1,InkCamera.Panel);
+            string head=Loc.T(PassageRef);
+            int w=Mathf.Min(88,C-8),x0=Mathf.Max(2,(C-w)/2);
+            var lines=Wrap(Loc.T(Passage),w);
+            int y0=Mathf.Max(1,(R-(lines.Count*2+7))/2);
+            float pulse=Mathf.PerlinNoise(t*1.4f,3)>.7f?.3f+.5f*Mathf.PerlinNoise(t*11,1):.04f;
+            if(!reduceEffects)ink.glitch=pulse;
+            ink.Put(x0,y0,head,.5f+.2f*Mathf.PerlinNoise(t*3,7),true);
+            ink.Put(x0,y0+1,new string('─',Mathf.Min(w,Loc.W(head)+4)),.25f,true);
+            int left=Mathf.FloorToInt(t*34),total=0;
+            foreach(var l in lines)total+=l.Length;
+            bool typing=left<total;
+            if(typing&&(Input.GetMouseButtonDown(0)||Controls.Down(KeyCode.Space)||Input.GetKeyDown(KeyCode.Return))){prologueStart-=999;consumed=true;}
+            for(int i=0;i<lines.Count;i++)
+            {
+                string line=lines[i];int n=Mathf.Clamp(left,0,line.Length);left-=line.Length;if(n<=0)break;
+                int y=y0+3+i*2,shake=Hash(i,Mathf.FloorToInt(t*14))<pulse*.6f?Mathf.RoundToInt((Hash(i+9,Mathf.FloorToInt(t*14))-.5f)*6):0;
+                float flicker=.78f+.22f*Mathf.PerlinNoise(t*6,i);
+                // The ink runs: a faint copy of the line slides one row down, broken in places.
+                var ghost=line.Substring(0,n).ToCharArray();
+                for(int k=0;k<ghost.Length;k++)if(Hash(i*977+k,Mathf.FloorToInt(t*2))>.55f)ghost[k]=' ';
+                ink.Put(x0+shake,y+1,new string(ghost),.16f,true);
+                ink.Put(x0+shake,y,line.Substring(0,n),flicker,true);
+                // Blood runs from some letters: it starts once the letter is written and keeps growing, slowly.
+                float written=(t*34-(total-left-line.Length+0));
+                for(int k=0;k<n;k++)
+                {
+                    if(line[k]==' '||Hash(i*131+k,3)>.11f)continue;
+                    float age=Mathf.Max(0,(Time.unscaledTime-prologueStart)-(SumBefore(lines,i)+k)/34f);
+                    int max=i==lines.Count-1?2+Mathf.FloorToInt(Hash(k,i)*6):1+Mathf.FloorToInt(Hash(k,i+3)*1.6f);
+                    int len=Mathf.Min(max,Mathf.FloorToInt(age*(.25f+Hash(k,i+5)*.5f)));
+                    int cx=x0+shake+Loc.W(line.Substring(0,k));
+                    for(int d=1;d<=len;d++)ink.Put(cx,y+d,d==1?"▓":d==len?"░":"▒",.95f-.5f*d/(max+1f),true);
+                }
+            }
+            if(!typing&&t>1.5f)
+            {
+                int by=y0+3+lines.Count*2+4;
+                if(Button(x0,Mathf.Min(by,R-3),26,1,"Continuar")){prologue=false;voice.Stop();ink.glitch=0;ink.largeText=false;Lock();WakeUp();}
+            }
+        }
+        static float Hash(int a,int b){unchecked{uint h=(uint)(a*73856093^b*19349663);h^=h>>13;h*=0x5bd1e995;h^=h>>15;return (h&0xffff)/65535f;}}
+        static int SumBefore(System.Collections.Generic.List<string> lines,int i){int s=0;for(int k=0;k<i;k++)s+=lines[k].Length;return s;}
         void DrawHud(int C,int R)
         {
             string clock="T−"+ClockText();
             ink.Fill(0,0,C,2,InkCamera.Panel);
             Rule(1,2,C-2,.22f,(4,"HINENI",.9f,false),(14,"HOSPITAL DEL UMBRAL",.45f,false),(C-6-clock.Length,clock,1,true));
-            string objective=stage<2?"01 · Habla con Inés":horror&&!horror.Powered?horror.Objective:stage<3?"Acompaña al hombre de la sala común":"Mira por la ventana";
-            ink.Fill(3,3,objective.Length+4,hasWater?2:1,InkCamera.Panel);
+            string objective=Loc.T(stage<2?"01 · Habla con Inés":horror&&!horror.Powered?horror.Objective:stage<3?"Acompaña al hombre de la sala común":"Mira por la ventana");
+            ink.Fill(3,3,Loc.W(objective)+4,hasWater?2:1,InkCamera.Panel);
             T(4,3,"▸ ",.9f);T(6,3,objective,.8f);
             if(hasWater){T(4,4,"·",.5f);T(6,4,"En las manos: un vaso de agua",.5f);}
             if(horror)
@@ -499,19 +593,25 @@ namespace LosQueQuedan
             {
                 T(cx-2,cy-1,"┌",.8f);T(cx+2,cy-1,"┐",.8f);T(cx-2,cy+1,"└",.8f);T(cx+2,cy+1,"┘",.8f);
                 T(cx,cy,"·",1);
-                string label=player.Focus.label,prompt="E";
-                int w=Mathf.Max(label.Length,player.Focus.prompt.Length+4)+6,x=cx-w/2;
+                string label=Loc.T(player.Focus.label),prompt="E",action=Loc.T(player.Focus.prompt);
+                int w=Mathf.Max(Loc.W(label),Loc.W(action)+4)+6,x=cx-w/2;
                 ink.Fill(x,cy+3,w,3,InkCamera.Panel);
                 T(x+3,cy+3,label,.95f);
                 ink.Fill(x+3,cy+5,3,1,InkCamera.Inverted,.9f);T(x+4,cy+5,prompt,.9f);
-                T(x+7,cy+5,player.Focus.prompt,.6f);
+                T(x+7,cy+5,action,.6f);
             }
             else T(cx,cy,"+",.75f);
             if(sat){ink.Fill(cx-16,R-4,33,1,InkCamera.Panel);Center(R-4,"ESTÁS AQUÍ   ·   E levantarte",.75f);}
             if(Controls.Touch)return;   // phones get sticks and buttons instead of the key legend
             ink.Fill(0,R-2,C,3,InkCamera.Panel);
-            Rule(R-1,2,C-2,.18f,(4,"WASD",.75f,false),(9,"caminar",.38f,false),(19,"RATÓN",.75f,false),(26,"mirar",.38f,false),
-                (34,"E",.75f,false),(36,"interactuar",.38f,false),(50,"ESC",.75f,false),(54,"pausa",.38f,false),(62,"F5",.75f,false),(65,"guardar",.38f,false));
+            // The key legend is laid out from the translated words, not from fixed columns.
+            var legend=new System.Collections.Generic.List<(int,string,float,bool)>();int lx=4;
+            foreach(var (key,what) in new[]{("WASD","caminar"),("RATÓN","mirar"),("E","interactuar"),("ESC","pausa"),("F5","guardar")})
+            {
+                string k=Loc.T(key),d=Loc.T(what);
+                legend.Add((lx,k,.75f,false));legend.Add((lx+Loc.W(k)+1,d,.38f,false));lx+=Loc.W(k)+Loc.W(d)+5;
+            }
+            Rule(R-1,2,C-2,.18f,legend.ToArray());
         }
         void DrawDialogue(int C,int R)
         {
@@ -520,8 +620,8 @@ namespace LosQueQuedan
             int n=choices?.Length??0,h=body.Count+n*2+9;
             int x=(C-w)/2,y=speaker?Mathf.Max(1,R-h-1):Mathf.Max(1,(R-h)/2);
             ink.Frame(x,y,w,h,.4f);
-            T(x+3,y,"┤ "+dialogSpeaker+" ├",.95f);T(x+3,y,"┤",.4f);T(x+5+dialogSpeaker.Length,y,"├",.4f);
-            string clock=" T−"+ClockText()+" · detenido ";T(x+w-3-clock.Length,y,clock,.8f,true);
+            T(x+3,y,"┤ "+dialogSpeaker+" ├",.95f);T(x+3,y,"┤",.4f);T(x+5+Loc.W(dialogSpeaker),y,"├",.4f);
+            string clock=" T−"+ClockText()+" · "+Loc.T("detenido")+" ";T(x+w-3-Loc.W(clock),y,clock,.8f,true);
             int shown=Mathf.FloorToInt((Time.unscaledTime-typeStart)*62),total=0;
             foreach(var l in body)total+=l.Length;
             bool typing=shown<total;
@@ -556,14 +656,20 @@ namespace LosQueQuedan
             T(6,top+18,"Al mundo le quedan quince minutos. Lo último que hagas decide cómo terminan.",.88f);
             int key=1,y0=top+21,bw=Mathf.Min(52,L-10);
             if(gallery){DrawGallery(L,y0);return;}
-            if(Button(6,y0,bw,key++,"Despertar"))Begin();
+            if(Button(6,y0,bw,key++,"Despertar"))Begin(true);
             if(File.Exists(SavePath)&&Button(6,y0+2,bw,key++,"Continuar el último despertar"))Load();
             int seen=0;foreach(var e in Endings.All)if(Endings.Seen(e.id))seen++;
-            if(Button(6,y0+4,bw,key++,"Finales",seen+" de "+Endings.All.Length+" vistos"))gallery=true;
+            if(Button(6,y0+4,bw,key++,"Finales",Loc.F("{0} de {1} vistos",seen,Endings.All.Length)))gallery=true;
+            // Language: cycles through the five; the hospital is rebuilt in the new language.
+            // Text and voices are chosen separately; changing the text rebuilds the hospital in that language.
+            int li=Array.IndexOf(Loc.Codes,Loc.Lang),vi=Array.IndexOf(Loc.Codes,Loc.VoiceLang);
+            if(Button(6,y0+6,bw,key++,"Texto",Loc.Names[li]+"  ▸"))
+            {Loc.Set(Loc.Codes[(li+1)%Loc.Codes.Length],true);SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);}
+            if(Button(6,y0+8,bw,key++,"Voces",Loc.Names[vi]+"  ▸"))Loc.SetVoice(Loc.Codes[(vi+1)%Loc.Codes.Length],true);
 #if !UNITY_WEBGL
-            if(Button(6,y0+6,bw,key,"Salir"))Application.Quit();
+            if(Button(6,y0+10,bw,key,"Salir"))Application.Quit();
 #endif
-            if(R-5>y0+9)
+            if(R-5>y0+13)
             {
                 T(6,R-5,"PROTOTIPO JUGABLE · 0.3",.4f);
                 T(6,R-4,"Hospitalización · muerte · fin del mundo",.3f);
@@ -612,7 +718,8 @@ namespace LosQueQuedan
             for(int i=0;i<Endings.All.Length;i++)
             {
                 var e=Endings.All[i];
-                if(Button(6,y0+1+i*2,L-14,i+1,e.title+"  ·  "+e.kicker.Replace("FINAL · ","").ToLowerInvariant(),Endings.Seen(e.id)?"● visto":"○"))
+                var kicker=Loc.T(e.kicker);kicker=kicker.Substring(kicker.LastIndexOf('·')+1).Trim();
+                if(Button(6,y0+1+i*2,L-14,i+1,Loc.T(e.title)+"  ·  "+(Loc.CJK?kicker:kicker.ToLowerInvariant()),Endings.Seen(e.id)?"● "+Loc.T("visto"):"○"))
                 {started=true;ended=true;gallery=false;fade=1;Unlock();endings.Play(e.id);return;}
             }
             if(Button(6,y0+3+Endings.All.Length*2,L-14,9,"Volver"))gallery=false;
@@ -623,12 +730,13 @@ namespace LosQueQuedan
             float t=endings.T;
             int w=Mathf.Min(84,C-8),x=6,y=R-20;
             T(x,3,e.kicker,.7f,true);
-            Big(x,5,e.title,Mathf.Clamp01(t/2));
+            if(Loc.CJK)T(x,7,e.title,Mathf.Clamp01(t/2),true);   // the block letters are Latin only
+            else Big(x,5,Loc.T(e.title),Mathf.Clamp01(t/2));
             // The epilogue arrives a line at a time; it bends to what you did on the way.
-            var text=new System.Collections.Generic.List<string>(e.lines);
-            if(horror&&horror.Data.lever)text.Add(e.afterLever);
-            if(gaveWater)text.Add("Alguien recibió un vaso de agua.");
-            if(called&&e.id!="voz")text.Add("Lucía supo que estabas al otro lado.");
+            var text=new System.Collections.Generic.List<string>(Array.ConvertAll(e.lines,Loc.T));
+            if(horror&&horror.Data.lever)text.Add(Loc.T(e.afterLever));
+            if(gaveWater)text.Add(Loc.T("Alguien recibió un vaso de agua."));
+            if(called&&e.id!="voz")text.Add(Loc.T("Lucía supo que estabas al otro lado."));
             ink.Fill(x-2,y-1,w+4,text.Count*2+2,InkCamera.Panel);
             for(int i=0;i<text.Count;i++)
             {

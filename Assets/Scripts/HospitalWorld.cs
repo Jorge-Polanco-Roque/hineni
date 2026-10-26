@@ -30,6 +30,8 @@ namespace LosQueQuedan
         public void Build()
         {
             font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            // Chinese and Japanese: every word on a wall uses a bundled OFL brush face subset to the translated text.
+            if (Loc.CJK) { var cjk = Resources.Load<Font>("Fonts/brush-" + Loc.Lang); if (cjk) font = cjk; }
             font.RequestCharactersInTexture("HOSPITAL DEL UMBRAL RECUPERACIÓN / 03 SALA COMÚN NO DEJAR A NADIE SOLO", 64);
             worldFont = new Material(worldTextShader) { mainTexture = font.material.mainTexture }; owned.Add(worldFont);
             Font.textureRebuilt += RefreshFont;
@@ -77,7 +79,7 @@ namespace LosQueQuedan
             Sign("RECUPERACIÓN  /  03", new Vector3(-4.88f, 2.35f, -2.6f), 90, .1f);
             Sign("SALA COMÚN", new Vector3(0, 3.1f, 16.88f), 180, .12f);
             var alone = Sign("NO DEJAR A NADIE SOLO", new Vector3(-4.88f, 2.4f, 21.8f), 90, .075f);
-            writings["sign-alone"] = (alone, Mathf.Max(alone.GetComponent<Renderer>().bounds.size.z, .5f), alone.text, "NO DEJAR A NADIE\nENTERO");
+            writings["sign-alone"] = (alone, Mathf.Max(alone.GetComponent<Renderer>().bounds.size.z, .5f), alone.text, Loc.T("NO DEJAR A NADIE\nENTERO"));
 
             // Gate prevents skipping the short demo's opening conversation.
             corridorGate = Cube("Paso pendiente", new Vector3(0, 1.325f, 5), new Vector3(2.5f, 2.65f, .12f), door);   // fills the frame to the lintel: no gap above
@@ -474,7 +476,7 @@ namespace LosQueQuedan
         TextMesh Sign(string content, Vector3 p, float yaw, float size)
         {
             var o = new GameObject(content); o.transform.SetParent(transform); o.transform.position = p; o.transform.rotation = Quaternion.Euler(0, yaw + 180, 0);
-            var t = o.AddComponent<TextMesh>(); t.text = content; t.fontSize = 64; t.characterSize = size * .45f;
+            var t = o.AddComponent<TextMesh>(); t.text = Loc.T(content); t.fontSize = 64; t.characterSize = size * .45f;
             t.anchor = TextAnchor.MiddleCenter; t.alignment = TextAlignment.Center;
             Bleed(o, -o.transform.forward, size * 8, 5);
             return t;
