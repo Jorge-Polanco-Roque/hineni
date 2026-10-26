@@ -16,6 +16,7 @@
 ![Duración](https://img.shields.io/badge/partida-15_min-555)
 ![Finales](https://img.shields.io/badge/finales-6-555)
 ![Plataformas](https://img.shields.io/badge/plataformas-macOS_·_Web_·_móvil-555)
+[![Licencia MIT](https://img.shields.io/badge/licencia-MIT-555)](LICENSE)
 
 </div>
 
@@ -183,7 +184,7 @@ Las pruebas pausan el juego si otra ventana roba el foco: ejecútalas sin otra i
 
 | Recurso | Autor | Licencia |
 |---|---|---|
-| Diseño, guion, código | Jorge Polanco | Todos los derechos reservados |
+| Diseño, guion, código | Jorge Polanco | [MIT](LICENSE) |
 | Música «Mechanical Hum» | antm_ai (hecha con Suno) | Con permiso del autor |
 | Personajes base | [Quaternius · Universal Base Characters](https://quaternius.itch.io/universal-base-characters) | CC0 1.0 |
 | Utilería | [Poly Haven](https://polyhaven.com) | CC0 1.0 |
@@ -191,6 +192,6 @@ Las pruebas pausan el juego si otra ventana roba el foco: ejecútalas sin otra i
 | Glifos | [Meslo LG](https://github.com/andreberg/Meslo-Font) (Nerd Font) | Apache 2.0 |
 | Pintadas (web) | [Rubik Wet Paint](https://github.com/NaN-xyz/Rubik-Filtered) | SIL OFL 1.1 |
 
-Detalle en [`Assets/Resources/THIRD_PARTY.txt`](Assets/Resources/THIRD_PARTY.txt). En macOS las pintadas usan la fuente del sistema Chalkduster, que no se distribuye.
+El código, el guion y los textos originales están bajo [licencia MIT](LICENSE). Los recursos de terceros conservan sus propias licencias (tabla de arriba), y la música se incluye con permiso de su autor. Detalle en [`Assets/Resources/THIRD_PARTY.txt`](Assets/Resources/THIRD_PARTY.txt). En macOS las pintadas usan la fuente del sistema Chalkduster, que no se distribuye.
 
 <div align="center"><sub>Prototipo 0.3 · Spooky Game Jam · sin combate · leer y elegir detiene el reloj</sub></div>
