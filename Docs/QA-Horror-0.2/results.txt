@@ -1,0 +1,20 @@
+PASS Horror wing initializes with preserved ASCII renderer
+PASS Chapel door is physically closed
+PASS Real passage into chapel is clear
+PASS Real passage into service room is clear
+PASS Taking fuse causes blackout and starts threat
+PASS Direct illuminated gaze holds witness
+PASS Witness remains still under gaze
+PASS Witness advances when player looks away
+PASS Pause freezes threat simulation
+PASS Capture costs time but preserves fuse progress
+PASS Capture returns player to recovery safely
+PASS Hiding cabinet can be entered
+PASS Hiding cabinet has an exit
+PASS Fuse installs in physical panel
+PASS Incorrect breaker order resets safely
+PASS Save includes puzzle and horror state
+PASS Load restores blackout, puzzle and open doors
+PASS Correct sequence restores power and resolves threat
+PASS Narrative ending remains reachable after gameplay
+PASS No runtime errors or exceptions

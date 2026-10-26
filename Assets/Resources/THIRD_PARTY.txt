@@ -1,0 +1,17 @@
+AsciiAtlas1x.bytes / AsciiAtlas2x.bytes are rasterised from Meslo LG S (Nerd Font Mono build).
+Meslo LG: Copyright (c) 2009-2013 André Berg. Apache License 2.0 — https://github.com/andreberg/Meslo-Font
+Derived from Bitstream Vera Sans Mono (Bitstream Vera license). Nerd Fonts patcher: MIT.
+Box-drawing and block glyphs are drawn procedurally by Tools/BakeAsciiAtlas.swift.
+
+Characters/Ines.fbx, Characters/Paciente.fbx: built by Tools/build_characters.py from
+Universal Base Characters [Standard] by Quaternius (CC0 1.0) — https://quaternius.itch.io/universal-base-characters
+Clothing, poses and blanket are generated in that script.
+
+Props/*: Poly Haven models (CC0 1.0) — https://polyhaven.com — fetched by Tools/fetch_props.py.
+
+Fonts/RubikWetPaint-Regular.ttf (web build wall writing): Rubik Wet Paint, Copyright 2020 The Rubik Filtered
+Project Authors. SIL Open Font License 1.1 — see Fonts/RubikWetPaint-OFL.txt. On macOS the system font Chalkduster
+is used at runtime and is not distributed.
+
+Voices/*.wav: generated offline with Kokoro-82M (Apache 2.0) by Tools/voices.py.
+Music/MechanicalHum.mp3: "Mechanical Hum" by antm_ai (made with Suno), used with permission of its author.

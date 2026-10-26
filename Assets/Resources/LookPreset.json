@@ -1,0 +1,7 @@
+{
+ "blackPoint": 0.04, "whitePoint": 0.3, "gamma": 0.95, "minBrightness": 0.22,
+ "contourInk": 0.75, "contourNormal": 0.18,
+ "autoExposure": 3.0, "localContrast": 0.85,
+ "canvasDots": 0.06, "colorAmount": 0.6, "saturation": 1.0,
+ "paper": {"r": 0.035, "g": 0.037, "b": 0.04, "a": 1}
+}
