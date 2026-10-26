@@ -97,4 +97,14 @@ public static class BuildDemo
         Debug.Log("SPOOKY_BUILD_RESULT: "+report.summary.result+" errors="+report.summary.totalErrors);
         if(report.summary.result!=BuildResult.Succeeded)throw new System.Exception("La build fallo");
     }
+    // Windows and Linux (Mono, cross-built from the Mac): Builds/Windows/Hineni.exe, Builds/Linux/Hineni.x86_64.
+    public static void BuildWindows()=>Desktop("Builds/Windows/Hineni.exe",BuildTarget.StandaloneWindows64);
+    public static void BuildLinux()=>Desktop("Builds/Linux/Hineni.x86_64",BuildTarget.StandaloneLinux64);
+    static void Desktop(string path,BuildTarget target)
+    {
+        Prepare();
+        var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{"Assets/Scenes/ElDespertar.unity"},locationPathName=path,target=target,options=BuildOptions.None});
+        Debug.Log("SPOOKY_BUILD_RESULT: "+report.summary.result+" errors="+report.summary.totalErrors);
+        if(report.summary.result!=BuildResult.Succeeded)throw new System.Exception("La build fallo");
+    }
 }

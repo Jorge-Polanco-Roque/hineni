@@ -11,7 +11,7 @@
 | Kind of project | HTML |
 | Release status | Released |
 | Pricing | $0 or donate (pagar lo que quieras, mínimo 0) |
-| Uploads | `hineni-web.zip` → «This file will be played in the browser» · `Hineni-macOS.zip` → macOS |
+| Uploads | Ya subidos con butler: html5 (marcar «This file will be played in the browser»), osx, windows, linux (marcar cada plataforma) |
 | Embed options | Embed in page · 1280 × 720 · Mobile friendly ✓ · Orientation: Landscape · Fullscreen button ✓ · Automatically start on page load ✗ |
 | Frame options | SharedArrayBuffer support ✗ (no hace falta) |
 | Genre | Interactive Fiction (o Adventure) |
@@ -19,11 +19,29 @@
 | AI generation disclosure | **Yes**: Graphics ✗ · Sound ✓ (voces sintéticas Kokoro TTS; música hecha con Suno) · Text ✗ · Code ✓ (escrito con ayuda de Claude) |
 | Languages | English, Spanish, Portuguese, Chinese, Japanese |
 | Inputs | Keyboard, Mouse, Touchscreen |
+| Platforms | HTML5, Windows, macOS, Linux |
 | Accessibility | Subtitles · Configurable controls ✗ |
 | Average session | About 15 minutes |
 | Content warning (al inicio de la descripción) | Blood, death, religious imagery, flashing images |
 | Cover image | `Tools/itch/cover.png` (630 × 500) |
 | Screenshots | `Docs/media/00-prologo.jpg`, `08-cielo.jpg`, `05c-testigo-rostro.jpg`, `11-ventana.jpg`, `final-juicio.jpg` |
+
+## Tema de la página (Edit theme)
+
+| Campo | Valor |
+|---|---|
+| Banner | `Tools/itch/banner.png` (960 × 320) |
+| Background image | `Tools/itch/background.jpg` · Repeat: no · Position: center · Fixed: sí |
+| BG color | `#0d0a08` |
+| BG 2 (columna) | `#d9cba8` (papel) |
+| Text | `#1f1410` (tinta) |
+| Link | `#8a1410` (sangre) |
+| Button | `#8a1410` · texto del botón `#d9cba8` |
+| Font | una monoespaciada (Space Mono / Courier Prime si aparece); tamaño 100 % |
+| Layout | Columna a la derecha con capturas; el juego incrustado arriba |
+| Screenshots | `Tools/itch/screenshots/01…09` en ese orden |
+
+La descripción con formato está en `Tools/itch/description.html`: ábrela, ⌘A, ⌘C y pégala en el editor de itch.
 
 ## Description
 
