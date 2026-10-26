@@ -38,7 +38,7 @@ public static class BuildDemo
         EditorSceneManager.SaveScene(scene,"Assets/Scenes/ElDespertar.unity");
         EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene("Assets/Scenes/ElDespertar.unity",true)};
         PlayerSettings.companyName="SpookyGameJam";PlayerSettings.productName="Hineni";
-        PlayerSettings.bundleVersion="0.2.0";
+        PlayerSettings.bundleVersion="0.3.0";
         // Physical pixels: on a Retina Mac this is a 1440x900-point window rendered at full resolution.
         PlayerSettings.defaultScreenWidth=2880;PlayerSettings.defaultScreenHeight=1800;
         PlayerSettings.macRetinaSupport=true;PlayerSettings.resizableWindow=true;
