@@ -9,7 +9,7 @@ namespace LosQueQuedan
     {
         public static DemoGame Instance { get; private set; }
         public Shader inkShader;
-        public Material surfaceTemplate, cutoutTemplate;
+        public Material surfaceTemplate, cutoutTemplate, cutoutGlowTemplate;
         public Shader worldTextShader;
         public FirstPerson player;
         public HospitalWorld world;
@@ -70,7 +70,7 @@ namespace LosQueQuedan
         void Awake()
         {
             Instance=this; Application.targetFrameRate=60; Loc.Init();
-            world=new GameObject("Hospital del Umbral").AddComponent<HospitalWorld>();world.surfaceTemplate=surfaceTemplate;world.cutoutTemplate=cutoutTemplate;world.worldTextShader=worldTextShader;world.Build();
+            world=new GameObject("Hospital del Umbral").AddComponent<HospitalWorld>();world.surfaceTemplate=surfaceTemplate;world.cutoutTemplate=cutoutTemplate;world.cutoutGlowTemplate=cutoutGlowTemplate;world.worldTextShader=worldTextShader;world.Build();
             var p=new GameObject("Alex");p.transform.position=new Vector3(0,.06f,-2.7f);
             var c=p.AddComponent<CharacterController>();c.height=1.72f;c.radius=.25f;c.center=new Vector3(0,.86f,0);c.stepOffset=.24f;
             player=p.AddComponent<FirstPerson>();

@@ -1,6 +1,6 @@
 """The burning city heard through the common-room window: a 40-second loop of fire roar, distant gunfire (single shots
 and bursts), screams and deranged laughter. Screams and laughter are Kokoro voices, stretched, pitched and pushed far
-away with filtering and echo; shots and fire are synthesised. Output: Assets/Resources/Sounds/ciudad.wav
+away with filtering and echo; shots and fire are synthesised. Output: Tools/sounds/ciudad-sintetica.wav (then Tools/city_mix.py)
 
 Run from the project root:  ~/.venvs/kokoro/bin/python Tools/city_sound.py
 """
@@ -9,7 +9,7 @@ import numpy as np
 from kokoro_onnx import Kokoro
 
 RATE, SECONDS = 22050, 40
-OUT = "Assets/Resources/Sounds/ciudad.wav"
+OUT = "Tools/sounds/ciudad-sintetica.wav"
 rng = np.random.default_rng(13)
 tts = Kokoro(os.path.expanduser("~/.cache/hyperframes/tts/models/kokoro-v1.0.onnx"),
              os.path.expanduser("~/.cache/hyperframes/tts/voices/voices-v1.0.bin"))

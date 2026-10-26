@@ -43,7 +43,7 @@ Tools/web/deploy.sh          # publica Builds/WebGL + Tools/web/index.html en gh
   FNV-1a de `HABLANTE\ntexto en ese idioma` (igual que `DemoGame.VoiceKey`). Chino/japonés usan misaki (`unidic-lite`;
   el `unidic` completo no está instalado). Verificar inteligibilidad con `whisper-cli` (`~/.whisper-models`).
 - Hablantes nuevos necesitan entrada en `CAST` y en cada `LANGS[..]["cast"]`. Las acotaciones `[...]` no se leen.
-- `Tools/city_sound.py` genera el bucle de la ventana. Música: `Resources/Music` (de antm_ai, con Suno).
+- La ventana: `Tools/city_mix.py` mezcla sirenas y gritos de Commons (caché en `Tools/sounds/cache`) con `Tools/sounds/ciudad-sintetica.wav` (de `Tools/city_sound.py`). Las capas de fuera se ven por su cara trasera: las texturas se escriben invertidas. Recorte + emisión necesita `CutoutGlowTemplate.mat`. Música: `Resources/Music` (de antm_ai, con Suno).
 - En WebGL no existe `AudioSource.time` ni `GetOutputData` para audio comprimido: usar relojes propios.
 
 ## Render ASCII

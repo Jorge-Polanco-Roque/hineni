@@ -129,7 +129,8 @@ namespace LosQueQuedan
                 pitch.SetValue(g.player, -62f); yield return new WaitForSeconds(4); yield return Snap("09-cielo-oblicuo");
                 // The window, the corridor floor, the breaker numbers, people moving their arms.
                 pitch.SetValue(g.player, 0f); yield return new WaitForSeconds(1);
-                g.player.Teleport(new Vector3(0, .06f, 24.4f), 0); pitch.SetValue(g.player, -4f); yield return new WaitForSeconds(3); yield return Snap("11-ventana");
+                g.player.Teleport(new Vector3(0, .06f, 24.4f), 0); pitch.SetValue(g.player, -4f); yield return new WaitForSeconds(3); yield return Snap("11-ventana"); g.Ink.enabledEffect = false; yield return Snap("11r-ventana-raw"); g.Ink.enabledEffect = true;
+                g.player.Teleport(new Vector3(-1.2f, .06f, 22.3f), 12); pitch.SetValue(g.player, 2f); yield return new WaitForSeconds(2); yield return Snap("11b-ventana-lejos");
                 g.player.Teleport(new Vector3(.2f, .06f, 13.4f), 200); pitch.SetValue(g.player, 38f); yield return new WaitForSeconds(1.5f); yield return Snap("12-jeringas");
                 g.player.Teleport(new Vector3(-8.4f, .06f, 14), -90); pitch.SetValue(g.player, -8f); g.horror.Data.lightOn = true; yield return new WaitForSeconds(1.5f); yield return Snap("13-numeros");
                 g.player.Teleport(new Vector3(.13f, .06f, -2.21f), 27); pitch.SetValue(g.player, 4f); yield return new WaitForSeconds(2); yield return Snap("14-ines-a");

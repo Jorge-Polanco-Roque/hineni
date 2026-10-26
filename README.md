@@ -134,7 +134,7 @@ Cada final tiene su propio tratamiento visual y se puede volver a ver desde **Fi
 </tr>
 <tr>
 <td><img src="Docs/media/05c-testigo-rostro.jpg" alt="El Testigo: cara estirada, cuencas negras, lágrimas de sangre"><br>El Testigo. Habla al revés y llora sangre. Solo la luz y la mirada lo detienen.</td>
-<td><img src="Docs/media/11-ventana.jpg" alt="La ventana: la ciudad en llamas"><br>La ciudad arde. Cerca de la ventana se oyen gritos, disparos y risas.</td>
+<td><img src="Docs/media/11-ventana.jpg" alt="La ventana: la ciudad en llamas"><br>La ciudad arde. Junto al cristal se oyen sirenas y gritos.</td>
 </tr>
 <tr>
 <td><img src="Docs/media/10a-apagon.jpg" alt="El pasillo durante el apagón"><br>Apagón: solo la linterna.</td>
@@ -162,7 +162,7 @@ Cada final tiene su propio tratamiento visual y se puede volver a ver desde **Fi
 
 **Personas.** Cinco personajes basados en los Universal Base Characters de Quaternius, vestidos, proporcionados y posados en Blender sin interfaz (`Tools/build_characters.py`), con *blend shapes* de parpadeo, miedo y grito. `Uncanny.cs` les da respiración, mirada repartida por la columna, temblor y susurros con límites anatómicos.
 
-**La ciudad.** El cielo de la ventana es una textura de fuego y humo que asciende, con llamas en los tejados, ventanas encendidas y explosiones que iluminan la sala. Su sonido (`Tools/city_sound.py`) mezcla fuego, disparos, gritos y risas de voces Kokoro deformadas y lejanas; sube al acercarse.
+**La ciudad.** Se ve por un hueco real en el muro: cielo en llamas, humo y dos hileras de edificios a distintas distancias, con pisos ardiendo. Su sonido (`Tools/city_mix.py`) mezcla sirenas y gritos grabados con los disparos y risas sintéticos (`Tools/city_sound.py`); solo se oye junto al cristal y sube a cada paso.
 
 **Voces.** 50 líneas por idioma (cinco idiomas) generadas offline con [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) (`Tools/voices.py`): mezclas de estilo por personaje (mujer u hombre, edad, ritmo, tono), radio filtrada, el Testigo grabado al revés, el prólogo con la voz más grave y eco de nave, y lenguas angélicas a partir de sílabas inventadas. Chino y japonés pasan por [misaki](https://github.com/hexgrad/misaki). Las acotaciones `[…]` quedan en el guion pero no se leen ni se muestran.
 
@@ -238,6 +238,7 @@ Las pruebas nativas necesitan la pantalla encendida (con la pantalla apagada mac
 | Personajes base | [Quaternius · Universal Base Characters](https://quaternius.itch.io/universal-base-characters) | CC0 1.0 |
 | Utilería | [Poly Haven](https://polyhaven.com) | CC0 1.0 |
 | Campanas del prólogo | [«Kerkklokken begrafenis»](https://commons.wikimedia.org/wiki/File:Kerkklokken_begrafenis.ogg), Bert76 (Wikimedia Commons) | CC0 1.0 |
+| Sirenas y gritos de la ventana | [Civil-defense-siren-waver](https://commons.wikimedia.org/wiki/File:Civil-defense-siren-waver.ogg) (Techtonic, dominio público) · [American police siren i](https://commons.wikimedia.org/wiki/File:American_police_siren_i.ogg) (lezer, dominio público) · [Kamagasaki riot](https://commons.wikimedia.org/wiki/File:20080618KamagasakiRiot.ogg) (Kamagasaki450, CC0) · [Scream-c/d/e](https://commons.wikimedia.org/wiki/File:Scream-c.wav) (Raspberry Pi Foundation, Andy Oakley) | Dominio público · CC0 · CC BY-SA 4.0 (la mezcla `Sounds/ciudad.wav` hereda CC BY-SA 4.0) |
 | Voces | Generadas con [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) | Apache 2.0 |
 | Glifos | [Meslo LG](https://github.com/andreberg/Meslo-Font) (Nerd Font) | Apache 2.0 |
 | Pintadas (web) | [Rubik Wet Paint](https://github.com/NaN-xyz/Rubik-Filtered) | SIL OFL 1.1 |

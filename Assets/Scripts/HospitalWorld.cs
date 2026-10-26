@@ -8,7 +8,7 @@ namespace LosQueQuedan
     // Lighting is designed for the ASCII pass: low ambient, one motivated key per space, contrast kept for people.
     public sealed partial class HospitalWorld : MonoBehaviour
     {
-        public Material surfaceTemplate, cutoutTemplate;
+        public Material surfaceTemplate, cutoutTemplate, cutoutGlowTemplate;
         public Shader worldTextShader;
         Material worldFont;
         Material plaster, plasterLow, black, pale, steel, cloth, glow, tube, curtain, door;
@@ -204,46 +204,58 @@ namespace LosQueQuedan
             var radio = Prop("vintage_radio_transceiver", new Vector3(-3.5f, .93f, 19.2f), 160, rest: true);
             Target(radio, "radio", "Radio de emergencias", "Escuchar");
 
-            // Window: the city burning. A sky of fire and rising smoke, black buildings with lit windows and flames on the roofs.
-            fireSky = new Material(surfaceTemplate) { name = "Cielo en llamas", color = Color.black }; owned.Add(fireSky);
-            fireSky.EnableKeyword("_EMISSION"); fireSky.SetTexture("_EmissionMap", FireTexture()); fireSky.SetColor("_EmissionColor", new Color(1.5f, .62f, .26f));
-            window = Cube("Ventana final", new Vector3(0, 2.1f, 26.88f), new Vector3(5.5f, 2.15f, .08f), fireSky).transform;
+            // Window: a real opening in the end wall onto the burning city. The city is built in layers at their own
+            // distances (near blocks, far blocks, smoke, a sky on fire), so it shifts as you move and the frame stays in front.
+            foreach (Transform t in transform)
+                if (t.name == "Muro" && Mathf.Abs(t.position.z - 27) < .01f) { Destroy(t.gameObject); break; }
+            const float wx = 2.75f, wy0 = 1.025f, wy1 = 3.175f;
+            Cube("Muro ventana L", new Vector3(-(5 + wx) / 2, 1.8f, 27), new Vector3(5 - wx, 3.6f, .2f), plaster);
+            Cube("Muro ventana R", new Vector3((5 + wx) / 2, 1.8f, 27), new Vector3(5 - wx, 3.6f, .2f), plaster);
+            Cube("Muro ventana abajo", new Vector3(0, wy0 / 2, 27), new Vector3(2 * wx, wy0, .2f), plaster);
+            Cube("Muro ventana arriba", new Vector3(0, (wy1 + 3.6f) / 2, 27), new Vector3(2 * wx, 3.6f - wy1, .2f), plaster);
+            window = Cube("Ventana final", new Vector3(0, 2.1f, 27), new Vector3(2 * wx, wy1 - wy0, .1f), null).transform;   // what "approach" aims at
             Target(window.gameObject, "window", "El cielo sigue ahí", "Acercarse");
-            Cube("Marco ventana", new Vector3(0, 2.1f, 26.8f), new Vector3(.09f, 2.3f, .11f), black);
-            Cube("Marco horizontal", new Vector3(0, 2.05f, 26.78f), new Vector3(5.6f, .09f, .11f), black);
-            Cube("Alfeizar", new Vector3(0, 1.0f, 26.7f), new Vector3(5.8f, .06f, .3f), steel);
-            var rng = new System.Random(7);
-            var lit = Mat("Ventanas encendidas", new Color(1, .7f, .35f), 0, true);
-            var flame = Mat("Fuego de la ciudad", new Color(1, .45f, .12f), 0, true);
-            for (int i = 0; i < 26; i++)
+            Destroy(window.GetComponent<Collider>()); window.gameObject.AddComponent<BoxCollider>();
+            for (int sx = -1; sx <= 1; sx += 2) Cube("Marco ventana lateral", new Vector3(sx * (wx + .03f), 2.1f, 26.95f), new Vector3(.1f, wy1 - wy0 + .12f, .3f), black);
+            Cube("Marco ventana superior", new Vector3(0, wy1 + .03f, 26.95f), new Vector3(2 * wx + .16f, .1f, .3f), black);
+            Cube("Marco ventana", new Vector3(0, 2.1f, 27), new Vector3(.07f, wy1 - wy0, .08f), black);
+            Cube("Marco horizontal", new Vector3(0, 2.32f, 27), new Vector3(2 * wx, .06f, .08f), black);
+            Cube("Alfeizar", new Vector3(0, wy0 - .02f, 26.82f), new Vector3(2 * wx + .3f, .06f, .36f), steel);
+
+            fireSky = Matte(new Material(surfaceTemplate) { name = "Cielo en llamas", color = Color.black });
+            fireSky.EnableKeyword("_EMISSION"); fireSky.SetTexture("_EmissionMap", FireTexture()); fireSky.SetColor("_EmissionColor", new Color(1.6f, .7f, .3f));
+            Cube("Ciudad cielo", new Vector3(0, 6.6f, 35), new Vector3(70, 22, .1f), fireSky);   // horizon glow at y ≈ 2.2
+            for (int i = 0; i < 3; i++)   // smoke rising from the fires, each column at its own depth
             {
-                float w = .12f + (float)rng.NextDouble() * .22f, h = .15f + (float)rng.NextDouble() * (i % 5 == 0 ? 1.4f : .75f);
-                var bx = new Vector3(-2.65f + i * .21f, 1.03f + h / 2, 26.72f);
-                Cube("Ciudad en negativo", bx, new Vector3(w, h, .04f), black);
-                for (int k = 0; k < (int)(h * 10); k++)
-                    if (rng.NextDouble() < .3f)
-                    {
-                        var win = Cube("Ciudad ventana", bx + new Vector3(((float)rng.NextDouble() - .5f) * w * .7f, -h / 2 + .06f + k * .1f, -.025f), new Vector3(.018f, .025f, .005f), lit);
-                        Destroy(win.GetComponent<Collider>());
-                    }
-                if (rng.NextDouble() < .45f)
-                    for (int k = 0; k < 4; k++)   // tongues of fire on the roof, each flickering on its own
-                    {
-                        var f = Cube("Ciudad fuego", bx + new Vector3((k - 1.5f) * w * .22f, h / 2 + .04f, -.03f), new Vector3(w * .12f, .08f, .01f), flame);
-                        f.transform.rotation = Quaternion.Euler(0, 0, ((float)rng.NextDouble() - .5f) * 20);
-                        Destroy(f.GetComponent<Collider>()); cityFires.Add(f.transform);
-                    }
+                var smoke = Matte(new Material(cutoutGlowTemplate ? cutoutGlowTemplate : cutoutTemplate) { name = "Humo", color = Color.black });
+                smoke.mainTexture = SmokeTexture(i); smoke.EnableKeyword("_EMISSION"); smoke.SetTexture("_EmissionMap", smoke.mainTexture);
+                smoke.SetColor("_EmissionColor", Color.white * 1.3f); smoke.SetFloat("_Cutoff", .5f); smokes.Add(smoke);
+                Cube("Ciudad humo", new Vector3(new[] { -4.2f, 2.6f, 7.5f }[i], 7.5f, 33.5f - i * .6f), new Vector3(2.6f, 12, .05f), smoke);
+            }
+            for (int layer = 0; layer < 2; layer++)
+            {
+                var frames = new Texture2D[3];
+                for (int f = 0; f < 3; f++) frames[f] = SkylineTexture(layer, f);
+                var m = Matte(new Material(cutoutGlowTemplate ? cutoutGlowTemplate : cutoutTemplate) { name = layer == 0 ? "Ciudad lejana" : "Ciudad cercana", color = Color.black });
+                m.mainTexture = frames[0]; m.EnableKeyword("_EMISSION"); m.SetTexture("_EmissionMap", frames[0]); m.SetColor("_EmissionColor", Color.white * (layer == 0 ? 1.8f : 1.3f));
+                skylines.Add((m, frames));
+                // Far: y -3..5, roofs 1.6..2.8 · near: y -3..3.5, roofs 1.3..2.3 (eye level 1.6, so the skyline holds from anywhere in the room) (the view through the glass is y ≈ 0.3..4).
+                Cube(layer == 0 ? "Ciudad lejana" : "Ciudad cercana", new Vector3(0, layer == 0 ? 1 : .25f, layer == 0 ? 32 : 29.4f),
+                     new Vector3(layer == 0 ? 44 : 26, layer == 0 ? 8 : 6.5f, .05f), m);
             }
             foreach (Transform t in transform)
                 if (t.name.StartsWith("Ventana") || t.name.StartsWith("Ciudad") || t.name.StartsWith("Marco"))
-                    t.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                {
+                    var r = t.GetComponent<Renderer>(); if (r) { r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; r.receiveShadows = false; }
+                    if (t.name.StartsWith("Ciudad")) Destroy(t.GetComponent<Collider>());
+                }
             // Cold light from the window (inside the room, the window is a lit plane): it carves the man on the bed.
             Aim("Cielo", new Vector3(.6f, 2.6f, 26.3f), new Vector3(2.78f, 1.0f, 22.7f), 40, 4.2f, 10, new Color(1, .45f, .2f));
             fireGlow = new GameObject("Resplandor del incendio").AddComponent<Light>(); fireGlow.transform.SetParent(transform);
             fireGlow.transform.position = new Vector3(0, 2.1f, 26.3f); fireGlow.type = LightType.Point; fireGlow.range = 9; fireGlow.color = new Color(1, .42f, .15f); fireGlow.shadows = LightShadows.Soft;
-            // The city is heard, too: screams, shots and laughter far away, louder the closer you stand (Tools/city_sound.py).
+            // The city is heard only near the glass: sirens and screams, louder each step closer, gone a few steps back (Tools/city_mix.py).
             var city = window.gameObject.AddComponent<AudioSource>(); city.clip = Resources.Load<AudioClip>("Sounds/ciudad");
-            city.loop = true; city.spatialBlend = 1; city.rolloffMode = AudioRolloffMode.Logarithmic; city.minDistance = 1.2f; city.maxDistance = 18; city.volume = .9f;
+            city.loop = true; city.spatialBlend = 1; city.rolloffMode = AudioRolloffMode.Linear; city.minDistance = .6f; city.maxDistance = 4.5f; city.volume = 1;
             if (city.clip) city.Play();
             Aim("Relleno sala", new Vector3(-1.5f, 3.2f, 20.5f), new Vector3(2.6f, .9f, 22.7f), 36, 1.3f, 9, new Color(1, .4f, .25f));
         }
@@ -496,31 +508,98 @@ namespace LosQueQuedan
             }
         }
         Material fireSky; Light fireGlow; float nextBlast, blast;
-        readonly List<Transform> cityFires = new List<Transform>();
-        // The fire sky: dark at the top, glowing at the horizon, with smoke. It scrolls upward so the smoke rises.
+        // (The quads are seen from their back face, where a cube's texture runs upside down: every row is written from the top.)
+        // Outside there is nothing to reflect: only what glows is seen (the templates are glossy).
+        Material Matte(Material m)
+        {
+            m.SetFloat("_Glossiness", 0); owned.Add(m); return m;
+        }
+        readonly List<Material> smokes = new List<Material>();
+        readonly List<(Material m, Texture2D[] frames)> skylines = new List<(Material, Texture2D[])>();
+        // The fire sky: a horizon burning orange low down, black smoke above. It scrolls so the smoke drifts and rises.
         Texture2D FireTexture()
         {
-            const int w = 256, h = 128; var t = new Texture2D(w, h, TextureFormat.RGB24, true) { wrapMode = TextureWrapMode.Repeat };
+            const int w = 512, h = 256; var t = new Texture2D(w, h, TextureFormat.RGB24, true) { wrapMode = TextureWrapMode.Repeat };
+            var px = new Color[w * h];
             for (int y = 0; y < h; y++)
                 for (int x = 0; x < w; x++)
                 {
-                    float v = y / (float)h, n = Mathf.PerlinNoise(x * .035f, y * .05f) * .7f + Mathf.PerlinNoise(x * .12f, y * .15f) * .3f;
-                    float glow = Mathf.Pow(1 - v, 2.2f), smoke = Mathf.SmoothStep(.35f, .75f, n);
-                    t.SetPixel(x, y, Color.Lerp(new Color(.9f, .35f, .08f), new Color(.08f, .02f, .02f), Mathf.Clamp01(v * 1.2f + smoke * .5f)) * (.25f + glow * .9f));
+                    float v = 1 - y / (float)h, n = Mathf.PerlinNoise(x * .02f, y * .045f) * .65f + Mathf.PerlinNoise(x * .08f, y * .12f) * .35f;
+                    float glow = Mathf.Exp(-Mathf.Pow((v - .3f) / .1f, 2)) + Mathf.Exp(-Mathf.Pow((v - .3f) / .28f, 2)) * .4f;   // the burning horizon, just behind the roofs
+                    float smoke = Mathf.SmoothStep(.4f, .7f, n) * Mathf.Clamp01((v - .25f) * 3);
+                    var c = Color.Lerp(new Color(.05f, .012f, .01f), new Color(1, .42f, .1f), Mathf.Clamp01(glow)) * (1 - smoke * .85f);
+                    px[y * w + x] = c + new Color(.12f, .03f, .015f) * smoke * glow;
                 }
-            t.Apply(); return t;
+            t.SetPixels(px); t.Apply(); return t;
+        }
+        // A column of smoke: thick and lit orange at its foot, thinning into the dark. Alpha is what is cut out.
+        Texture2D SmokeTexture(int seed)
+        {
+            const int w = 64, h = 256; var t = new Texture2D(w, h, TextureFormat.RGBA32, true) { wrapMode = TextureWrapMode.Repeat };
+            var px = new Color[w * h];
+            for (int y = 0; y < h; y++)
+                for (int x = 0; x < w; x++)
+                {
+                    float v = 1 - y / (float)h, u = x / (float)w;
+                    float n = Mathf.PerlinNoise(x * .09f + seed * 13, y * .05f) * .7f + Mathf.PerlinNoise(x * .25f, y * .16f + seed) * .3f;
+                    float width = Mathf.Lerp(.16f, .46f, v), body = 1 - Mathf.Abs(u - .5f - Mathf.Sin(v * 5 + seed) * .08f) / width;
+                    float a = body + (n - .5f) * 1.1f - v * .25f;
+                    var c = Color.Lerp(new Color(.55f, .17f, .05f), new Color(.05f, .03f, .03f), Mathf.Clamp01(v * 3.5f));
+                    px[y * w + x] = new Color(c.r, c.g, c.b, Mathf.Clamp01(a));
+                }
+            t.SetPixels(px); t.Apply(); return t;
+        }
+        // A row of blocks against the fire. Layer 0 is far (lower, reddened by the glow); layer 1 is near and black.
+        // Most windows are dark; a few buildings burn floor by floor. Frames differ only in how the fires flicker.
+        Texture2D SkylineTexture(int layer, int frame)
+        {
+            int w = layer == 0 ? 1024 : 768, h = 160; var t = new Texture2D(w, h, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Point };
+            var px = new Color[w * h]; var rng = new System.Random(layer * 31 + 5);
+            var body = layer == 0 ? new Color(.075f, .018f, .014f) : new Color(.008f, .005f, .005f);
+            void Set(int x, int y, Color c) { if (x >= 0 && x < w && y >= 0 && y < h) px[(h - 1 - y) * w + x] = new Color(c.r, c.g, c.b, 1); }
+            int x0 = 0;
+            while (x0 < w)
+            {
+                int bw = rng.Next(layer == 0 ? 14 : 22, layer == 0 ? 48 : 70);
+                int roof = (int)(h * (layer == 0 ? .575f + (float)rng.NextDouble() * .15f : .66f + (float)rng.NextDouble() * .16f));   // roofs around eye level, as a real skyline
+                if (rng.NextDouble() < .15f) roof = Mathf.Min(h - 4, roof + rng.Next(8, 20));   // a tower
+                bool burning = rng.NextDouble() < (layer == 0 ? .45f : .35f);
+                int fireFrom = roof - rng.Next(8, 30);                                            // burning floors: from here up
+                bool broken = rng.NextDouble() < .35f;                                            // a roof torn open
+                for (int x = x0; x < x0 + bw; x++)
+                {
+                    int top = roof;
+                    if (broken) top -= (int)(Mathf.PerlinNoise(x * .25f, layer * 3 + x0) * 9);
+                    else if (x - x0 < 2 || x0 + bw - x < 2) top -= 2;                             // parapets
+                    for (int y = 0; y < top; y++) Set(x, y, body);
+                }
+                if (rng.NextDouble() < .25f) for (int y = roof; y < roof + rng.Next(5, 14); y++) Set(x0 + bw / 2, y, body);   // antenna
+                for (int wy = 5; wy < roof - 5; wy += 5)
+                    for (int wxp = x0 + 3; wxp < x0 + bw - 3; wxp += 4)
+                    {
+                        float r = (float)new System.Random(wxp * 7919 + wy * 104729 + layer).NextDouble();
+                        float fr = (float)new System.Random(wxp * 31 + wy * 17 + frame * 7 + layer).NextDouble();
+                        Color c;
+                        if (burning && wy >= fireFrom && r < .7f) c = Color.Lerp(new Color(1, .25f, .04f), new Color(1, .7f, .25f), fr) * (fr < .2f ? .45f : 1);
+                        else if (r < .025f) c = new Color(.75f, .6f, .35f) * .55f;                // someone left a lamp on
+                        else continue;
+                        Set(wxp, wy, c); Set(wxp, wy + 1, c);
+                    }
+                x0 += bw + (rng.NextDouble() < .35f ? rng.Next(3, 14) : 0);
+            }
+            t.SetPixels(px); t.Apply(); return t;
         }
         void AnimateCity()
         {
             if (!fireSky) return;
-            fireSky.SetTextureOffset("_EmissionMap", new Vector2(Time.time * .004f, -Time.time * .02f));
-            for (int i = 0; i < cityFires.Count; i++)
-            {
-                var f = cityFires[i]; var s = f.localScale; s.y = .03f + Mathf.PerlinNoise(Time.time * 4.5f, i * 1.7f) * .16f; f.localScale = s;
-            }
+            fireSky.SetTextureOffset("_EmissionMap", new Vector2(Time.time * .003f, 0));
+            for (int i = 0; i < smokes.Count; i++) smokes[i].mainTextureOffset = new Vector2(0, Time.time * (.035f + i * .01f));   // Standard uses _MainTex ST for both maps
+            int frame = (int)(Time.time * 5) % 3;
+            foreach (var (m, frames) in skylines) if (m.mainTexture != frames[frame]) { m.mainTexture = frames[frame]; m.SetTexture("_EmissionMap", frames[frame]); }
             // A distant blast now and then lights the whole room orange for a moment.
             if (Time.time > nextBlast) { blast = 1; nextBlast = Time.time + Random.Range(6f, 16f); }
             blast = Mathf.MoveTowards(blast, 0, Time.deltaTime * 1.8f);
+            fireSky.SetColor("_EmissionColor", new Color(1.6f, .7f, .3f) * (.85f + Mathf.PerlinNoise(Time.time * 1.7f, 2) * .3f + blast * 1.2f));
             if (fireGlow) fireGlow.intensity = (powerFailed ? .5f : 1) * (.7f + Mathf.PerlinNoise(Time.time * 2.2f, 5) * .9f + blast * 4);
         }
         public void RevealAnomaly() { anomaly = true; seam.gameObject.SetActive(true); }

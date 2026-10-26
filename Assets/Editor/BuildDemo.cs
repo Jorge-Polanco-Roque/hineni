@@ -34,6 +34,15 @@ public static class BuildDemo
             AssetDatabase.CreateAsset(cutout,cutoutPath);
         }
         game.cutoutTemplate=cutout;
+        // The same with its own light (windows of the burning city): alpha test and emission together.
+        const string glowPath="Assets/Scenes/CutoutGlowTemplate.mat";
+        var glow=AssetDatabase.LoadAssetAtPath<Material>(glowPath);
+        if(!glow)
+        {
+            glow=new Material(cutout);glow.EnableKeyword("_EMISSION");glow.SetColor("_EmissionColor",Color.black);
+            AssetDatabase.CreateAsset(glow,glowPath);
+        }
+        game.cutoutGlowTemplate=glow;
         if(!game.inkShader)throw new System.Exception("No se encontro el shader de tinta");
         EditorSceneManager.SaveScene(scene,"Assets/Scenes/ElDespertar.unity");
         EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene("Assets/Scenes/ElDespertar.unity",true)};
