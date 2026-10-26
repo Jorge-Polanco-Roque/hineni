@@ -32,12 +32,13 @@
   <div class="hint" id="status">Cargando ~70 MB · usa auriculares · haz clic en el juego para capturar el ratón</div>
 </div>
 <div id="turn"><div><div class="red">GIRA EL TELÉFONO</div><div class="verse">HINENI se juega en horizontal</div></div></div>
-<script src="Build/WebGL.loader.js"></script>
+<script src="Build/WebGL.loader.js?v=__BUILD__"></script>
 <script>
   const mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Mac/.test(navigator.platform));
   const canvas = document.querySelector("#unity-canvas");
   const config = {
-    dataUrl: "Build/WebGL.data.unityweb", frameworkUrl: "Build/WebGL.framework.js.unityweb", codeUrl: "Build/WebGL.wasm.unityweb",
+    // Every deploy stamps its URLs, so a browser can never mix files from two different builds.
+    dataUrl: "Build/WebGL.data.unityweb?v=__BUILD__", frameworkUrl: "Build/WebGL.framework.js.unityweb?v=__BUILD__", codeUrl: "Build/WebGL.wasm.unityweb?v=__BUILD__",
     companyName: "SpookyGameJam", productName: "Hineni", productVersion: "0.3.0", autoSyncPersistentDataPath: true,
     devicePixelRatio: mobile ? Math.min(window.devicePixelRatio, 1.5) : window.devicePixelRatio,   // phones: keep the frame rate
   };
