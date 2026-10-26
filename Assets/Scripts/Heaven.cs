@@ -160,11 +160,11 @@ namespace LosQueQuedan
             showing = on;
             if (on)
             {
-                var p = game.player.transform.position; root.position = new Vector3(p.x, root.position.y, p.z);
+                // The sky opens toward wherever you are looking, so they are always in front of you.
+                var c = cam.transform; root.SetPositionAndRotation(c.position, Quaternion.FromToRotation(Vector3.up, c.forward));
                 if (facing)
                 {
-                    // A vision: the sky turned to face wherever you are looking, the hospital gone for an instant.
-                    var c = cam.transform; root.SetPositionAndRotation(c.position, Quaternion.FromToRotation(Vector3.up, c.forward));
+                    // A vision: the hospital gone for an instant.
                     worldWas.Clear(); foreach (var r in world) { worldWas.Add(r && r.enabled); if (r) r.enabled = false; }
                 }
                 fogWas = RenderSettings.fog; ambientWas = RenderSettings.ambientLight; farWas = cam.farClipPlane; contourWas = game.Ink.contourFade;
