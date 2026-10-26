@@ -637,31 +637,31 @@
  },
  {
   "es": "Guardar y salir",
-  "ctx": "DemoGame:714"
- },
- {
-  "es": "No hay una respuesta perfecta que desbloquear.",
   "ctx": "DemoGame:715"
  },
  {
+  "es": "No hay una respuesta perfecta que desbloquear.",
+  "ctx": "DemoGame:717"
+ },
+ {
   "es": "FINALES",
-  "ctx": "DemoGame:721"
+  "ctx": "DemoGame:723"
  },
  {
   "es": "visto",
-  "ctx": "DemoGame:726"
+  "ctx": "DemoGame:728"
  },
  {
   "es": "Alguien recibió un vaso de agua.",
-  "ctx": "DemoGame:742"
+  "ctx": "DemoGame:744"
  },
  {
   "es": "Lucía supo que estabas al otro lado.",
-  "ctx": "DemoGame:743"
+  "ctx": "DemoGame:745"
  },
  {
-  "es": "Volver a los finales",
-  "ctx": "DemoGame:753"
+  "es": "Menú",
+  "ctx": "DemoGame:754"
  },
  {
   "es": "Capilla · recupera el fusible del altar",
@@ -996,28 +996,40 @@
   "ctx": "HospitalWorld:205"
  },
  {
+  "es": "approach",
+  "ctx": "HospitalWorld:216"
+ },
+ {
   "es": "El cielo sigue ahí",
-  "ctx": "HospitalWorld:211"
+  "ctx": "HospitalWorld:217"
+ },
+ {
+  "es": "Ciudad lejana",
+  "ctx": "HospitalWorld:239"
+ },
+ {
+  "es": "Ciudad cercana",
+  "ctx": "HospitalWorld:239"
  },
  {
   "es": "Cielo",
-  "ctx": "HospitalWorld:241"
+  "ctx": "HospitalWorld:253"
  },
  {
   "es": "Relleno sala",
-  "ctx": "HospitalWorld:248"
+  "ctx": "HospitalWorld:260"
  },
  {
   "es": ");\n            if (!src) { Debug.LogWarning(",
-  "ctx": "HospitalWorld:370"
+  "ctx": "HospitalWorld:382"
  },
  {
   "es": " + id); return Cube(id, position, Vector3.one * .3f, steel); }\n            var o = Instantiate(src, position, Quaternion.Euler(tilt, yaw, 0) * src.transform.localRotation, transform); o.name = id;\n            // FBX root rotation contains its Z-up to Y-up conversion. Keep it before laying out the prop.\n            // On the floor, or resting on a surface whose height is position.y: the lowest vertex touches it.\n            if (Mathf.Abs(position.y)<.001f || rest) {\n                var bounds=VisualAudit.GeometryBounds(o);\n                o.transform.position+=Vector3.up*(position.y+.004f-bounds.min.y);\n            }\n            if (collide) AddBounds(o);\n            return o;\n        }\n\n        GameObject Character(string id, Vector3 position, float yaw, System.Action<Uncanny> mind)\n        {\n            var o = Instantiate(Resources.Load<GameObject>($",
-  "ctx": "HospitalWorld:371"
+  "ctx": "HospitalWorld:383"
  },
  {
   "es": "), position, Quaternion.Euler(0, yaw, 0), transform);\n            o.name = id;\n            // Skin carries a faint light of its own: faces stay the focal point in the ASCII image.\n            foreach (var r in o.GetComponentsInChildren<Renderer>())\n                foreach (var m in r.materials)\n                    if (m.name.StartsWith(",
-  "ctx": "HospitalWorld:385"
+  "ctx": "HospitalWorld:397"
  },
  {
   "es": "Capilla",

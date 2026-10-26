@@ -9,7 +9,7 @@ namespace LosQueQuedan
     // The picture changes with it: dark ink on bone paper, like an engraving.
     public sealed class Heaven : MonoBehaviour
     {
-        const float UpEnter = .85f, UpLeave = .7f, TearInTime = .35f, TearOutTime = .22f, Height = 15;
+        const float Recede = 5, UpEnter = .85f, UpLeave = .7f, TearInTime = .35f, TearOutTime = .22f, Height = 15;
         enum Phase { Earth, TearIn, Sky, TearOut }
         Phase phase;
         float clock, gazeUp;
@@ -125,7 +125,7 @@ namespace LosQueQuedan
             {
                 if (nextFlash < 0) nextFlash = now + FlashInterval();
                 if (!bellRung && now > nextFlash - 1.4f) { Toll(1); bellRung = true; }
-                if (now > nextFlash) { flashUntil = now + Random.Range(.35f, .8f); nextFlash = now + FlashInterval(); bellRung = false; }
+                if (now > nextFlash) { flashUntil = now + Random.Range(.9f, 1.6f); nextFlash = now + FlashInterval(); bellRung = false; }
             }
             if (live && game.Remaining < 15 && now > nextToll) { Toll(Random.Range(.94f, 1.08f)); nextToll = now + Mathf.Lerp(.12f, 1.2f, game.Remaining / 15); }
             bool flash = now < flashUntil && phase == Phase.Earth;
@@ -161,7 +161,7 @@ namespace LosQueQuedan
             if (on)
             {
                 // The sky opens toward wherever you are looking, so they are always in front of you.
-                var c = cam.transform; root.SetPositionAndRotation(c.position, Quaternion.FromToRotation(Vector3.up, c.forward));
+                var c = cam.transform; root.SetPositionAndRotation(c.position + c.forward * Recede, Quaternion.FromToRotation(Vector3.up, c.forward));   // set back so the whole host fits the frame
                 if (facing)
                 {
                     // A vision: the hospital gone for an instant.

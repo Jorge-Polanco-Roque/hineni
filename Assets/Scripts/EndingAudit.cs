@@ -118,7 +118,7 @@ namespace LosQueQuedan
                 g.player.Teleport(new Vector3(0, .06f, 16.2f), 180); pitch.SetValue(g.player, 2f); yield return new WaitForSeconds(1.2f); yield return Snap("10a-apagon");
                 g.horror.TryInteract("fuse-slot"); g.horror.PressBreaker(3); g.horror.PressBreaker(1); g.horror.PressBreaker(2);
                 typeof(DemoGame).GetField("toastTime", f).SetValue(g, 0f);
-                yield return new WaitForSeconds(1.2f); yield return Snap("10b-luz");
+                yield return new WaitForSeconds(.7f); yield return Snap("10b-luz"); yield return new WaitForSeconds(2.5f); yield return Snap("10c-luz-cae");
                                 g.player.Teleport(new Vector3(-1.2f, .06f, 24.2f), -40); pitch.SetValue(g.player, 2f); yield return new WaitForSeconds(1); g.Interact("esquina"); yield return new WaitForSeconds(5); yield return Snap("07-esquina"); g.CloseDialog();
                 g.player.Teleport(new Vector3(.5f, .06f, 21), 20); pitch.SetValue(g.player, 0f); yield return new WaitForSeconds(1.5f);
                 pitch.SetValue(g.player, -80f);

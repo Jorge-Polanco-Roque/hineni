@@ -339,15 +339,35 @@ namespace LosQueQuedan
             powerFailed=failed;
             for(int i=0;i<wingLights.Count;i++)if(wingLights[i])wingLights[i].intensity=initialIntensities[i]*(failed?.08f:restored?1.9f:1);
         }
-        // The three breakers in order: the whole hospital comes back, brighter than when you woke, and steady.
+        // The three breakers in order: the power comes back, but it does not hold. Mostly dark; now and then the whole
+        // hospital stutters on for a second or two and dies again (Surge, in Update).
         public void Restore()
         {
             restored=true;SetPower(false);
-            RenderSettings.ambientLight=new Color(.1f,.11f,.11f);RenderSettings.fogDensity=.04f;
+            darkAmbient=RenderSettings.ambientLight;
+            var ink=DemoGame.Instance?DemoGame.Instance.Ink:null;if(ink){darkExposure=ink.autoExposure;darkMin=ink.minBrightness;}
             foreach(var l in wingLights)if(l&&l.type==LightType.Point&&l.range>4)l.range*=1.3f;
-            // The ASCII pass normally adapts to the average light; with power back it should read brighter, not adapt it away.
+            surgeStart=Time.time;surgeEnd=Time.time+1.4f;nextSurge=surgeEnd+Random.Range(4f,8f);   // a first surge as the last breaker goes in
+        }
+        Color darkAmbient;float surgeStart,surgeEnd=-1,nextSurge,darkExposure=2.6f,darkMin=.14f;
+        static readonly Color LitAmbient=new Color(.1f,.11f,.11f);
+        // 0 = dark, 1 = power. Each surge chatters as it catches and as it fails (not with reduced effects).
+        float Surge()
+        {
+            float now=Time.time;
+            if(now>surgeEnd&&now>nextSurge){surgeStart=now;surgeEnd=now+Random.Range(.5f,1.8f);nextSurge=surgeEnd+Random.Range(4f,11f);}
+            if(now>=surgeEnd)return 0;
+            float k=now-surgeStart,left=surgeEnd-now;
+            if(!reducedDisturbance&&(k<.3f||left<.25f)&&Mathf.PerlinNoise(now*38,3)<.45f)return 0;
+            return .85f+Mathf.PerlinNoise(now*9,1)*.15f;
+        }
+        void ApplySurge(float s)
+        {
+            for(int i=0;i<wingLights.Count;i++)if(wingLights[i])wingLights[i].intensity=initialIntensities[i]*Mathf.Lerp(.08f,1.9f,s);
+            RenderSettings.ambientLight=Color.Lerp(darkAmbient,LitAmbient,s);
+            // The ASCII pass adapts to the average light and would flatten the surge: while the power holds, it reads bright.
             var ink=DemoGame.Instance?DemoGame.Instance.Ink:null;
-            if(ink){ink.autoExposure=1.5f;ink.minBrightness=.3f;}
+            if(ink){ink.autoExposure=Mathf.Lerp(darkExposure,1.5f,s);ink.minBrightness=Mathf.Lerp(darkMin,.3f,s);}
         }
         public void SetBreakers(int progress)
         {

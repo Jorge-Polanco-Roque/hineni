@@ -31,7 +31,6 @@ namespace LosQueQuedan
         public bool Paused=>paused;
         public bool Sitting=>sat;
         public const float Minutes=15*60;
-        static bool openGallery;   // "back to the endings" reloads the scene and reopens the gallery
         bool gallery;
         public bool ReduceEffects=>reduceEffects;
         public void Notify(string text,float duration=5){Toast(text,duration);}
@@ -84,7 +83,7 @@ namespace LosQueQuedan
             acts=new GameObject("Lo último que hagas").AddComponent<Acts>();acts.Initialize(this);
             endings=new GameObject("Finales").AddComponent<Endings>();endings.Initialize(this);
             new GameObject("Los que miran").AddComponent<Watchers>().Initialize(this);
-            gallery=openGallery;openGallery=false;
+            
             player.Teleport(new Vector3(-.8f,.06f,18.5f),8);
             Unlock();
         }
@@ -711,7 +710,9 @@ namespace LosQueQuedan
                 if(Button(x,y+2,w,2,"Opciones"))settings=true;
                 if(Button(x,y+4,w,3,"Guardar partida"))Save();
                 if(Button(x,y+6,w,4,"Volver al inicio")){Save(false);SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);}
-                if(Button(x,y+8,w,5,"Guardar y salir")){Save(false);Application.Quit();}
+#if !UNITY_WEBGL
+                if(Button(x,y+8,w,5,"Guardar y salir")){Save(false);Application.Quit();}   // a browser tab cannot be quit
+#endif
                 T(x,y+12,saveStatus??"No hay una respuesta perfecta que desbloquear.",.35f);
             }
         }
@@ -749,10 +750,7 @@ namespace LosQueQuedan
                 T(x,y+i*2,line.Substring(0,shown),i<3?.92f:.6f,i>=3);
             }
             if(t<2.5f+text.Count*3.2f)return;
-            bool fromMenu=!horror||horror.Data.phase==0&&stage==0;
-            if(Button(x,R-5,40,1,"Volver a los finales")){openGallery=true;SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);}
-            if(Button(x+44,R-5,30,2,"Volver al inicio"))SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            if(Button(x+78,R-5,16,3,"Salir"))Application.Quit();
+            if(Button(x,R-5,24,1,"Menú"))SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

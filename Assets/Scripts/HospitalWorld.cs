@@ -499,8 +499,9 @@ namespace LosQueQuedan
             AnimateCity();
             if (anomaly && seam) seam.localScale = new Vector3(1 + Mathf.Sin(Time.time * .65f) * .18f, 1, 1);
             // One tired tube in the corridor: mostly steady, with short irregular drop-outs.
-            float power=powerFailed?.08f:restored?1.6f:1f;
-            if (emergency) emergency.intensity = power*(reducedDisturbance?.8f:2.2f * Mathf.Pow(Mathf.Max(0, Mathf.Sin(Time.time * 2.4f)), 3));
+            float surge=restored?Surge():0;if(restored)ApplySurge(surge);
+            float power=powerFailed?.08f:restored?Mathf.Lerp(.08f,1.6f,surge):1f;
+            if (emergency) emergency.intensity = (restored?.08f:power)*(reducedDisturbance?.8f:2.2f * Mathf.Pow(Mathf.Max(0, Mathf.Sin(Time.time * 2.4f)), 3));   // the surges are white
             if (flicker)
             {
                 float n = Mathf.PerlinNoise(Time.time * 2.3f, 0);
