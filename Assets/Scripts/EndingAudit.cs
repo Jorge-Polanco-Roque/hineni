@@ -15,6 +15,16 @@ namespace LosQueQuedan
         {
             var a = Environment.GetCommandLineArgs();
             int i = Array.IndexOf(a, "--ending-qa"); int j = Array.IndexOf(a, "--acts-qa");
+#if UNITY_WEBGL
+            // In a browser the same audit runs from the URL (?qa=press); the page takes the screenshots.
+            var url = Application.absoluteURL; int q = url.IndexOf("qa=");
+            if (q >= 0)
+            {
+                var v = url.Substring(q + 3).Split('&')[0];
+                arg = v.StartsWith("ending-") ? v.Substring(7) : v;   // press · tear · ending-<id>
+                new GameObject("Ending audit").AddComponent<EndingAudit>(); return;
+            }
+#endif
             if (i >= 0 && i + 1 < a.Length) arg = a[i + 1]; else if (j >= 0) arg = "acts"; else if (Array.IndexOf(a, "--sky-qa") >= 0) arg = "sky"; else if (Array.IndexOf(a, "--lever-qa") >= 0) arg = "lever"; else if (Array.IndexOf(a, "--press-kit") >= 0) arg = "press"; else if (Array.IndexOf(a, "--touch-qa") >= 0) arg = "touch"; else return;
             Application.runInBackground = true; new GameObject("Ending audit").AddComponent<EndingAudit>();
         }
@@ -23,12 +33,31 @@ namespace LosQueQuedan
             Directory.CreateDirectory(Dir);
             yield return new WaitForSeconds(2.5f);
             var g = DemoGame.Instance;
-            if (arg == "touch")
+#if UNITY_WEBGL
+            if (arg == "tear")
             {
                 var f = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
                 g.Begin(); typeof(DemoGame).GetMethod("StartWalking", f).Invoke(g, null); typeof(DemoGame).GetMethod("OpenWard", f).Invoke(g, null);
+                typeof(DemoGame).GetField("fade", f).SetValue(g, 0f); typeof(DemoGame).GetField("toastTime", f).SetValue(g, 0f); DemoGame.HideInterface = true;
+                g.player.Teleport(new Vector3(.5f, .06f, 21), 20); yield return new WaitForSeconds(2);
+                Debug.Log("QA_TEAR_START"); yield return new WaitForSeconds(.4f);
+                typeof(FirstPerson).GetField("pitch", f).SetValue(g.player, -80f); yield break;
+            }
+            if (arg != "press" && arg != "sky" && arg != "lever" && arg != "acts")
+            {
+                g.Begin(); yield return null; g.EndWith(arg); yield return new WaitForSeconds(11); Debug.Log("QA_SNAP ending-" + arg); yield break;
+            }
+#endif
+            if (arg == "touch")
+            {
+                var f = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
+                Screen.SetResolution(1266, 585, false); yield return new WaitForSeconds(2); Shot("phone-0-menu");
+                typeof(DemoGame).GetField("gallery", f).SetValue(g, true); yield return new WaitForSeconds(.5f); Shot("phone-1-gallery");
+                typeof(DemoGame).GetField("gallery", f).SetValue(g, false);
+                g.Begin(); typeof(DemoGame).GetMethod("StartWalking", f).Invoke(g, null); typeof(DemoGame).GetMethod("OpenWard", f).Invoke(g, null);
                 typeof(DemoGame).GetField("fade", f).SetValue(g, 0f); typeof(DemoGame).GetField("toastTime", f).SetValue(g, 0f);
                 g.player.Teleport(new Vector3(0, .06f, 6.5f), 0); yield return new WaitForSeconds(1.5f); Shot("touch-1");
+                g.player.Teleport(new Vector3(0, .06f, 2.4f), 0); yield return new WaitForSeconds(1f); Shot("phone-2-door");
                 var c = FindFirstObjectByType<Controls>(); typeof(Controls).GetField("panel", f).SetValue(c, true);
                 yield return new WaitForSeconds(.5f); Shot("touch-2-panel");
                 Screen.SetResolution(900, 1600, false); yield return new WaitForSeconds(1.5f); Shot("touch-3-portrait");
@@ -42,20 +71,62 @@ namespace LosQueQuedan
                 var f = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
                 var pitch = typeof(FirstPerson).GetField("pitch", f);
                 void Call(string m) => typeof(DemoGame).GetMethod(m, f).Invoke(g, null);
-                IEnumerator Snap(string name) { yield return new WaitForEndOfFrame(); var img = ScreenCapture.CaptureScreenshotAsTexture(); File.WriteAllBytes(P + name + ".png", img.EncodeToPNG()); Destroy(img); }
+                IEnumerator Snap(string name)
+                {
+#if UNITY_WEBGL
+                    Debug.Log("QA_SNAP " + name); yield return new WaitForSecondsRealtime(1.2f);   // the page photographs on this line
+#else
+                    yield return new WaitForEndOfFrame(); var img = ScreenCapture.CaptureScreenshotAsTexture(); File.WriteAllBytes(P + name + ".png", img.EncodeToPNG()); Destroy(img);
+#endif
+                }
                 yield return new WaitForSeconds(3); yield return Snap("01-menu");
                 g.Begin(); typeof(DemoGame).GetField("fade", f).SetValue(g, 0f); yield return new WaitForSeconds(5.5f); yield return Snap("02-ines");
-                Call("StartWalking"); Call("OpenWard"); typeof(DemoGame).GetField("toastTime", f).SetValue(g, 0f);
+                Call("StartWalking"); typeof(DemoGame).GetField("toastTime", f).SetValue(g, 0f);
+                g.player.Teleport(new Vector3(.3f, .06f, 1.6f), 0); pitch.SetValue(g.player, 2f); yield return new WaitForSeconds(1.2f); yield return Snap("02b-puerta");
+                Call("OpenWard"); typeof(DemoGame).GetField("toastTime", f).SetValue(g, 0f);
                 g.player.Teleport(new Vector3(.2f, .06f, 6.2f), 4); pitch.SetValue(g.player, 4f); yield return new WaitForSeconds(1.2f); yield return Snap("03-pasillo");
                 g.Interact("mujer"); yield return new WaitForSeconds(5); yield return Snap("04-mujer"); g.CloseDialog();
                 g.player.Teleport(new Vector3(6.5f, .06f, 9.6f), 180); pitch.SetValue(g.player, -12f); yield return new WaitForSeconds(1.2f); yield return Snap("05-pintada");
+                // The Witness: take the fuse, light it, look at it (light + gaze hold it in place).
+                g.horror.Data.lightOn = true; g.horror.TryInteract("fuse"); typeof(DemoGame).GetField("toastTime", f).SetValue(g, 0f);
+                var w = g.world.witness.transform; w.position = new Vector3(7.4f, 0, 10.6f);
+                typeof(HorrorDirector).GetField("grace", f).SetValue(g.horror, 999f);   // keep it still for the photographs
+                g.player.Teleport(new Vector3(5.2f, .06f, 10.4f), 87); pitch.SetValue(g.player, -16f); yield return new WaitForSeconds(4); yield return Snap("05b-testigo");
+                g.player.Teleport(new Vector3(6.1f, .06f, 10.5f), 86); pitch.SetValue(g.player, -34f); yield return new WaitForSeconds(5); yield return Snap("05c-testigo-rostro"); g.Ink.enabledEffect = false; yield return Snap("05d-testigo-raw"); g.Ink.enabledEffect = true;
+                typeof(HorrorDirector).GetField("grace", f).SetValue(g.horror, 0f);
                 g.player.Teleport(new Vector3(-7.4f, .06f, 13.4f), -100); pitch.SetValue(g.player, 6f); yield return new WaitForSeconds(1.2f); yield return Snap("06-sala-electrica");
-                g.player.Teleport(new Vector3(-1.2f, .06f, 24.2f), -40); pitch.SetValue(g.player, 2f); yield return new WaitForSeconds(1); g.Interact("esquina"); yield return new WaitForSeconds(5); yield return Snap("07-esquina"); g.CloseDialog();
+                // Power: the corridor during the blackout, then after the breakers are thrown in order (3, 1, 2).
+                g.horror.Data.lightOn = false;
+                g.player.Teleport(new Vector3(0, .06f, 16.2f), 180); pitch.SetValue(g.player, 2f); yield return new WaitForSeconds(1.2f); yield return Snap("10a-apagon");
+                g.horror.TryInteract("fuse-slot"); g.horror.PressBreaker(3); g.horror.PressBreaker(1); g.horror.PressBreaker(2);
+                typeof(DemoGame).GetField("toastTime", f).SetValue(g, 0f);
+                yield return new WaitForSeconds(1.2f); yield return Snap("10b-luz");
+                                g.player.Teleport(new Vector3(-1.2f, .06f, 24.2f), -40); pitch.SetValue(g.player, 2f); yield return new WaitForSeconds(1); g.Interact("esquina"); yield return new WaitForSeconds(5); yield return Snap("07-esquina"); g.CloseDialog();
                 g.player.Teleport(new Vector3(.5f, .06f, 21), 20); pitch.SetValue(g.player, 0f); yield return new WaitForSeconds(1.5f);
                 pitch.SetValue(g.player, -80f);
+#if !UNITY_WEBGL
                 for (int i = 0; i < 48; i++) { yield return Snap("tear-" + i.ToString("00")); }
+#endif
                 yield return new WaitForSeconds(3); yield return Snap("08-cielo");
                 pitch.SetValue(g.player, -62f); yield return new WaitForSeconds(4); yield return Snap("09-cielo-oblicuo");
+                // The window, the corridor floor, the breaker numbers, people moving their arms.
+                pitch.SetValue(g.player, 0f); yield return new WaitForSeconds(1);
+                g.player.Teleport(new Vector3(0, .06f, 24.4f), 0); pitch.SetValue(g.player, -4f); yield return new WaitForSeconds(3); yield return Snap("11-ventana");
+                g.player.Teleport(new Vector3(.2f, .06f, 13.4f), 200); pitch.SetValue(g.player, 38f); yield return new WaitForSeconds(1.5f); yield return Snap("12-jeringas");
+                g.player.Teleport(new Vector3(-8.4f, .06f, 14), -90); pitch.SetValue(g.player, -8f); g.horror.Data.lightOn = true; yield return new WaitForSeconds(1.5f); yield return Snap("13-numeros");
+                g.player.Teleport(new Vector3(.13f, .06f, -2.21f), 27); pitch.SetValue(g.player, 4f); yield return new WaitForSeconds(2); yield return Snap("14-ines-a");
+                yield return new WaitForSeconds(3.5f); yield return Snap("14-ines-b");
+                g.player.Teleport(new Vector3(-2.6f, .06f, 24.6f), -45); pitch.SetValue(g.player, 2f); yield return new WaitForSeconds(2); yield return Snap("15-esquina-a");
+                yield return new WaitForSeconds(3); yield return Snap("15-esquina-b");
+                // A vision near the end: wind the clock down and wait for the sky to flash in front of us.
+                g.player.Teleport(new Vector3(0, .06f, 8), 0); pitch.SetValue(g.player, 0f);
+                typeof(DemoGame).GetField("remaining", f).SetValue(g, 90f);
+                var flashUntil = typeof(Heaven).GetField("flashUntil", f);
+                for (float wait = 0; wait < 35; wait += .05f)
+                {
+                    if ((float)flashUntil.GetValue(g.heaven) > Time.unscaledTime + .1f) { yield return new WaitForSeconds(.08f); yield return Snap("16-vision"); break; }
+                    yield return new WaitForSeconds(.05f);
+                }
                 Application.Quit(); yield break;
             }
             if (arg == "lever")

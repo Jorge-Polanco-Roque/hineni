@@ -25,7 +25,12 @@ namespace LosQueQuedan
         readonly List<(Transform t, Quaternion rest, float phase)> wings = new List<(Transform, Quaternion, float)>();
         readonly List<Object> owned = new List<Object>();
         Material sclera, iris, pupil, bone, flesh, horn, feather;
-        AudioSource choir, tear, tongue;
+        AudioSource choir, tear, tongue, bell;
+        // Near the end the sky does not wait to be looked at: it flashes in front of you, announced by a bell.
+        float flashUntil = -1, nextFlash = -1, nextToll;
+        bool bellRung, facing;
+        readonly List<Renderer> world = new List<Renderer>();
+        readonly List<bool> worldWas = new List<bool>();
         AudioClip[] tongues;
         int verse = -1;
         float silence = .8f, skyTime, verseClock;   // verseClock: the voice's playhead, kept by hand (no AudioSource.time in browsers)
@@ -79,6 +84,8 @@ namespace LosQueQuedan
             choir = gameObject.AddComponent<AudioSource>(); choir.loop = true; choir.clip = Choir(); choir.volume = 0; choir.spatialBlend = 0;
             tear = gameObject.AddComponent<AudioSource>(); tear.clip = Tear(); tear.spatialBlend = 0;
             tongue = gameObject.AddComponent<AudioSource>(); tongue.spatialBlend = 0;
+            bell = gameObject.AddComponent<AudioSource>(); bell.spatialBlend = 0; bell.clip = Bell(); owned.Add(bell.clip);
+            foreach (var r in game.world.GetComponentsInChildren<Renderer>(true)) world.Add(r);
             var found = new List<AudioClip>();
             for (int i = 0; ; i++) { var c = Resources.Load<AudioClip>("Voices/lengua_" + i); if (!c) break; found.Add(c); }
             tongues = found.ToArray();
@@ -110,11 +117,25 @@ namespace LosQueQuedan
                     if (clock > TearOutTime) Go(Phase.Earth);
                     break;
             }
+            // The last five minutes: brief visions, more and more often, each announced by a bell; the last fifteen
+            // seconds: bells, faster and faster.
+            float now = Time.unscaledTime;
+            bool live = game.SimulationActive && !(game.horror && game.horror.Hidden) && !forced && !menu;
+            if (live && game.Remaining < 300 && phase == Phase.Earth)
+            {
+                if (nextFlash < 0) nextFlash = now + FlashInterval();
+                if (!bellRung && now > nextFlash - 1.4f) { Toll(1); bellRung = true; }
+                if (now > nextFlash) { flashUntil = now + Random.Range(.35f, .8f); nextFlash = now + FlashInterval(); bellRung = false; }
+            }
+            if (live && game.Remaining < 15 && now > nextToll) { Toll(Random.Range(.94f, 1.08f)); nextToll = now + Mathf.Lerp(.12f, 1.2f, game.Remaining / 15); }
+            bool flash = now < flashUntil && phase == Phase.Earth;
             // The tear flickers between the two worlds before it settles on the sky.
             float flick = Mathf.PerlinNoise(Time.unscaledTime * 31, 3);
-            bool sky = phase == Phase.Sky || (phase == Phase.TearIn && clock > .06f && flick > .3f) || (phase == Phase.TearOut && clock < .1f);
-            float glitch = phase == Phase.TearIn ? 1 : phase == Phase.TearOut ? 1 - clock / TearOutTime
+            bool sky = flash || phase == Phase.Sky || (phase == Phase.TearIn && clock > .06f && flick > .3f) || (phase == Phase.TearOut && clock < .1f);
+            float glitch = flash ? .55f : phase == Phase.TearIn ? 1 : phase == Phase.TearOut ? 1 - clock / TearOutTime
                          : phase == Phase.Sky ? (Mathf.PerlinNoise(Time.unscaledTime * 2.3f, 9) > .78f ? .35f : .04f) : 0;
+            if (sky && flash != facing && showing) Show(false);   // switching between a vision and looking up: reopen
+            facing = sky && flash;
             Show(sky);
             if (!game.Ended) { game.Ink.glitch = game.ReduceEffects ? glitch * .3f : glitch; game.Ink.heaven = sky ? 1 : 0; }
             choir.volume = .75f * game.MasterVolume; tongue.volume = 1.3f * game.MasterVolume;
@@ -140,12 +161,20 @@ namespace LosQueQuedan
             if (on)
             {
                 var p = game.player.transform.position; root.position = new Vector3(p.x, root.position.y, p.z);
+                if (facing)
+                {
+                    // A vision: the sky turned to face wherever you are looking, the hospital gone for an instant.
+                    var c = cam.transform; root.SetPositionAndRotation(c.position, Quaternion.FromToRotation(Vector3.up, c.forward));
+                    worldWas.Clear(); foreach (var r in world) { worldWas.Add(r && r.enabled); if (r) r.enabled = false; }
+                }
                 fogWas = RenderSettings.fog; ambientWas = RenderSettings.ambientLight; farWas = cam.farClipPlane; contourWas = game.Ink.contourFade;
                 RenderSettings.fog = false; RenderSettings.ambientLight = new Color(.4f, .36f, .32f); cam.farClipPlane = 400; game.Ink.contourFade = 90;
             }
             else
             {
                 RenderSettings.fog = fogWas; RenderSettings.ambientLight = ambientWas; cam.farClipPlane = farWas; game.Ink.contourFade = contourWas;
+                if (worldWas.Count > 0) { for (int i = 0; i < world.Count; i++) if (world[i]) world[i].enabled = worldWas[i]; worldWas.Clear(); }
+                root.rotation = Quaternion.identity; root.position = new Vector3(root.position.x, 0, root.position.z);
             }
             root.gameObject.SetActive(on);
             foreach (var r in ceiling) if (r) r.enabled = !on;
@@ -435,7 +464,28 @@ namespace LosQueQuedan
             var m = new Mesh { name = "Rueda" }; m.SetVertices(v); m.SetNormals(n); m.SetTriangles(tris, 0); return m;
         }
 
+        float FlashInterval() => Mathf.Lerp(7, 40, game.Remaining / 300) + Random.Range(0, 5f);
+        void Toll(float pitch) { bell.pitch = pitch; bell.PlayOneShot(bell.clip, .8f * game.MasterVolume); }
+
         // ------------------------------------------------------------ sound
+        // A large bronze bell: inharmonic partials (hum, prime, tierce, quint, nominal...) each with its own decay.
+        static AudioClip Bell()
+        {
+            const int rate = 22050; const float seconds = 5; var data = new float[(int)(rate * seconds)];
+            float f0 = 164.8f;
+            float[] ratio = { .5f, 1, 1.183f, 1.506f, 2, 2.514f, 2.662f, 3.011f, 4.166f };
+            float[] decay = { 4.5f, 3.8f, 3.2f, 2.6f, 2.2f, 1.6f, 1.4f, 1.1f, .7f };
+            float[] gain = { .5f, .9f, .55f, .3f, .6f, .25f, .2f, .18f, .12f };
+            var rng = new System.Random(4);
+            for (int i = 0; i < data.Length; i++)
+            {
+                float t = i / (float)rate, s = 0;
+                for (int k = 0; k < ratio.Length; k++) s += Mathf.Sin(2 * Mathf.PI * f0 * ratio[k] * t * (1 + .0015f * k)) * gain[k] * Mathf.Exp(-t / decay[k] * 1.2f);
+                s += ((float)rng.NextDouble() * 2 - 1) * .35f * Mathf.Exp(-t * 60);   // the strike
+                data[i] = s * .28f;
+            }
+            var clip = AudioClip.Create("Campana", data.Length, 1, rate, false); clip.SetData(data, 0); return clip;
+        }
         // A choir that is not quite a choir: close voices beating against each other, and air.
         static AudioClip Choir()
         {

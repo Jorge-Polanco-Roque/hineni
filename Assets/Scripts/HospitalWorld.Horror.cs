@@ -68,7 +68,7 @@ namespace LosQueQuedan
 
             // Service room: three physical breakers, a fuse slot and a hiding cabinet.
             Prop("steel_frame_shelves_01",new Vector3(-3.05f,0,16.45f),180);
-            Cube("Cuadro eléctrico",new Vector3(-9.72f,1.55f,14),new Vector3(.22f,1.8f,2.3f),steel);
+            Cube("Cuadro eléctrico",new Vector3(-9.72f,1.7f,14),new Vector3(.22f,2.1f,2.3f),steel);   // tall enough to carry the numbers well above the lamps
             var slot=Cube("Alojamiento del fusible",new Vector3(-9.48f,1.1f,14),new Vector3(.2f,.32f,.5f),black);
             Target(slot,"fuse-slot","Circuito de la sala común","Colocar fusible");
             for(int i=0;i<3;i++)
@@ -78,7 +78,7 @@ namespace LosQueQuedan
                 Target(handle,"breaker-"+(i+1),"Interruptor "+(i+1),"Accionar");breakers[i]=handle.transform;
                 breakerLights[i]=Mat("Indicador "+i,new Color(.12f,.015f,.008f),0,true);
                 Cube("Indicador",new Vector3(-9.47f,2.12f,z),new Vector3(.07f,.09f,.13f),breakerLights[i]);
-                Bleed(SmallLabel((i+1).ToString(),new Vector3(-9.605f,2.3f,z),Vector3.right,.045f),Vector3.right,.1f,1);
+                Bleed(SmallLabel((i+1).ToString(),new Vector3(-9.605f,2.5f,z),Vector3.right,.045f),Vector3.right,.1f,1);
             }
             BloodWriting("TRES NEGACIONES.\nUN SOLO NOMBRE.\nDOS TESTIGOS.",new Vector3(-6.3f,2.1f,11.12f),Vector3.forward,4.8f,"graffiti-order");
             BloodWriting("EL SÉPTIMO DÍA\nNOS DEJÓ SOLOS.",new Vector3(-5.95f,2.1f,16.88f),Vector3.back,3.6f,"graffiti-seventh","EL SÉPTIMO DÍA\nTE DEJÓ LA PALANCA.");
@@ -92,9 +92,26 @@ namespace LosQueQuedan
             witness=Character("Esquina",new Vector3(7.2f,0,12.1f),-90,u=>
             {
                 u.displayName="EL TESTIGO";u.blinkEvery=0;u.follow=1;u.followLimit=85;
-                u.tilt=24;u.fear=.9f;u.scream=.85f;u.tremor=.25f;u.lines=new string[0];
+                u.tilt=28;u.fear=1;u.scream=1;u.tremor=1.3f;u.whisperRadius=7;
+                // It speaks, but backwards: the words arrive reversed, and so does its voice (Tools/voices.py).
+                u.lines=new[]{".riuges arap osimrep edip enrac aL",".saímrod sartneim setneid sol étnoc eT",".erbmon ut ed erbmah eneit oleic lE",".ayut al írba aY .acob al erbA",".atreup anu se ,oremún nu se on onu y atnerauC",".abirra serim on euq ecid ámaM",".ómalcer al eidan y arac al noratiuq em reyA"};
             });
             witness.name="El Testigo";witness.transform.localScale=Vector3.Scale(witness.transform.localScale,new Vector3(.78f,1.48f,.78f));
+            // A face that is wrong: skull drawn long and narrow, neck too long, jaw always open; it weeps blood.
+            Transform Bone(string n){foreach(var t in witness.GetComponentsInChildren<Transform>())if(t.name==n)return t;return null;}
+            var head=Bone("Head");var neck=Bone("neck_01");
+            if(head)
+            {
+                // Where the eyes are, in head space, measured before the skull is deformed (skinned bounds update late).
+                Renderer eyes=null;foreach(var r in witness.GetComponentsInChildren<Renderer>())if(r.name.StartsWith("Eyes"))eyes=r;
+                var eyesLocal=head.InverseTransformPoint(eyes?eyes.bounds.center:head.position+witness.transform.forward*.1f);
+                if(neck)neck.localScale=new Vector3(.9f,1.35f,.9f);
+                head.localScale=new Vector3(.8f,1.3f,1.12f);
+                witness.AddComponent<Weeping>().Begin(head,head.TransformPoint(eyesLocal),witness.transform,BloodMaterial,black);
+                // Ashen skin, no glow: under the flashlight the features read instead of washing out.
+                foreach(var r in witness.GetComponentsInChildren<Renderer>())foreach(var m in r.materials)
+                    if(m.name.StartsWith("Piel")){m.color=new Color(.42f,.43f,.39f);m.SetColor("_EmissionColor",Color.black);m.SetFloat("_Glossiness",.45f);}
+            }
             foreach(var col in witness.GetComponentsInChildren<Collider>())col.enabled=false;
             witness.SetActive(false);
             foreach(var l in GetComponentsInChildren<Light>())
@@ -111,7 +128,7 @@ namespace LosQueQuedan
         }
         GameObject WingDoor(string label,Vector3 p,string id)
         {
-            var leaf=Cube(label,p+Vector3.up*1.25f,new Vector3(.12f,2.5f,2.04f),door);
+            var leaf=Cube(label,p+Vector3.up*1.3f,new Vector3(.12f,2.6f,2.04f),door);   // up to the lintel
             DressDoor(leaf,Vector3.right,2);
             Target(leaf,id,label,"Abrir / cerrar");
             var handle=Cube("Pulsador "+label,p+new Vector3(p.x>0?-.18f:.18f,1.15f,1.35f),new Vector3(.12f,.22f,.16f),pale);
@@ -125,7 +142,7 @@ namespace LosQueQuedan
         // Hardware on both faces of a door slab; the pieces are children, so they slide with it.
         public void DressDoor(GameObject leaf,Vector3 normal,int leaves)
         {
-            if(!glass){glass=Mat("Vidrio armado",new Color(.06f,.08f,.08f),.9f);}
+            if(!glass){glass=Mat("Vidrio armado esmerilado",new Color(.42f,.47f,.45f),.75f,true);glass.SetColor("_EmissionColor",new Color(.05f,.06f,.055f));}
             var b=leaf.GetComponent<Renderer>().bounds;var c=b.center;
             var right=Vector3.Cross(Vector3.up,normal).normalized;
             float width=Mathf.Abs(Vector3.Dot(b.size,right)),thick=Mathf.Abs(Vector3.Dot(b.size,normal)),bottom=b.min.y;
@@ -139,7 +156,7 @@ namespace LosQueQuedan
                 {
                     var mid=face+right*(-width/2+lw*(i+.5f));
                     var win=new Vector3(mid.x,bottom+1.62f,mid.z);
-                    Piece("Mirilla",win,Size(lw*.36f,.62f,.012f),glass);
+                    Piece("Mirilla",win,Size(lw*.3f,.5f,.012f),glass);
                     for(int k=-1;k<=1;k+=2)
                     {
                         Piece("Marco mirilla",win+Vector3.up*k*.32f,Size(lw*.4f,.035f,.02f),steel);
@@ -240,7 +257,8 @@ namespace LosQueQuedan
             for(int i=0;i<46;i++)
             {
                 float size=.04f+(float)random.NextDouble()*(i<6?.24f:.12f);
-                var piece=GameObject.CreatePrimitive(i%3==0?PrimitiveType.Sphere:PrimitiveType.Cube);piece.name="Resto";piece.transform.SetParent(transform);
+                if(i%3!=0){if(i%2==0)Throw(Syringe(centre+Random.insideUnitSphere*.3f,Random.rotation),centre,silent,random);continue;}   // his coat pockets
+                var piece=GameObject.CreatePrimitive(PrimitiveType.Sphere);piece.name="Resto";piece.transform.SetParent(transform);
                 piece.transform.position=centre+Random.insideUnitSphere*.3f;piece.transform.rotation=Random.rotation;
                 piece.transform.localScale=new Vector3(size,size*(.4f+(float)random.NextDouble()),size*(.6f+(float)random.NextDouble()*.8f));
                 piece.GetComponent<Renderer>().sharedMaterial=i%5==0?coat:i%7==0?bone:flesh;
@@ -258,6 +276,31 @@ namespace LosQueQuedan
             var corner=GameObject.Find("Esquina");
             if(corner&&corner.TryGetComponent(out Uncanny u))u.lines=new[]{"Lo oíste reventar. Contaba hasta cuarenta y uno.","Ahora nos mira con sus pedazos.","La palanca era para ver si bajabas la mano."};
             Rewrite(true);
+        }
+        void Throw(GameObject o,Vector3 centre,bool silent,System.Random random)
+        {
+            var body=o.AddComponent<Rigidbody>();body.mass=.05f;
+            var push=(o.transform.position-centre).normalized;push.x=Mathf.Abs(push.x)*1.4f;
+            body.linearVelocity=silent?Vector3.zero:push*(3+(float)random.NextDouble()*4)+Vector3.up*(float)random.NextDouble()*3;
+            body.angularVelocity=Random.insideUnitSphere*15;
+        }
+        Material syringeGlass,syringeRubber;
+        // A disposable syringe, about 12 cm: barrel, plunger, rubber tip, flange and needle.
+        GameObject Syringe(Vector3 at,Quaternion rotation)
+        {
+            if(!syringeGlass){syringeGlass=Mat("Plástico de jeringa",new Color(.82f,.86f,.86f),.85f);syringeRubber=Mat("Émbolo",new Color(.08f,.08f,.08f),.4f);}
+            var root=new GameObject("Jeringa");root.transform.SetParent(transform);root.transform.SetPositionAndRotation(at,rotation);
+            void Part(PrimitiveType t,Vector3 p,Vector3 s,Material m){var o=GameObject.CreatePrimitive(t);Destroy(o.GetComponent<Collider>());o.GetComponent<Renderer>().sharedMaterial=m;o.transform.SetParent(root.transform,false);o.transform.localPosition=p;o.transform.localScale=s;}
+            Part(PrimitiveType.Cylinder,Vector3.zero,new Vector3(.016f,.04f,.016f),syringeGlass);
+            Part(PrimitiveType.Cylinder,new Vector3(0,.012f,0),new Vector3(.013f,.022f,.013f),blood);           // what is left inside
+            Part(PrimitiveType.Cylinder,new Vector3(0,.052f,0),new Vector3(.005f,.02f,.005f),pale);
+            Part(PrimitiveType.Cylinder,new Vector3(0,.073f,0),new Vector3(.018f,.002f,.018f),pale);
+            Part(PrimitiveType.Cube,new Vector3(0,.038f,0),new Vector3(.034f,.003f,.012f),pale);
+            Part(PrimitiveType.Cylinder,new Vector3(0,-.042f,0),new Vector3(.006f,.004f,.006f),syringeRubber);
+            Part(PrimitiveType.Cylinder,new Vector3(0,-.07f,0),new Vector3(.0012f,.026f,.0012f),steel);
+            var c=root.AddComponent<BoxCollider>();c.size=new Vector3(.02f,.15f,.02f);c.center=new Vector3(0,-.005f,0);
+            root.transform.localScale=Vector3.one*1.5f;   // read at ASCII scale
+            return root;
         }
         GameObject lastWords;
         void BuildLever()
@@ -283,10 +326,21 @@ namespace LosQueQuedan
             leaf.GetComponent<Collider>().enabled=!open;
             leaf.GetComponent<Interactable>().prompt=open?"Cerrar":"Abrir";
         }
+        public bool restored;
         public void SetPower(bool failed)
         {
             powerFailed=failed;
-            for(int i=0;i<wingLights.Count;i++)if(wingLights[i])wingLights[i].intensity=initialIntensities[i]*(failed?.08f:1);
+            for(int i=0;i<wingLights.Count;i++)if(wingLights[i])wingLights[i].intensity=initialIntensities[i]*(failed?.08f:restored?1.9f:1);
+        }
+        // The three breakers in order: the whole hospital comes back, brighter than when you woke, and steady.
+        public void Restore()
+        {
+            restored=true;SetPower(false);
+            RenderSettings.ambientLight=new Color(.1f,.11f,.11f);RenderSettings.fogDensity=.04f;
+            foreach(var l in wingLights)if(l&&l.type==LightType.Point&&l.range>4)l.range*=1.3f;
+            // The ASCII pass normally adapts to the average light; with power back it should read brighter, not adapt it away.
+            var ink=DemoGame.Instance?DemoGame.Instance.Ink:null;
+            if(ink){ink.autoExposure=1.5f;ink.minBrightness=.3f;}
         }
         public void SetBreakers(int progress)
         {

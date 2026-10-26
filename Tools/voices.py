@@ -24,6 +24,8 @@ CAST = {
     "EL HOMBRE":               dict(mix={"em_santa": .7, "im_nicola": .3}, speed=.85, pitch=.95),
     "EL HOMBRE DE LA ESQUINA": dict(mix={"em_santa": .5, "pm_santa": .5}, speed=.78, pitch=.86),
     "RADIO DE EMERGENCIAS":    dict(mix={"em_alex": .6, "pm_alex": .4}, speed=1.0, pitch=1.0, radio=True),
+    # Its lines are written backwards; the voice says them forwards and the recording is played in reverse.
+    "EL TESTIGO":              dict(mix={"em_santa": .5, "pm_santa": .3, "em_alex": .2}, speed=.82, pitch=.74, backwards=True),
 }
 # Whispered lines are attached to characters by object, not by speaker name.
 WHISPERER = {"Esquina": "EL HOMBRE DE LA ESQUINA"}
@@ -104,7 +106,8 @@ def main():
         if os.path.exists(dest): continue
         cast = CAST[speaker]
         style = sum(tts.get_voice_style(v) * w for v, w in cast["mix"].items())
-        audio, rate = tts.create(speakable(text), voice=style, speed=cast["speed"], lang="es")
+        said = speakable(text)[::-1] if cast.get("backwards") else speakable(text)
+        audio, rate = tts.create(said, voice=style, speed=cast["speed"], lang="es")
         with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
             pcm = (np.clip(audio, -1, 1) * 32767).astype("<i2")
             import wave
@@ -112,6 +115,7 @@ def main():
                 w.setnchannels(1); w.setsampwidth(2); w.setframerate(rate); w.writeframes(pcm.tobytes())
         p = cast["pitch"]
         filters = [f"asetrate={int(rate * p)}", f"aresample={rate}", f"atempo={1 / p:.4f}"] if p != 1 else []
+        if cast.get("backwards"): filters += ["areverse", "aecho=0.8:0.7:90|210:0.4|0.25", "lowpass=f=3800"]
         if cast.get("radio"): filters += ["highpass=f=450", "lowpass=f=2800", "acrusher=bits=10:mix=.35", "volume=1.6"]
         filters += ["apad=pad_dur=0.15", "loudnorm=I=-18:TP=-2"]
         subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", tmp.name, "-af", ",".join(filters),

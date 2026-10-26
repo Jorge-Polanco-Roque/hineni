@@ -46,6 +46,9 @@ namespace LosQueQuedan
             yield return Shot("02-pintada",new Vector3(6.4f,.06f,10),180);
             h.TryInteract("fuse");
             Check(h.Data.phase==1&&!g.world.fuseObject.activeSelf&&g.world.powerFailed,"Taking fuse causes blackout and starts threat");
+            Check(!h.Data.lightOn,"Flashlight starts off");
+            Check(!h.CanHoldWitness(),"Without light, gaze alone does not hold the witness");
+            h.Data.lightOn=true;   // the player presses F
             g.world.witness.transform.position=new Vector3(7.3f,0,10);
             g.player.Teleport(new Vector3(5,.06f,10),90);Set(h,"grace",0f);Set(g,"paused",false);Physics.SyncTransforms();
             yield return null;

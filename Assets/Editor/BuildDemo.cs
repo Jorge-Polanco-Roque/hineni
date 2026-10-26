@@ -84,7 +84,7 @@ public static class BuildDemo
         var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{
             scenes=new[]{"Assets/Scenes/ElDespertar.unity"},
             locationPathName="Builds/macOS/Hineni.app",target=BuildTarget.StandaloneOSX,
-            options=BuildOptions.Development});
+            options=BuildOptions.None});
         Debug.Log("SPOOKY_BUILD_RESULT: "+report.summary.result+" errors="+report.summary.totalErrors);
         if(report.summary.result!=BuildResult.Succeeded)throw new System.Exception("La build fallo");
     }

@@ -10,7 +10,7 @@ namespace LosQueQuedan
         [Serializable] public sealed class State
         {
             public int phase,breakerProgress,captures;
-            public bool chapelOpen,serviceOpen,lightOn=true,lever;
+            public bool chapelOpen,serviceOpen,lightOn,lever;   // the flashlight starts off
             public float witnessX=7.2f,witnessZ=12.1f;
         }
         public State Data { get; private set; }=new State();
@@ -131,7 +131,7 @@ namespace LosQueQuedan
                 Data.breakerProgress++;world.SetBreakers(Data.breakerProgress);Sound(knock,new Vector3(-9,1.5f,14),.35f);
                 if(Data.breakerProgress==3)
                 {
-                    Data.phase=3;world.SetPower(false);world.witness.SetActive(false);Hidden=false;
+                    Data.phase=3;world.Restore();world.witness.SetActive(false);Hidden=false;
                     game.Notify("La corriente vuelve. La respiración se detiene. Vuelve con el hombre de la sala común.",9);
                 }
                 else game.Notify("Circuito "+Data.breakerProgress+" de 3. Quedan pasos al otro lado de la puerta.",4);
@@ -260,7 +260,7 @@ namespace LosQueQuedan
         void ApplyState()
         {
             world.DoorState(world.chapelDoor,Data.chapelOpen);world.DoorState(world.serviceDoor,Data.serviceOpen);
-            world.fuseObject.SetActive(Data.phase==0);world.SetPower(Data.phase>0&&Data.phase<3);world.SetBreakers(Data.breakerProgress);
+            world.fuseObject.SetActive(Data.phase==0);if(Data.phase>=3)world.Restore();else world.SetPower(Data.phase>0);world.SetBreakers(Data.breakerProgress);
             world.witness.transform.position=new Vector3(Data.witnessX,0,Data.witnessZ);world.witness.SetActive(Data.phase>0&&Data.phase<3);
             world.SetLever(Data.lever);if(Data.lever)world.BurstDoctor(true);
         }

@@ -80,7 +80,7 @@ namespace LosQueQuedan
             writings["sign-alone"] = (alone, Mathf.Max(alone.GetComponent<Renderer>().bounds.size.z, .5f), alone.text, "NO DEJAR A NADIE\nENTERO");
 
             // Gate prevents skipping the short demo's opening conversation.
-            corridorGate = Cube("Paso pendiente", new Vector3(0, 1.1f, 5), new Vector3(2.5f, 2.2f, .12f), door);
+            corridorGate = Cube("Paso pendiente", new Vector3(0, 1.325f, 5), new Vector3(2.5f, 2.65f, .12f), door);   // fills the frame to the lintel: no gap above
             DressDoor(corridorGate, Vector3.forward, 2);
             Target(corridorGate, "gate", "Puerta de recuperación", "Abrir");
             seam = new GameObject("La costura").transform; seam.SetParent(transform);
@@ -118,6 +118,7 @@ namespace LosQueQuedan
             nurse = Character("Ines", new Vector3(.9f, 0, -.7f), -153, u =>
             {
                 u.displayName = "INÉS"; u.blinkEvery = 3.5f; u.follow = .85f; u.fearNear = .1f;
+                u.repertoire = new[] { Uncanny.Gesture.WringHands, Uncanny.Gesture.TouchFace, Uncanny.Gesture.LookAtHand, Uncanny.Gesture.ScratchNeck };
                 u.lines = new[] { "Ya casi. Ya casi.", "Te cambié las sábanas aunque no estuvieras dentro.", "La hora también tiene fiebre." };
             });
             Target(nurse, "ines", "Inés · enfermera", "Hablar");
@@ -135,6 +136,7 @@ namespace LosQueQuedan
             {
                 u.displayName = "LA MUJER DE LA SILLA"; u.blinkEvery = 9; u.follow = 1; u.followLimit = 45; u.tilt = 9;
                 u.fear = .55f; u.fearNear = .3f; u.scream = .1f; u.rock = .5f; u.sway = .15f;
+                u.restGesture = Uncanny.Gesture.Knees; u.repertoire = new[] { Uncanny.Gesture.TouchFace, Uncanny.Gesture.WringHands, Uncanny.Gesture.HugSelf };
                 u.lines = new[] { "Mi hijo vuelve a las siete. Son las siete desde ayer.", "No parpadees. Si parpadeas, se acomodan.",
                                   "Tienes la cara de alguien que ya se fue.", "Empújame hacia la ventana. No. Hacia la otra ventana." };
             });
@@ -143,6 +145,7 @@ namespace LosQueQuedan
             var doctor = doctorNpc = Character("Doctor", new Vector3(-1.58f, 0, 11.7f), -90, u =>
             {
                 u.displayName = "EL MÉDICO"; u.blinkEvery = 5; u.knock = .35f; u.tremor = .5f;
+                u.restGesture = Uncanny.Gesture.HandsOnWall; u.repertoire = new[] { Uncanny.Gesture.ScratchNeck };
                 u.fear = .5f; u.scream = .2f; u.whisperRadius = 3.8f;
                 u.lines = new[] { "Cuarenta y uno. Cuarenta y uno. Cuarenta y uno.", "La pared está tibia. Alguien la respira desde el otro lado.",
                                   "Ya firmé su alta. Firmé la de todos. También la mía.", "No me mire la nuca. Ahí es donde se me olvida la cara." };
@@ -151,6 +154,10 @@ namespace LosQueQuedan
             Stain(new Vector3(-1.89f, 1.62f, 11.7f), Vector3.right, .32f, 70);
             Stain(new Vector3(-1.75f, .012f, 11.6f), Vector3.up, .5f, 10);
             Stain(new Vector3(.3f, .012f, 12.8f), Vector3.up, .9f, 140);
+            var scatter = new System.Random(12);
+            for (int i = 0; i < 7; i++)   // used syringes on the corridor floor, lying flat
+                Syringe(new Vector3(-1.5f + (float)scatter.NextDouble() * 2.6f, .016f, 10.6f + (float)scatter.NextDouble() * 2.6f),
+                        Quaternion.Euler(90, (float)scatter.NextDouble() * 360, 0) * Quaternion.Euler(0, (float)scatter.NextDouble() * 360, 0));
             var e = new GameObject("Emergencia").AddComponent<Light>(); e.transform.SetParent(transform);
             e.transform.position = new Vector3(-.6f, 3.0f, 12.2f); e.type = LightType.Point; e.range = 6.5f; e.color = new Color(1, .08f, .06f);
             e.shadows = LightShadows.Soft; emergency = e;
@@ -172,11 +179,13 @@ namespace LosQueQuedan
             patient = Character("Paciente", new Vector3(2.78f, .07f, 22.7f), -90, u =>
             {
                 u.displayName = "EL HOMBRE"; u.blinkEvery = 5; u.follow = .5f; u.rock = 2; u.tremor = .6f; u.fear = .25f; u.fearNear = .2f;
+                u.restGesture = Uncanny.Gesture.Knees; u.repertoire = new[] { Uncanny.Gesture.WringHands, Uncanny.Gesture.TouchFace, Uncanny.Gesture.HugSelf };
                 u.lines = new[] { "Las sábanas cuentan hacia atrás.", "Ella me peinó con la otra mano.", "¿Ya pasó? Huele a que ya pasó." };
             });
             var corner = Character("Esquina", new Vector3(-3.98f, 0, 25.98f), -45, u =>
             {
                 u.displayName = "EL HOMBRE DE LA ESQUINA"; u.blinkEvery = 8; u.follow = .6f; u.followLimit = 22; u.tremor = .6f; u.sway = .25f;
+                u.restGesture = Uncanny.Gesture.ScratchWall; u.repertoire = new[] { Uncanny.Gesture.HugSelf, Uncanny.Gesture.ScratchNeck };
                 u.fear = .9f; u.scream = .6f; u.whisperRadius = 4.5f;
                 u.lines = new[] { "Ya nos ha visto.", "Tiene nuestra letra. Escribe con nuestra letra.", "Si me doy la vuelta, la esquina se queda sola." };
             });
@@ -193,23 +202,47 @@ namespace LosQueQuedan
             var radio = Prop("vintage_radio_transceiver", new Vector3(-3.5f, .93f, 19.2f), 160, rest: true);
             Target(radio, "radio", "Radio de emergencias", "Escuchar");
 
-            // Window: a luminous plane with a black frame, the city cut out in front of it.
-            window = Cube("Ventana final", new Vector3(0, 2.1f, 26.88f), new Vector3(5.5f, 2.15f, .08f), glow).transform;
+            // Window: the city burning. A sky of fire and rising smoke, black buildings with lit windows and flames on the roofs.
+            fireSky = new Material(surfaceTemplate) { name = "Cielo en llamas", color = Color.black }; owned.Add(fireSky);
+            fireSky.EnableKeyword("_EMISSION"); fireSky.SetTexture("_EmissionMap", FireTexture()); fireSky.SetColor("_EmissionColor", new Color(1.5f, .62f, .26f));
+            window = Cube("Ventana final", new Vector3(0, 2.1f, 26.88f), new Vector3(5.5f, 2.15f, .08f), fireSky).transform;
             Target(window.gameObject, "window", "El cielo sigue ahí", "Acercarse");
             Cube("Marco ventana", new Vector3(0, 2.1f, 26.8f), new Vector3(.09f, 2.3f, .11f), black);
             Cube("Marco horizontal", new Vector3(0, 2.05f, 26.78f), new Vector3(5.6f, .09f, .11f), black);
             Cube("Alfeizar", new Vector3(0, 1.0f, 26.7f), new Vector3(5.8f, .06f, .3f), steel);
             var rng = new System.Random(7);
+            var lit = Mat("Ventanas encendidas", new Color(1, .7f, .35f), 0, true);
+            var flame = Mat("Fuego de la ciudad", new Color(1, .45f, .12f), 0, true);
             for (int i = 0; i < 26; i++)
             {
                 float w = .12f + (float)rng.NextDouble() * .22f, h = .15f + (float)rng.NextDouble() * (i % 5 == 0 ? 1.4f : .75f);
-                Cube("Ciudad en negativo", new Vector3(-2.65f + i * .21f, 1.03f + h / 2, 26.72f), new Vector3(w, h, .04f), black);
+                var bx = new Vector3(-2.65f + i * .21f, 1.03f + h / 2, 26.72f);
+                Cube("Ciudad en negativo", bx, new Vector3(w, h, .04f), black);
+                for (int k = 0; k < (int)(h * 10); k++)
+                    if (rng.NextDouble() < .3f)
+                    {
+                        var win = Cube("Ciudad ventana", bx + new Vector3(((float)rng.NextDouble() - .5f) * w * .7f, -h / 2 + .06f + k * .1f, -.025f), new Vector3(.018f, .025f, .005f), lit);
+                        Destroy(win.GetComponent<Collider>());
+                    }
+                if (rng.NextDouble() < .45f)
+                    for (int k = 0; k < 4; k++)   // tongues of fire on the roof, each flickering on its own
+                    {
+                        var f = Cube("Ciudad fuego", bx + new Vector3((k - 1.5f) * w * .22f, h / 2 + .04f, -.03f), new Vector3(w * .12f, .08f, .01f), flame);
+                        f.transform.rotation = Quaternion.Euler(0, 0, ((float)rng.NextDouble() - .5f) * 20);
+                        Destroy(f.GetComponent<Collider>()); cityFires.Add(f.transform);
+                    }
             }
             foreach (Transform t in transform)
                 if (t.name.StartsWith("Ventana") || t.name.StartsWith("Ciudad") || t.name.StartsWith("Marco"))
                     t.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             // Cold light from the window (inside the room, the window is a lit plane): it carves the man on the bed.
-            Aim("Cielo", new Vector3(.6f, 2.6f, 26.3f), new Vector3(2.78f, 1.0f, 22.7f), 40, 4.2f, 10, new Color(.5f, .68f, 1));
+            Aim("Cielo", new Vector3(.6f, 2.6f, 26.3f), new Vector3(2.78f, 1.0f, 22.7f), 40, 4.2f, 10, new Color(1, .45f, .2f));
+            fireGlow = new GameObject("Resplandor del incendio").AddComponent<Light>(); fireGlow.transform.SetParent(transform);
+            fireGlow.transform.position = new Vector3(0, 2.1f, 26.3f); fireGlow.type = LightType.Point; fireGlow.range = 9; fireGlow.color = new Color(1, .42f, .15f); fireGlow.shadows = LightShadows.Soft;
+            // The city is heard, too: screams, shots and laughter far away, louder the closer you stand (Tools/city_sound.py).
+            var city = window.gameObject.AddComponent<AudioSource>(); city.clip = Resources.Load<AudioClip>("Sounds/ciudad");
+            city.loop = true; city.spatialBlend = 1; city.rolloffMode = AudioRolloffMode.Logarithmic; city.minDistance = 1.2f; city.maxDistance = 18; city.volume = .9f;
+            if (city.clip) city.Play();
             Aim("Relleno sala", new Vector3(-1.5f, 3.2f, 20.5f), new Vector3(2.6f, .9f, 22.7f), 36, 1.3f, 9, new Color(1, .4f, .25f));
         }
 
@@ -449,15 +482,44 @@ namespace LosQueQuedan
 
         void Update()
         {
+            AnimateCity();
             if (anomaly && seam) seam.localScale = new Vector3(1 + Mathf.Sin(Time.time * .65f) * .18f, 1, 1);
             // One tired tube in the corridor: mostly steady, with short irregular drop-outs.
-            float power=powerFailed?.08f:1f;
+            float power=powerFailed?.08f:restored?1.6f:1f;
             if (emergency) emergency.intensity = power*(reducedDisturbance?.8f:2.2f * Mathf.Pow(Mathf.Max(0, Mathf.Sin(Time.time * 2.4f)), 3));
             if (flicker)
             {
                 float n = Mathf.PerlinNoise(Time.time * 2.3f, 0);
-                flicker.intensity = power*(reducedDisturbance?.6f:n > .72f ? .1f + Mathf.PerlinNoise(Time.time * 40, 1) * .3f : .6f);
+                flicker.intensity = power*(reducedDisturbance||restored?.6f:n > .72f ? .1f + Mathf.PerlinNoise(Time.time * 40, 1) * .3f : .6f);
             }
+        }
+        Material fireSky; Light fireGlow; float nextBlast, blast;
+        readonly List<Transform> cityFires = new List<Transform>();
+        // The fire sky: dark at the top, glowing at the horizon, with smoke. It scrolls upward so the smoke rises.
+        Texture2D FireTexture()
+        {
+            const int w = 256, h = 128; var t = new Texture2D(w, h, TextureFormat.RGB24, true) { wrapMode = TextureWrapMode.Repeat };
+            for (int y = 0; y < h; y++)
+                for (int x = 0; x < w; x++)
+                {
+                    float v = y / (float)h, n = Mathf.PerlinNoise(x * .035f, y * .05f) * .7f + Mathf.PerlinNoise(x * .12f, y * .15f) * .3f;
+                    float glow = Mathf.Pow(1 - v, 2.2f), smoke = Mathf.SmoothStep(.35f, .75f, n);
+                    t.SetPixel(x, y, Color.Lerp(new Color(.9f, .35f, .08f), new Color(.08f, .02f, .02f), Mathf.Clamp01(v * 1.2f + smoke * .5f)) * (.25f + glow * .9f));
+                }
+            t.Apply(); return t;
+        }
+        void AnimateCity()
+        {
+            if (!fireSky) return;
+            fireSky.SetTextureOffset("_EmissionMap", new Vector2(Time.time * .004f, -Time.time * .02f));
+            for (int i = 0; i < cityFires.Count; i++)
+            {
+                var f = cityFires[i]; var s = f.localScale; s.y = .03f + Mathf.PerlinNoise(Time.time * 4.5f, i * 1.7f) * .16f; f.localScale = s;
+            }
+            // A distant blast now and then lights the whole room orange for a moment.
+            if (Time.time > nextBlast) { blast = 1; nextBlast = Time.time + Random.Range(6f, 16f); }
+            blast = Mathf.MoveTowards(blast, 0, Time.deltaTime * 1.8f);
+            if (fireGlow) fireGlow.intensity = (powerFailed ? .5f : 1) * (.7f + Mathf.PerlinNoise(Time.time * 2.2f, 5) * .9f + blast * 4);
         }
         public void RevealAnomaly() { anomaly = true; seam.gameObject.SetActive(true); }
         void OnDestroy()

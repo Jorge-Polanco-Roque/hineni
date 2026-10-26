@@ -46,7 +46,7 @@ namespace LosQueQuedan
 
         Material material;
         RenderTexture mean;
-        Texture2D world1, world2, ui1, ui2, ui;
+        Texture2D ui;
         byte[] cells;
         int uiCols, uiRows, worldCols, worldRows, matchable, glyphCount;
         Vector2Int cellPx, worldPx;   // interface cell (9x18 per scale) and the finer world cell (7x14 per scale)
@@ -62,12 +62,24 @@ namespace LosQueQuedan
             for (int i = 0; i < all.Length; i++) index[all[i]] = i;
             var preset = Resources.Load<TextAsset>("LookPreset");   // written by ArtDirector --tune
             if (preset) JsonUtility.FromJsonOverwrite(preset.text, this);
-            ui1 = LoadAtlas("AsciiAtlas1x"); ui2 = LoadAtlas("AsciiAtlas2x");
-            world1 = LoadAtlas("AsciiWorld1x"); world2 = LoadAtlas("AsciiWorldFine");   // Retina: 6x12 physical px, Meslo Bold
-            BuildShapes(world2, 6, 12);
             GetComponent<Camera>().depthTextureMode |= DepthTextureMode.DepthNormals;
             Layout();
         }
+
+        // Glyph atlases baked at several cell heights (Tools/BakeAsciiAtlas.swift, Meslo LG S): w = world (bold), u = interface.
+        static readonly int[] Sizes = { 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 36 };
+        readonly Dictionary<string, Texture2D> atlases = new Dictionary<string, Texture2D>();
+        Texture2D worldAtlas, uiAtlas;
+        int shapesFor;
+        [Tooltip("World grid rows the screen height is divided into; more rows = finer image.")] public float worldDensity = 165;
+        [Tooltip("Interface rows; the menu needs about 46.")] public float uiDensity = 48;
+        Texture2D Atlas(string family, int h)
+        {
+            string key = family + h;
+            if (!atlases.TryGetValue(key, out var t)) atlases[key] = t = LoadAtlas("Glyphs/" + key);
+            return t;
+        }
+        static int Snap(float h) { int best = Sizes[0]; foreach (var s in Sizes) if (s <= h) best = s; return best; }
 
         static Texture2D LoadAtlas(string name)
         {
@@ -95,6 +107,7 @@ namespace LosQueQuedan
                     }
                 for (int k = 0; k < 6; k++) { v[g, k] /= count[k]; peak = Mathf.Max(peak, v[g, k]); }
             }
+            shapeA.Clear(); shapeB.Clear();
             for (int g = 0; g < 96; g++)
             {
                 bool ok = g < matchable;
@@ -105,12 +118,17 @@ namespace LosQueQuedan
 
         void Layout()
         {
-            int k = Mathf.Max(1, Mathf.RoundToInt(Screen.height / 900f));
-            // On Retina the world grid uses the physical pixels: twice the cells, glyphs drawn natively sharp.
-            worldPx = k == 1 ? new Vector2Int(7, 14) : new Vector2Int(6 * k / 2, 12 * k / 2);
+            // Both grids follow the screen: the cell height is the screen divided into a target number of rows,
+            // snapped to a baked size, so a small window or a phone gets small glyphs instead of fewer, coarser ones.
+            int wh = Snap(Screen.height / worldDensity);
+            worldPx = new Vector2Int(wh / 2, wh);
             worldCols = Mathf.CeilToInt(Screen.width / (float)worldPx.x); worldRows = Mathf.CeilToInt(Screen.height / (float)worldPx.y);
-            k *= largeText ? 2 : 1;
-            cellPx = new Vector2Int(9 * k, 18 * k);
+            worldAtlas = Atlas("w", wh);
+            if (shapesFor != wh) { BuildShapes(worldAtlas, wh / 2, wh); shapesFor = wh; }
+            // The interface keeps about 48 rows and at least 104 columns (the menu and dialogues are laid out for that).
+            int uh = Snap(Mathf.Min(Screen.height / (largeText ? uiDensity * .6f : uiDensity), 2f * Screen.width / 104));
+            cellPx = new Vector2Int(uh / 2, uh);
+            uiAtlas = Atlas("u", uh);
             int c = Mathf.CeilToInt(Screen.width / (float)cellPx.x), r = Mathf.CeilToInt(Screen.height / (float)cellPx.y);
             Cols = Screen.width / cellPx.x; Rows = Screen.height / cellPx.y;
             if (c == uiCols && r == uiRows && ui) return;
@@ -186,8 +204,8 @@ namespace LosQueQuedan
             material.SetVector("_Glitch", new Vector4(glitch, Time.unscaledTime, heaven, 0));
             material.SetColor("_EngPaper", engravePaper); material.SetColor("_EngInk", engraveInk); material.SetColor("_EngBlood", engraveBlood);
             material.SetColor("_Ink", ink); material.SetColor("_Paper", paper); material.SetColor("_Accent", accent);
-            material.SetTexture("_Glyphs", worldPx.x == 7 ? world1 : world2);
-            material.SetTexture("_UIGlyphs", cellPx.x >= 18 ? ui2 : ui1);
+            material.SetTexture("_Glyphs", worldAtlas);
+            material.SetTexture("_UIGlyphs", uiAtlas);
             material.SetTexture("_UI", ui);
             if (!mean)
             {
@@ -214,6 +232,10 @@ namespace LosQueQuedan
             RenderTexture.ReleaseTemporary(grid);
         }
 
-        void OnDestroy() { foreach (var o in new Object[] { material, world1, world2, ui1, ui2, ui, Cells, mean }) if (o) Destroy(o); }
+        void OnDestroy()
+        {
+            foreach (var o in new Object[] { material, ui, Cells, mean }) if (o) Destroy(o);
+            foreach (var t in atlases.Values) if (t) Destroy(t);
+        }
     }
 }

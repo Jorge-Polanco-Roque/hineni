@@ -336,8 +336,9 @@ namespace LosQueQuedan
         void LateUpdate()
         {
             // Title screen: the sky is open and tilted so the angels fill the right half, beside the title panel.
-            if(heaven)heaven.menu=!started;
-            if(!started&&player)player.view.transform.rotation=Quaternion.LookRotation(new Vector3(.47f,.88f,0),Vector3.forward);
+            bool title=!started&&!HideInterface;   // automated captures run without the title screen
+            if(heaven)heaven.menu=title;
+            if(title&&player)player.view.transform.rotation=Quaternion.LookRotation(new Vector3(.47f,.88f,0),Vector3.forward);
             FaceCamera();DrawUI();
         }
         // During a conversation the view turns to the speaker's face and closes in: the face fills the frame.
@@ -418,7 +419,7 @@ namespace LosQueQuedan
         bool KeyPressed(int n)=>n>0&&n<10&&(Input.GetKeyDown(KeyCode.Alpha0+n)||Input.GetKeyDown(KeyCode.Keypad0+n));
         bool Button(int x,int y,int w,int key,string label,string value=null)
         {
-            var m=ink.Mouse;bool hover=m.y==y&&m.x>=x&&m.x<x+w;
+            var m=ink.Mouse;bool hover=(m.y==y||(Controls.Touch&&m.y==y+1))&&m.x>=x&&m.x<x+w;   // fingers get the empty row below too
             float b=hover?.95f:.86f;
             ink.Fill(x,y,w,1,hover?InkCamera.Inverted:InkCamera.Panel,.92f);
             if(key>0)T(x+2,y,key.ToString(),hover?b:.42f);
@@ -545,22 +546,29 @@ namespace LosQueQuedan
             int L=Mathf.Min(C,Mathf.Min(98,Mathf.Max(84,C/2)));   // the right side belongs to the angels
             ink.Fill(0,0,L,R+1,InkCamera.Panel);
             if(L<C)for(int y=0;y<=R;y++)T(L-1,y,"│",.16f);
-            T(6,3,"LOS ÚLTIMOS QUINCE MINUTOS",.5f);
-            T(6,4,new string('─',L-12),.2f);
-            Big(6,9,"HINENI",.95f);
-            T(6,19,"«Heme aquí.» Lo dijo Isaías cuando vio a los serafines. Isaías 6:8",.45f);
-            T(6,26,"Vuelves a abrir los ojos.",.88f);
-            T(6,27,"Al mundo le quedan quince minutos. Lo último que hagas decide cómo terminan.",.88f);
-            int key=1,y0=31;
+            // Vertical rhythm adapts to the rows available (a phone in landscape has about 48).
+            int top=Mathf.Clamp((R-48)/3,1,6);
+            T(6,top+1,"LOS ÚLTIMOS QUINCE MINUTOS",.5f);
+            T(6,top+2,new string('─',L-12),.2f);
+            Big(6,top+5,"HINENI",.95f);
+            T(6,top+14,"«Heme aquí.» Lo dijo Isaías cuando vio a los serafines. Isaías 6:8",.45f);
+            T(6,top+17,"Vuelves a abrir los ojos.",.88f);
+            T(6,top+18,"Al mundo le quedan quince minutos. Lo último que hagas decide cómo terminan.",.88f);
+            int key=1,y0=top+21,bw=Mathf.Min(52,L-10);
             if(gallery){DrawGallery(L,y0);return;}
-            if(Button(6,y0,52,key++,"Despertar"))Begin();
-            if(File.Exists(SavePath)&&Button(6,y0+2,52,key++,"Continuar el último despertar"))Load();
+            if(Button(6,y0,bw,key++,"Despertar"))Begin();
+            if(File.Exists(SavePath)&&Button(6,y0+2,bw,key++,"Continuar el último despertar"))Load();
             int seen=0;foreach(var e in Endings.All)if(Endings.Seen(e.id))seen++;
-            if(Button(6,y0+4,52,key++,"Finales",seen+" de "+Endings.All.Length+" vistos"))gallery=true;
-            if(Button(6,y0+6,52,key,"Salir"))Application.Quit();
-            T(6,R-5,"PROTOTIPO JUGABLE · 0.3",.4f);
-            T(6,R-4,"Hospitalización · muerte · fin del mundo",.3f);
-            T(6,R-3,"No hay combate. Leer y elegir detiene el reloj.",.3f);
+            if(Button(6,y0+4,bw,key++,"Finales",seen+" de "+Endings.All.Length+" vistos"))gallery=true;
+#if !UNITY_WEBGL
+            if(Button(6,y0+6,bw,key,"Salir"))Application.Quit();
+#endif
+            if(R-5>y0+9)
+            {
+                T(6,R-5,"PROTOTIPO JUGABLE · 0.3",.4f);
+                T(6,R-4,"Hospitalización · muerte · fin del mundo",.3f);
+                T(6,R-3,Controls.Touch?"Juega en horizontal. Leer y elegir detiene el reloj.":"No hay combate. Leer y elegir detiene el reloj.",.3f);
+            }
             if(L+30<C)
             {
                 ink.Frame(C-30,R-7,26,5,.3f);

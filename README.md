@@ -59,7 +59,7 @@ Usa auriculares: la música, las voces y la respiración del Testigo son posicio
 | Caminar | `W` `A` `S` `D` | Palanca izquierda |
 | Mirar | Ratón | Palanca derecha |
 | Usar / hablar | `E` | Botón **USAR** (aparece cuando hay algo delante) |
-| Linterna | `F` | **CONTROLES** → LINTERNA |
+| Linterna (empieza apagada) | `F` | **CONTROLES** → LINTERNA |
 | Respirar / contener el aliento | `Espacio` | Botón **RESPIRAR** / **CONTENER** |
 | Colgar el teléfono | `Q` | Botón **COLGAR** |
 | Pausa y opciones | `Esc` | **CONTROLES** → PAUSA |
@@ -112,8 +112,20 @@ Cada final tiene su propio tratamiento visual y se puede volver a ver desde **Fi
 <td><img src="Docs/media/05-pintada.jpg" alt="Pintada en sangre: EL VERBO SE HIZO CARNE"><br>Todo lo escrito en las paredes está escrito en sangre.</td>
 </tr>
 <tr>
+<td><img src="Docs/media/05c-testigo-rostro.jpg" alt="El Testigo: cara estirada, cuencas negras, lágrimas de sangre"><br>El Testigo. Habla al revés y llora sangre. Solo la luz y la mirada lo detienen.</td>
+<td><img src="Docs/media/11-ventana.jpg" alt="La ventana: la ciudad en llamas"><br>La ciudad arde. Cerca de la ventana se oyen gritos, disparos y risas.</td>
+</tr>
+<tr>
+<td><img src="Docs/media/10a-apagon.jpg" alt="El pasillo durante el apagón"><br>Apagón: solo la linterna.</td>
+<td><img src="Docs/media/10b-luz.jpg" alt="El pasillo con la corriente restaurada"><br>Con los tres interruptores en orden, el hospital vuelve a iluminarse.</td>
+</tr>
+<tr>
 <td><img src="Docs/media/07-esquina.jpg" alt="El hombre de la esquina, de espaldas"><br>«No mires el techo.»</td>
 <td><img src="Docs/media/08-cielo.jpg" alt="El cielo: ruedas con ojos y criaturas de seis alas"><br>Ruedas dentro de ruedas, cuatro rostros, seis alas, ojos que lloran sangre. Rezan en lenguas; los subtítulos son símbolos.</td>
+</tr>
+<tr>
+<td><img src="Docs/media/14-ines-b.jpg" alt="Inés llevándose una mano a la cara"><br>Nadie está quieto: cada personaje encadena gestos (manos, cara, nuca, abrazarse) con transiciones suaves.</td>
+<td><img src="Docs/media/16-vision.jpg" alt="Una visión de los ángeles en mitad del pasillo"><br>En los últimos cinco minutos el cielo aparece aunque no lo mires, anunciado por una campana. Los últimos quince segundos, campanas cada vez más rápidas.</td>
 </tr>
 </table>
 
@@ -125,9 +137,13 @@ Cada final tiene su propio tratamiento visual y se puede volver a ver desde **Fi
 
 **El cielo** (`Heaven.cs`) se construye por código: ofanim (anillos con ojos sobre ejes distintos), cuerpos con seis alas y cuatro rostros (hombre, león, buey, águila) en postura de oración, lágrimas de sangre que caen hacia el jugador, coro y lenguas procesadas. El cielo guarda su propio tiempo: al bajar la mirada se detiene y al volver sigue exactamente donde estaba.
 
+**Gestos.** `Uncanny.cs` resuelve los brazos con cinemática inversa de dos huesos: cada personaje tiene una postura de reposo (las manos en la pared, en las rodillas, rascando la esquina) y un repertorio de gestos que alterna con entradas y salidas suaves; al hablar, gesticula.
+
 **Personas.** Cinco personajes basados en los Universal Base Characters de Quaternius, vestidos, proporcionados y posados en Blender sin interfaz (`Tools/build_characters.py`), con *blend shapes* de parpadeo, miedo y grito. `Uncanny.cs` les da respiración, mirada repartida por la columna, temblor y susurros con límites anatómicos.
 
-**Voces.** 42 líneas generadas offline con [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) (`Tools/voices.py`): español con mezclas de estilo por personaje (mujer u hombre, edad, ritmo, tono), radio filtrada y lenguas angélicas a partir de sílabas inventadas, invertidas y con eco. Las acotaciones `[…]` quedan en el guion pero no se leen ni se muestran.
+**La ciudad.** El cielo de la ventana es una textura de fuego y humo que asciende, con llamas en los tejados, ventanas encendidas y explosiones que iluminan la sala. Su sonido (`Tools/city_sound.py`) mezcla fuego, disparos, gritos y risas de voces Kokoro deformadas y lejanas; sube al acercarse.
+
+**Voces.** 49 líneas generadas offline con [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) (`Tools/voices.py`): español con mezclas de estilo por personaje (mujer u hombre, edad, ritmo, tono), radio filtrada, el Testigo grabado al revés y lenguas angélicas a partir de sílabas inventadas, invertidas y con eco. Las acotaciones `[…]` quedan en el guion pero no se leen ni se muestran.
 
 **Validación automática.** El juego incluye sus propias pruebas, que se lanzan como argumentos del ejecutable: reglas de la amenaza, guardado, cada final, cada acto, la palanca de principio a fin, el cielo, la voz y una auditoría de escena que detecta objetos flotando, piezas que se atraviesan y pintadas tapadas por muebles.
 
@@ -157,6 +173,7 @@ $UNITY -batchmode -quit -projectPath . -buildTarget WebGL -executeMethod BuildDe
 | `--ending-qa <id>` | Fotografía un final (`quedarse`, `voz`, `velas`, `armario`, `ojos`, `juicio`) | `/tmp/spooky-layout-qa` |
 | `--acts-qa` · `--sky-qa` · `--touch-qa --touch` | Velas, cielo en partida real, interfaz táctil | `/tmp/spooky-layout-qa` |
 | `--press-kit` | Las capturas de este README | `/tmp/spooky-press` |
+| `index.html?qa=press` · `?qa=ending-<id>` · `?qa=tear` | Las mismas capturas en la versión web (la página las fotografía con Playwright) | consola `QA_SNAP` |
 
 ```bash
 Builds/macOS/Hineni.app/Contents/MacOS/Hineni --smoke-test

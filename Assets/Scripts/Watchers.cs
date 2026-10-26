@@ -105,3 +105,51 @@ namespace LosQueQuedan
         }
     }
 }
+
+namespace LosQueQuedan
+{
+    // Blood from the eyes: two runs down the face, following the head, and drops that let go and fall.
+    public sealed class Weeping : MonoBehaviour
+    {
+        readonly System.Collections.Generic.List<(Transform drop, Transform from, float speed, float phase)> drops = new System.Collections.Generic.List<(Transform, Transform, float, float)>();
+        public void Begin(Transform head, Vector3 eyesCentre, Transform body, Material blood, Material socket = null)
+        {
+            var right = body.right; var down = -body.up;
+            for (int s = -1; s <= 1; s += 2)
+            {
+                var eye = eyesCentre + right * s * .032f + body.forward * .012f;
+                if (socket)
+                {
+                    // Hollow, sunken eye: a dark oval over the eye, and the blood comes out of it.
+                    var hole = GameObject.CreatePrimitive(PrimitiveType.Sphere); Destroy(hole.GetComponent<Collider>());
+                    hole.GetComponent<Renderer>().sharedMaterial = socket;
+                    hole.transform.position = eye + body.forward * .01f; hole.transform.rotation = body.rotation;
+                    hole.transform.SetParent(head, true); hole.transform.localScale = Vector3.Scale(new Vector3(.046f, .042f, .016f), Inv(head.lossyScale));
+                }
+                var run = GameObject.CreatePrimitive(PrimitiveType.Cube); Destroy(run.GetComponent<Collider>());
+                run.GetComponent<Renderer>().sharedMaterial = blood;
+                run.transform.position = eye + down * .085f + body.forward * .006f; run.transform.rotation = body.rotation * Quaternion.Euler(0, 0, s * 6);
+                run.transform.SetParent(head, true); run.transform.localScale = Vector3.Scale(new Vector3(.014f, .16f, .007f), Inv(head.lossyScale));
+                var anchor = new GameObject("Lágrima").transform; anchor.position = eye + down * .16f; anchor.SetParent(head, true);
+                for (int k = 0; k < 3; k++)
+                {
+                    var d = GameObject.CreatePrimitive(PrimitiveType.Sphere); Destroy(d.GetComponent<Collider>());
+                    d.GetComponent<Renderer>().sharedMaterial = blood; d.transform.localScale = new Vector3(.012f, .03f, .012f);
+                    drops.Add((d.transform, anchor, .55f + k * .2f, k * .37f + s * .1f));
+                }
+            }
+        }
+        static Vector3 Inv(Vector3 v) => new Vector3(1 / v.x, 1 / v.y, 1 / v.z);
+        void Update()
+        {
+            foreach (var d in drops)
+            {
+                float t = Mathf.Repeat(Time.time * d.speed + d.phase, 1);
+                d.drop.position = d.from.position + Vector3.down * (t * t * 1.6f);   // they gather, then fall
+            }
+        }
+        void OnEnable() { foreach (var d in drops) if (d.drop) d.drop.gameObject.SetActive(true); }
+        void OnDisable() { foreach (var d in drops) if (d.drop) d.drop.gameObject.SetActive(false); }   // it leaves; so does its blood
+        void OnDestroy() { foreach (var d in drops) if (d.drop) Destroy(d.drop.gameObject); }
+    }
+}

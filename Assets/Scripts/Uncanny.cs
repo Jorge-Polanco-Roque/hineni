@@ -22,6 +22,14 @@ namespace LosQueQuedan
         public string[] lines = new string[0];
         public float whisperRadius = 3.4f;
         public bool Talking { get; set; }
+        // Arms: an idle repertoire played one gesture at a time with eased transitions, on top of an optional resting
+        // gesture held all the time (hands on a wall, hands on the knees). Solved with two-bone IK, so poses are reached
+        // from wherever the body is.
+        public enum Gesture { None, WringHands, TouchFace, ScratchNeck, HugSelf, LookAtHand, HandsOnWall, ScratchWall, Knees }
+        public Gesture restGesture = Gesture.None;
+        public Gesture[] repertoire = { Gesture.WringHands, Gesture.TouchFace, Gesture.ScratchNeck, Gesture.LookAtHand };
+        Gesture current; int gestureSide = 1; float gestureStart, gestureLength, nextGesture;
+        Transform handL, handR;
         [System.NonSerialized] public float talkUntil;   // a whispered line keeps the mouth moving
         public Transform Head => head;
 
@@ -43,7 +51,8 @@ namespace LosQueQuedan
             pelvis = Find("pelvis"); spine1 = Find("spine_01"); spine2 = Find("spine_02"); chest = Find("spine_03");
             neck = Find("neck_01"); head = Find("Head");
             clavL = Find("clavicle_l"); clavR = Find("clavicle_r"); armL = Find("upperarm_l"); armR = Find("upperarm_r");
-            foreL = Find("lowerarm_l"); foreR = Find("lowerarm_r");
+            foreL = Find("lowerarm_l"); foreR = Find("lowerarm_r"); handL = Find("hand_l"); handR = Find("hand_r");
+            nextGesture = Time.time + Random.Range(1f, 4f);
             chain = new[] { pelvis, spine1, spine2, chest, neck, head, clavL, clavR, armL, armR, foreL, foreR };
             rest = new Quaternion[chain.Length];
             for (int i = 0; i < chain.Length; i++) if (chain[i]) rest[i] = chain[i].localRotation;
@@ -52,6 +61,89 @@ namespace LosQueQuedan
             blinkIdx = Shapes("Parpadeo"); fearIdx = Shapes("Miedo"); screamIdx = Shapes("Grito");
             nextBlink = Time.time + Random.Range(.5f, 3f);
             nextLine = Time.time + Random.Range(2f, 5f);
+        }
+
+        // ---- arms
+        void Arms(float t)
+        {
+            if (!armL || !armR || !foreL || !foreR || !handL || !handR || !chest) return;
+            if (current == Gesture.None && Time.time > nextGesture && repertoire.Length > 0)
+            {
+                current = repertoire[Random.Range(0, repertoire.Length)]; gestureSide = Random.value < .5f ? -1 : 1;
+                gestureStart = Time.time; gestureLength = Random.Range(2.8f, 5.5f);
+            }
+            float g = 0;
+            if (current != Gesture.None)
+            {
+                float k = Time.time - gestureStart;
+                g = Mathf.SmoothStep(0, 1, Mathf.Min(k / .8f, (gestureLength - k) / .8f));
+                if (k > gestureLength) { current = Gesture.None; g = 0; nextGesture = Time.time + Random.Range(1.5f, 5f); }
+            }
+            bool talk = Talking || Time.time < talkUntil;
+            for (int side = -1; side <= 1; side += 2)
+            {
+                Transform upper = side < 0 ? armL : armR, lower = side < 0 ? foreL : foreR, hand = side < 0 ? handL : handR;
+                bool hasRest = Target(restGesture, side, t, out var restAt, out var restPole);
+                bool hasNow = Target(talk ? Gesture.LookAtHand : current, side, t, out var nowAt, out var nowPole, talk);
+                float w = talk ? .85f : g;
+                if (hasRest && hasNow) Reach(upper, lower, hand, Vector3.Lerp(restAt, nowAt, w), Vector3.Lerp(restPole, nowPole, w), 1);
+                else if (hasRest) Reach(upper, lower, hand, restAt, restPole, 1);
+                else if (hasNow) Reach(upper, lower, hand, nowAt, nowPole, w);
+            }
+        }
+
+        // Where a hand goes for a gesture (world space), and which way its elbow points.
+        bool Target(Gesture gesture, int side, float t, out Vector3 at, out Vector3 pole, bool talking = false)
+        {
+            Vector3 R = transform.right, F = transform.forward, U = Vector3.up;
+            Vector3 c = chest.position, hd = head ? head.position : c + U * .45f, nk = neck ? neck.position : c + U * .3f;
+            Vector3 hip = pelvis ? pelvis.position : c - U * .5f;
+            float s = side;
+            pole = R * s - U * .7f - F * .2f; at = default;
+            switch (gesture)
+            {
+                case Gesture.WringHands:
+                    at = c + F * .26f - U * .2f + R * s * .03f + R * s * .015f * Mathf.Sin(t * 5 + s) + U * .012f * Mathf.Sin(t * 3.1f); return true;
+                case Gesture.TouchFace:
+                    if (side != gestureSide) return false;
+                    at = hd + F * .1f + R * s * .07f - U * .05f + U * .008f * Mathf.Sin(t * 4); pole = R * s - U * .8f; return true;
+                case Gesture.ScratchNeck:
+                    if (side != gestureSide) return false;
+                    at = nk + R * s * .07f - F * .06f + U * (.03f + .015f * Mathf.Sin(t * 13)); pole = R * s + U * .4f - F * .2f; return true;
+                case Gesture.HugSelf:
+                    var other = side < 0 ? armR : armL;
+                    at = other.position + F * .1f - U * .07f - R * s * .02f; pole = F * .4f - U; return true;
+                case Gesture.LookAtHand:
+                    if (!talking && side != gestureSide) return false;
+                    at = c + F * .33f + R * s * (talking ? .17f : .1f) + U * (talking ? -.05f : .04f)
+                       + (talking ? U * .05f * Mathf.Sin(t * 3 + s * 1.7f) + R * .04f * Mathf.Sin(t * 2.2f + s) : Vector3.zero);
+                    if (talking && side == gestureSide) at -= U * .18f;   // one hand speaks, the other rests lower
+                    return true;
+                case Gesture.HandsOnWall:
+                    at = hd + F * .3f + R * s * .23f - U * (.06f + .03f * Mathf.Sin(t * .7f + s)); pole = R * s - U * .4f - F * .3f; return true;
+                case Gesture.ScratchWall:
+                    at = c + F * .34f + R * s * .17f + U * (.06f + .06f * Mathf.Sin(t * 5.5f + s * 2)); pole = R * s - U * .5f; return true;
+                case Gesture.Knees:
+                    at = hip + F * .3f + R * s * .11f + U * .06f + F * .03f * Mathf.Sin(t * 1.6f + s); pole = R * s * .6f - U * .2f + F * .3f; return true;
+            }
+            return false;
+        }
+
+        // Two-bone IK: shoulder-elbow-hand reaches a point with the elbow bent toward the pole, blended by weight.
+        static void Reach(Transform upper, Transform lower, Transform hand, Vector3 target, Vector3 pole, float weight)
+        {
+            if (weight <= .001f) return;
+            Quaternion u0 = upper.rotation, l0 = lower.rotation;
+            Vector3 s = upper.position;
+            float a = Vector3.Distance(s, lower.position), b = Vector3.Distance(lower.position, hand.position);
+            Vector3 to = target - s; float d = Mathf.Clamp(to.magnitude, Mathf.Abs(a - b) + .01f, a + b - .01f); Vector3 dir = to.normalized;
+            float cos = Mathf.Clamp((a * a + d * d - b * b) / (2 * a * d), -1, 1), sin = Mathf.Sqrt(1 - cos * cos);
+            Vector3 bend = Vector3.ProjectOnPlane(pole, dir); if (bend.sqrMagnitude < 1e-4f) bend = Vector3.ProjectOnPlane(Vector3.down, dir);
+            Vector3 elbow = s + dir * a * cos + bend.normalized * a * sin;
+            upper.rotation = Quaternion.FromToRotation(lower.position - s, elbow - s) * upper.rotation;
+            lower.rotation = Quaternion.FromToRotation(hand.position - lower.position, s + dir * d - lower.position) * lower.rotation;
+            upper.rotation = Quaternion.Slerp(u0, upper.rotation, weight);
+            lower.rotation = Quaternion.Slerp(l0, lower.rotation, weight);
         }
 
         Transform Find(string bone)
@@ -128,6 +220,8 @@ namespace LosQueQuedan
                 Turn(head, face, tilt + Noise(.17f, 7) * 2.5f * sway);
                 if (tremor > 0) head.rotation = Quaternion.Euler(Noise(9, 8) * tremor, Noise(11, 9) * tremor, Noise(7, 10) * tremor * .5f) * head.rotation;
             }
+
+            Arms(t);
 
             // Blinks: irregular, sometimes doubled; faster close than open.
             if (blinkEvery > 0 && Time.time > nextBlink)
