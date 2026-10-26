@@ -19,12 +19,12 @@ namespace LosQueQuedan
         [Serializable] class Entry { public string es, t; }
         [Serializable] class Table { public Entry[] items; }
 
-        // Defaults: English text, Japanese voices. Both are remembered; --lang / --voice override them (QA).
+        // Defaults: English text, Japanese voices. Both are remembered (".v2": choices saved before these defaults are dropped); --lang / --voice override them (QA).
         public static void Init()
         {
             if (ready) return;
             string text = "en", voice = "ja";
-            try { text = PlayerPrefs.GetString("lang", text); voice = PlayerPrefs.GetString("voice", voice); } catch { }
+            try { text = PlayerPrefs.GetString("lang.v2", text); voice = PlayerPrefs.GetString("voice.v2", voice); } catch { }
             var args = Environment.GetCommandLineArgs();
             int i = Array.IndexOf(args, "--lang"); if (i >= 0 && i + 1 < args.Length) text = args[i + 1];
             int j = Array.IndexOf(args, "--voice"); if (j >= 0 && j + 1 < args.Length) voice = args[j + 1];
@@ -40,12 +40,12 @@ namespace LosQueQuedan
         public static void Set(string code, bool save)
         {
             ready = true; Lang = code;
-            if (save) try { PlayerPrefs.SetString("lang", code); PlayerPrefs.Save(); } catch { }
+            if (save) try { PlayerPrefs.SetString("lang.v2", code); PlayerPrefs.Save(); } catch { }
         }
         public static void SetVoice(string code, bool save)
         {
             VoiceLang = code;
-            if (save) try { PlayerPrefs.SetString("voice", code); PlayerPrefs.Save(); } catch { }
+            if (save) try { PlayerPrefs.SetString("voice.v2", code); PlayerPrefs.Save(); } catch { }
         }
         static Dictionary<string, string> TableFor(string code)
         {

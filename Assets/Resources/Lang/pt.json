@@ -545,22 +545,6 @@
 "t": "Sair"
 },
 {
-"es": "PROTOTIPO JUGABLE · 0.3",
-"t": "PROTÓTIPO JOGÁVEL · 0.3"
-},
-{
-"es": "Hospitalización · muerte · fin del mundo",
-"t": "Hospitalização · morte · fim do mundo"
-},
-{
-"es": "Juega en horizontal. Leer y elegir detiene el reloj.",
-"t": "Jogue na horizontal. Ler e escolher para o relógio."
-},
-{
-"es": "No hay combate. Leer y elegir detiene el reloj.",
-"t": "Não há combate. Ler e escolher para o relógio."
-},
-{
 "es": "ANTES DEL JUICIO",
 "t": "ANTES DO JUÍZO"
 },
@@ -1055,6 +1039,10 @@
 {
 "es": "CUARENTA Y UNO.\nCUARENTA Y UNO.\nCUARENT",
 "t": "QUARENTA E UM.\nQUARENTA E UM.\nQUARENT"
+},
+{
+"es": "HAGAS LO QUE HAGAS,\nNO MIRES AL TECHO.",
+"t": "FAÇA O QUE FIZER,\nNÃO OLHE PARA O TETO."
 },
 {
 "es": "MÍRALO.\nLA LUZ LO SUJETA.",

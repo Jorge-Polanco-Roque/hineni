@@ -21,7 +21,7 @@ namespace LosQueQuedan
         // Before Inés speaks: the pale horse and the death that flees (Revelation 6:8, 9:6), quoted, read aloud, on black, until "Continue".
         const string PassageRef="APOCALIPSIS 6:8 · 9:6";
         const string Passage="Y miré, y he aquí un caballo amarillo: y el que estaba sentado sobre él tenía por nombre Muerte; y el infierno le seguía: y le fué dada potestad sobre la cuarta parte de la tierra, para matar con espada, con hambre, con mortandad, y con las bestias de la tierra.\nY en aquellos días buscarán los hombres la muerte, y no la hallarán; y desearán morir, y la muerte huirá de ellos.";
-        bool prologue;float prologueStart,nextBell;AudioSource bells;
+        bool prologue;float prologueStart;AudioSource bells;
         public float MasterVolume => volume;
         public HorrorDirector horror;
         public Heaven heaven;
@@ -523,9 +523,10 @@ namespace LosQueQuedan
         void DrawPrologue(int C,int R)
         {
             float t=Time.unscaledTime-prologueStart;
-            // Bells far off behind the voice: irregular, some low, some cracked high.
-            if(!bells){bells=gameObject.AddComponent<AudioSource>();bells.spatialBlend=0;bells.clip=Heaven.Bell();}
-            if(Time.unscaledTime>nextBell){bells.pitch=UnityEngine.Random.value<.7f?UnityEngine.Random.Range(.42f,.6f):UnityEngine.Random.Range(.9f,1.1f);bells.PlayOneShot(bells.clip,.45f*volume);nextBell=Time.unscaledTime+UnityEngine.Random.Range(1.6f,4.2f);}
+            // Funeral bells under the voice, without pause (CC0 recording, Sounds/campanas, looped).
+            if(!bells){bells=gameObject.AddComponent<AudioSource>();bells.spatialBlend=0;bells.loop=true;bells.clip=Resources.Load<AudioClip>("Sounds/campanas");}
+            if(!bells.isPlaying)bells.Play();
+            bells.volume=volume*1.1f;
             ink.Fill(0,0,C,R+1,InkCamera.Panel);
             string head=Loc.T(PassageRef);
             int w=Mathf.Min(72,C-8),x0=Mathf.Max(2,(C-w)/2);
@@ -677,12 +678,7 @@ namespace LosQueQuedan
 #if !UNITY_WEBGL
             if(Button(6,y0+10,bw,key,"Salir"))Application.Quit();
 #endif
-            if(R-5>y0+13)
-            {
-                T(6,R-5,"PROTOTIPO JUGABLE · 0.3",.4f);
-                T(6,R-4,"Hospitalización · muerte · fin del mundo",.3f);
-                T(6,R-3,Controls.Touch?"Juega en horizontal. Leer y elegir detiene el reloj.":"No hay combate. Leer y elegir detiene el reloj.",.3f);
-            }
+            if(R-3>y0+13)T(6,R-3,"v0.3",.4f);
             if(L+30<C)
             {
                 ink.Frame(C-30,R-7,26,5,.3f);

@@ -545,22 +545,6 @@
 "t": "退出"
 },
 {
-"es": "PROTOTIPO JUGABLE · 0.3",
-"t": "可玩原型 · 0.3"
-},
-{
-"es": "Hospitalización · muerte · fin del mundo",
-"t": "住院 · 死亡 · 世界末日"
-},
-{
-"es": "Juega en horizontal. Leer y elegir detiene el reloj.",
-"t": "请横屏游玩。阅读和选择时时钟停止。"
-},
-{
-"es": "No hay combate. Leer y elegir detiene el reloj.",
-"t": "没有战斗。阅读和选择时时钟停止。"
-},
-{
 "es": "ANTES DEL JUICIO",
 "t": "审判之前"
 },
@@ -1055,6 +1039,10 @@
 {
 "es": "CUARENTA Y UNO.\nCUARENTA Y UNO.\nCUARENT",
 "t": "四十一。\n四十一。\n四十"
+},
+{
+"es": "HAGAS LO QUE HAGAS,\nNO MIRES AL TECHO.",
+"t": "无论如何，\n不要看天花板。"
 },
 {
 "es": "MÍRALO.\nLA LUZ LO SUJETA.",

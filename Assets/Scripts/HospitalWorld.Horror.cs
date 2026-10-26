@@ -61,6 +61,8 @@ namespace LosQueQuedan
             }
             BloodWriting("EL VERBO\nSE HIZO CARNE.\nLA CARNE\nSIGUE GRITANDO.",new Vector3(6.5f,2.2f,6.62f),Vector3.forward,5.4f,"graffiti-word","EL VERBO\nSE HIZO CARNE.\nTÚ LA HICISTE\nPEDAZOS.");
             BloodWriting("PADRE, NO CONTESTES\nCON MI VOZ.",new Vector3(6.5f,2.0f,13.38f),Vector3.back,4.7f,"graffiti-father","CUARENTA Y UNO.\nCUARENTA Y UNO.\nCUARENT");
+            // The first thing you see on waking: over the bed side of the door, facing the bed.
+            BloodWriting("HAGAS LO QUE HAGAS,\nNO MIRES AL TECHO.",new Vector3(3.1f,2.25f,4.88f),Vector3.back,3.2f,"graffiti-ceiling");
             BloodWriting("MÍRALO.\nLA LUZ LO SUJETA.",new Vector3(9.84f,1.7f,11.7f),Vector3.left,2.6f,"graffiti-gaze");
             Aim("Luz de altar",new Vector3(6.4f,3.1f,8.5f),new Vector3(8.2f,1.3f,10),45,3.7f,8,new Color(.9f,.65f,.4f));
             Aim("Pared de la palabra",new Vector3(5,2.9f,9),new Vector3(6.5f,2,6.6f),70,1.5f,7,new Color(.8f,.15f,.1f));

@@ -433,251 +433,235 @@
  },
  {
   "es": "Continuar",
-  "ctx": "DemoGame:572"
+  "ctx": "DemoGame:573"
  },
  {
   "es": "HINENI",
-  "ctx": "DemoGame:581"
+  "ctx": "DemoGame:582"
  },
  {
   "es": "HOSPITAL DEL UMBRAL",
-  "ctx": "DemoGame:581"
+  "ctx": "DemoGame:582"
  },
  {
   "es": "01 · Habla con Inés",
-  "ctx": "DemoGame:582"
+  "ctx": "DemoGame:583"
  },
  {
   "es": "Acompaña al hombre de la sala común",
-  "ctx": "DemoGame:582"
+  "ctx": "DemoGame:583"
  },
  {
   "es": "Mira por la ventana",
-  "ctx": "DemoGame:582"
+  "ctx": "DemoGame:583"
  },
  {
   "es": "En las manos: un vaso de agua",
-  "ctx": "DemoGame:585"
+  "ctx": "DemoGame:586"
  },
  {
   "es": "LO ESTÁS SUJETANDO CON LA LUZ. RETROCEDE.",
-  "ctx": "DemoGame:590"
- },
- {
-  "es": "LOS PASOS ESTÁN MÁS CERCA.",
   "ctx": "DemoGame:591"
  },
  {
+  "es": "LOS PASOS ESTÁN MÁS CERCA.",
+  "ctx": "DemoGame:592"
+ },
+ {
   "es": "DENTRO DEL ARMARIO · E PARA SALIR",
-  "ctx": "DemoGame:596"
+  "ctx": "DemoGame:597"
  },
  {
   "es": "ESTÁS AQUÍ   ·   E levantarte",
-  "ctx": "DemoGame:612"
+  "ctx": "DemoGame:613"
  },
  {
   "es": "WASD",
-  "ctx": "DemoGame:617"
+  "ctx": "DemoGame:618"
  },
  {
   "es": "caminar",
-  "ctx": "DemoGame:617"
+  "ctx": "DemoGame:618"
  },
  {
   "es": "RATÓN",
-  "ctx": "DemoGame:617"
+  "ctx": "DemoGame:618"
  },
  {
   "es": "mirar",
-  "ctx": "DemoGame:617"
+  "ctx": "DemoGame:618"
  },
  {
   "es": "interactuar",
-  "ctx": "DemoGame:617"
+  "ctx": "DemoGame:618"
  },
  {
   "es": "ESC",
-  "ctx": "DemoGame:617"
+  "ctx": "DemoGame:618"
  },
  {
   "es": "pausa",
-  "ctx": "DemoGame:617"
+  "ctx": "DemoGame:618"
  },
  {
   "es": "guardar",
-  "ctx": "DemoGame:617"
+  "ctx": "DemoGame:618"
  },
  {
   "es": "detenido",
-  "ctx": "DemoGame:632"
+  "ctx": "DemoGame:633"
  },
  {
   "es": "espacio · clic para continuar",
-  "ctx": "DemoGame:647"
+  "ctx": "DemoGame:648"
  },
  {
   "es": "El reloj se detiene mientras lees y eliges.",
-  "ctx": "DemoGame:650"
+  "ctx": "DemoGame:651"
  },
  {
   "es": "LOS ÚLTIMOS QUINCE MINUTOS",
-  "ctx": "DemoGame:659"
+  "ctx": "DemoGame:660"
  },
  {
   "es": "«Heme aquí.» Lo dijo Isaías cuando vio a los serafines. Isaías 6:8",
-  "ctx": "DemoGame:662"
- },
- {
-  "es": "Vuelves a abrir los ojos.",
   "ctx": "DemoGame:663"
  },
  {
-  "es": "Al mundo le quedan quince minutos. Lo último que hagas decide cómo terminan.",
+  "es": "Vuelves a abrir los ojos.",
   "ctx": "DemoGame:664"
  },
  {
-  "es": "Despertar",
-  "ctx": "DemoGame:667"
+  "es": "Al mundo le quedan quince minutos. Lo último que hagas decide cómo terminan.",
+  "ctx": "DemoGame:665"
  },
  {
-  "es": "Continuar el último despertar",
+  "es": "Despertar",
   "ctx": "DemoGame:668"
  },
  {
+  "es": "Continuar el último despertar",
+  "ctx": "DemoGame:669"
+ },
+ {
   "es": "Finales",
-  "ctx": "DemoGame:670"
+  "ctx": "DemoGame:671"
  },
  {
   "es": "{0} de {1} vistos",
-  "ctx": "DemoGame:670"
+  "ctx": "DemoGame:671"
  },
  {
   "es": "Texto",
-  "ctx": "DemoGame:674"
+  "ctx": "DemoGame:675"
  },
  {
   "es": "Voces",
-  "ctx": "DemoGame:676"
+  "ctx": "DemoGame:677"
  },
  {
   "es": "Salir",
-  "ctx": "DemoGame:678"
- },
- {
-  "es": "PROTOTIPO JUGABLE · 0.3",
-  "ctx": "DemoGame:682"
- },
- {
-  "es": "Hospitalización · muerte · fin del mundo",
-  "ctx": "DemoGame:683"
- },
- {
-  "es": "Juega en horizontal. Leer y elegir detiene el reloj.",
-  "ctx": "DemoGame:684"
- },
- {
-  "es": "No hay combate. Leer y elegir detiene el reloj.",
-  "ctx": "DemoGame:684"
+  "ctx": "DemoGame:679"
  },
  {
   "es": "ANTES DEL JUICIO",
-  "ctx": "DemoGame:690"
+  "ctx": "DemoGame:686"
  },
  {
   "es": "A TU RITMO",
-  "ctx": "DemoGame:697"
+  "ctx": "DemoGame:693"
  },
  {
   "es": "EL TIEMPO ESTÁ DETENIDO.",
-  "ctx": "DemoGame:697"
+  "ctx": "DemoGame:693"
  },
  {
   "es": "· tu ausencia no consume esta hora.",
-  "ctx": "DemoGame:699"
+  "ctx": "DemoGame:695"
  },
  {
   "es": "Sensibilidad del ratón",
-  "ctx": "DemoGame:703"
+  "ctx": "DemoGame:699"
  },
  {
   "es": "Volumen",
-  "ctx": "DemoGame:704"
+  "ctx": "DemoGame:700"
  },
  {
   "es": "Texto grande",
-  "ctx": "DemoGame:706"
+  "ctx": "DemoGame:702"
  },
  {
   "es": "sí",
-  "ctx": "DemoGame:706"
+  "ctx": "DemoGame:702"
  },
  {
   "es": "no",
-  "ctx": "DemoGame:706"
+  "ctx": "DemoGame:702"
  },
  {
   "es": "Mundo en ASCII",
-  "ctx": "DemoGame:707"
+  "ctx": "DemoGame:703"
  },
  {
   "es": "Invertir mirada vertical",
-  "ctx": "DemoGame:708"
+  "ctx": "DemoGame:704"
  },
  {
   "es": "Movimiento y parpadeos",
-  "ctx": "DemoGame:709"
+  "ctx": "DemoGame:705"
  },
  {
   "es": "reducidos",
-  "ctx": "DemoGame:709"
+  "ctx": "DemoGame:705"
  },
  {
   "es": "suaves",
-  "ctx": "DemoGame:709"
+  "ctx": "DemoGame:705"
  },
  {
   "es": "Volver",
-  "ctx": "DemoGame:710"
+  "ctx": "DemoGame:706"
  },
  {
   "es": "Opciones",
-  "ctx": "DemoGame:715"
+  "ctx": "DemoGame:711"
  },
  {
   "es": "Guardar partida",
-  "ctx": "DemoGame:716"
+  "ctx": "DemoGame:712"
  },
  {
   "es": "Volver al inicio",
-  "ctx": "DemoGame:717"
+  "ctx": "DemoGame:713"
  },
  {
   "es": "Guardar y salir",
-  "ctx": "DemoGame:718"
+  "ctx": "DemoGame:714"
  },
  {
   "es": "No hay una respuesta perfecta que desbloquear.",
-  "ctx": "DemoGame:719"
+  "ctx": "DemoGame:715"
  },
  {
   "es": "FINALES",
-  "ctx": "DemoGame:725"
+  "ctx": "DemoGame:721"
  },
  {
   "es": "visto",
-  "ctx": "DemoGame:730"
+  "ctx": "DemoGame:726"
  },
  {
   "es": "Alguien recibió un vaso de agua.",
-  "ctx": "DemoGame:746"
+  "ctx": "DemoGame:742"
  },
  {
   "es": "Lucía supo que estabas al otro lado.",
-  "ctx": "DemoGame:747"
+  "ctx": "DemoGame:743"
  },
  {
   "es": "Volver a los finales",
-  "ctx": "DemoGame:757"
+  "ctx": "DemoGame:753"
  },
  {
   "es": "Capilla · recupera el fusible del altar",
@@ -1076,179 +1060,183 @@
   "ctx": "HospitalWorld.Horror:63"
  },
  {
-  "es": "MÍRALO.\nLA LUZ LO SUJETA.",
-  "ctx": "HospitalWorld.Horror:64"
- },
- {
-  "es": "Luz de altar",
+  "es": "HAGAS LO QUE HAGAS,\nNO MIRES AL TECHO.",
   "ctx": "HospitalWorld.Horror:65"
  },
  {
-  "es": "Pared de la palabra",
+  "es": "MÍRALO.\nLA LUZ LO SUJETA.",
   "ctx": "HospitalWorld.Horror:66"
  },
  {
+  "es": "Luz de altar",
+  "ctx": "HospitalWorld.Horror:67"
+ },
+ {
+  "es": "Pared de la palabra",
+  "ctx": "HospitalWorld.Horror:68"
+ },
+ {
   "es": "Circuito de la sala común",
-  "ctx": "HospitalWorld.Horror:73"
+  "ctx": "HospitalWorld.Horror:75"
  },
  {
   "es": "Colocar fusible",
-  "ctx": "HospitalWorld.Horror:73"
+  "ctx": "HospitalWorld.Horror:75"
  },
  {
   "es": "Interruptor {0}",
-  "ctx": "HospitalWorld.Horror:78"
+  "ctx": "HospitalWorld.Horror:80"
  },
  {
   "es": "Accionar",
-  "ctx": "HospitalWorld.Horror:78"
+  "ctx": "HospitalWorld.Horror:80"
  },
  {
   "es": "TRES NEGACIONES.\nUN SOLO NOMBRE.\nDOS TESTIGOS.",
-  "ctx": "HospitalWorld.Horror:83"
+  "ctx": "HospitalWorld.Horror:85"
  },
  {
   "es": "EL SÉPTIMO DÍA\nNOS DEJÓ SOLOS.",
-  "ctx": "HospitalWorld.Horror:84"
+  "ctx": "HospitalWorld.Horror:86"
  },
  {
   "es": "EL SÉPTIMO DÍA\nTE DEJÓ LA PALANCA.",
-  "ctx": "HospitalWorld.Horror:84"
+  "ctx": "HospitalWorld.Horror:86"
  },
  {
   "es": "Armario de mantenimiento",
-  "ctx": "HospitalWorld.Horror:86"
- },
- {
-  "es": "Ocultarte / E para salir",
-  "ctx": "HospitalWorld.Horror:86"
- },
- {
-  "es": "Luz de cuadro",
   "ctx": "HospitalWorld.Horror:88"
  },
  {
+  "es": "Ocultarte / E para salir",
+  "ctx": "HospitalWorld.Horror:88"
+ },
+ {
+  "es": "Luz de cuadro",
+  "ctx": "HospitalWorld.Horror:90"
+ },
+ {
   "es": "NO FUE RESURRECCIÓN.\nALGO APRENDIÓ A MOVERLOS.",
-  "ctx": "HospitalWorld.Horror:89"
+  "ctx": "HospitalWorld.Horror:91"
  },
  {
   "es": "NO FUE RESURRECCIÓN.\nFUISTE TÚ.",
-  "ctx": "HospitalWorld.Horror:89"
+  "ctx": "HospitalWorld.Horror:91"
  },
  {
   "es": "EL TESTIGO",
-  "ctx": "HospitalWorld.Horror:94"
+  "ctx": "HospitalWorld.Horror:96"
  },
  {
   "es": ".riuges arap osimrep edip enrac aL",
   "forward": "La carne pide permiso para seguir.",
-  "ctx": "HospitalWorld.Horror:97 (EL TESTIGO, se muestra al revés)"
+  "ctx": "HospitalWorld.Horror:99 (EL TESTIGO, se muestra al revés)"
  },
  {
   "es": ".saímrod sartneim setneid sol étnoc eT",
   "forward": "Te conté los dientes mientras dormías.",
-  "ctx": "HospitalWorld.Horror:97 (EL TESTIGO, se muestra al revés)"
+  "ctx": "HospitalWorld.Horror:99 (EL TESTIGO, se muestra al revés)"
  },
  {
   "es": ".erbmon ut ed erbmah eneit oleic lE",
   "forward": "El cielo tiene hambre de tu nombre.",
-  "ctx": "HospitalWorld.Horror:97 (EL TESTIGO, se muestra al revés)"
+  "ctx": "HospitalWorld.Horror:99 (EL TESTIGO, se muestra al revés)"
  },
  {
   "es": ".ayut al írba aY .acob al erbA",
   "forward": "Abre la boca. Ya abrí la tuya.",
-  "ctx": "HospitalWorld.Horror:97 (EL TESTIGO, se muestra al revés)"
+  "ctx": "HospitalWorld.Horror:99 (EL TESTIGO, se muestra al revés)"
  },
  {
   "es": ".atreup anu se ,oremún nu se on onu y atnerauC",
   "forward": "Cuarenta y uno no es un número, es una puerta.",
-  "ctx": "HospitalWorld.Horror:97 (EL TESTIGO, se muestra al revés)"
+  "ctx": "HospitalWorld.Horror:99 (EL TESTIGO, se muestra al revés)"
  },
  {
   "es": ".abirra serim on euq ecid ámaM",
   "forward": "Mamá dice que no mires arriba.",
-  "ctx": "HospitalWorld.Horror:97 (EL TESTIGO, se muestra al revés)"
+  "ctx": "HospitalWorld.Horror:99 (EL TESTIGO, se muestra al revés)"
  },
  {
   "es": ".ómalcer al eidan y arac al noratiuq em reyA",
   "forward": "Ayer me quitaron la cara y nadie la reclamó.",
-  "ctx": "HospitalWorld.Horror:97 (EL TESTIGO, se muestra al revés)"
+  "ctx": "HospitalWorld.Horror:99 (EL TESTIGO, se muestra al revés)"
  },
  {
   "es": "Abrir / cerrar",
-  "ctx": "HospitalWorld.Horror:133"
+  "ctx": "HospitalWorld.Horror:135"
  },
  {
   "es": "Mirilla",
-  "ctx": "HospitalWorld.Horror:159"
+  "ctx": "HospitalWorld.Horror:161"
  },
  {
   "es": "Marco mirilla",
-  "ctx": "HospitalWorld.Horror:162"
+  "ctx": "HospitalWorld.Horror:164"
  },
  {
   "es": "Alambre",
-  "ctx": "HospitalWorld.Horror:165"
- },
- {
-  "es": "Barra",
   "ctx": "HospitalWorld.Horror:167"
  },
  {
-  "es": "Soporte",
-  "ctx": "HospitalWorld.Horror:168"
- },
- {
-  "es": "Zocalo de puerta",
+  "es": "Barra",
   "ctx": "HospitalWorld.Horror:169"
  },
  {
-  "es": "Junta",
+  "es": "Soporte",
+  "ctx": "HospitalWorld.Horror:170"
+ },
+ {
+  "es": "Zocalo de puerta",
   "ctx": "HospitalWorld.Horror:171"
  },
  {
+  "es": "Junta",
+  "ctx": "HospitalWorld.Horror:173"
+ },
+ {
   "es": "Chalkduster",
-  "ctx": "HospitalWorld.Horror:197"
+  "ctx": "HospitalWorld.Horror:199"
  },
  {
   "es": "Marker Felt",
-  "ctx": "HospitalWorld.Horror:197"
+  "ctx": "HospitalWorld.Horror:199"
  },
  {
   "es": "Arial",
-  "ctx": "HospitalWorld.Horror:197"
+  "ctx": "HospitalWorld.Horror:199"
  },
  {
   "es": "Leer la pintada",
-  "ctx": "HospitalWorld.Horror:232"
+  "ctx": "HospitalWorld.Horror:234"
  },
  {
   "es": "Lo oíste reventar. Contaba hasta cuarenta y uno.",
-  "ctx": "HospitalWorld.Horror:282"
+  "ctx": "HospitalWorld.Horror:284"
  },
  {
   "es": "Ahora nos mira con sus pedazos.",
-  "ctx": "HospitalWorld.Horror:282"
+  "ctx": "HospitalWorld.Horror:284"
  },
  {
   "es": "La palanca era para ver si bajabas la mano.",
-  "ctx": "HospitalWorld.Horror:282"
+  "ctx": "HospitalWorld.Horror:284"
  },
  {
   "es": "Una palanca roja, aparte del cuadro",
-  "ctx": "HospitalWorld.Horror:316"
- },
- {
-  "es": "Examinar",
-  "ctx": "HospitalWorld.Horror:316"
- },
- {
-  "es": "AQUÍ APOYABA\nLA FRENTE.",
   "ctx": "HospitalWorld.Horror:318"
  },
  {
+  "es": "Examinar",
+  "ctx": "HospitalWorld.Horror:318"
+ },
+ {
+  "es": "AQUÍ APOYABA\nLA FRENTE.",
+  "ctx": "HospitalWorld.Horror:320"
+ },
+ {
   "es": "Cerrar",
-  "ctx": "HospitalWorld.Horror:332"
+  "ctx": "HospitalWorld.Horror:334"
  },
  {
   "es": "Quedarse",

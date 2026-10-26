@@ -34,7 +34,7 @@ Despiertas de un coma. Te llamas Álex, llevas diecinueve días en el Hospital d
 
 <div align="center">
 <img src="Docs/media/00-prologo.jpg" alt="El prólogo: Apocalipsis 6:8 y 9:6 en rojo, sangrando, con desgarros" width="100%">
-<br><sub>Antes de despertar: el caballo amarillo y la muerte que huye (Apocalipsis 6:8 · 9:6), leídos por la voz más grave entre campanas, hasta que eliges continuar.</sub>
+<br><sub>Antes de despertar: el caballo amarillo y la muerte que huye (Apocalipsis 6:8 · 9:6), leídos por la voz más grave sobre campanas de funeral, hasta que eliges continuar.</sub>
 </div>
 
 ## Índice
@@ -237,6 +237,7 @@ Las pruebas nativas necesitan la pantalla encendida (con la pantalla apagada mac
 | Música «Mechanical Hum» | antm_ai (hecha con Suno) | Con permiso del autor |
 | Personajes base | [Quaternius · Universal Base Characters](https://quaternius.itch.io/universal-base-characters) | CC0 1.0 |
 | Utilería | [Poly Haven](https://polyhaven.com) | CC0 1.0 |
+| Campanas del prólogo | [«Kerkklokken begrafenis»](https://commons.wikimedia.org/wiki/File:Kerkklokken_begrafenis.ogg), Bert76 (Wikimedia Commons) | CC0 1.0 |
 | Voces | Generadas con [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) | Apache 2.0 |
 | Glifos | [Meslo LG](https://github.com/andreberg/Meslo-Font) (Nerd Font) | Apache 2.0 |
 | Pintadas (web) | [Rubik Wet Paint](https://github.com/NaN-xyz/Rubik-Filtered) | SIL OFL 1.1 |

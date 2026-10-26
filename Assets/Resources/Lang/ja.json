@@ -545,22 +545,6 @@
 "t": "終了"
 },
 {
-"es": "PROTOTIPO JUGABLE · 0.3",
-"t": "プレイアブル試作版 · 0.3"
-},
-{
-"es": "Hospitalización · muerte · fin del mundo",
-"t": "入院 · 死 · 世界の終わり"
-},
-{
-"es": "Juega en horizontal. Leer y elegir detiene el reloj.",
-"t": "横画面でプレイ。読む・選ぶ間は時計が止まる。"
-},
-{
-"es": "No hay combate. Leer y elegir detiene el reloj.",
-"t": "戦闘はない。読む・選ぶ間は時計が止まる。"
-},
-{
 "es": "ANTES DEL JUICIO",
 "t": "審判の前に"
 },
@@ -1055,6 +1039,10 @@
 {
 "es": "CUARENTA Y UNO.\nCUARENTA Y UNO.\nCUARENT",
 "t": "ヨンジュウイチ。\nヨンジュウイチ。\nヨンジュ"
+},
+{
+"es": "HAGAS LO QUE HAGAS,\nNO MIRES AL TECHO.",
+"t": "何があっても、\n天井を見るな。"
 },
 {
 "es": "MÍRALO.\nLA LUZ LO SUJETA.",

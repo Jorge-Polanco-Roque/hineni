@@ -469,7 +469,7 @@ namespace LosQueQuedan
 
         // ------------------------------------------------------------ sound
         // A large bronze bell: inharmonic partials (hum, prime, tierce, quint, nominal...) each with its own decay.
-        public static AudioClip Bell()
+        static AudioClip Bell()
         {
             const int rate = 22050; const float seconds = 5; var data = new float[(int)(rate * seconds)];
             float f0 = 164.8f;

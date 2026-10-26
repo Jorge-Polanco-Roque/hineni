@@ -545,22 +545,6 @@
 "t": "Quit"
 },
 {
-"es": "PROTOTIPO JUGABLE · 0.3",
-"t": "PLAYABLE PROTOTYPE · 0.3"
-},
-{
-"es": "Hospitalización · muerte · fin del mundo",
-"t": "Hospitalization · death · end of the world"
-},
-{
-"es": "Juega en horizontal. Leer y elegir detiene el reloj.",
-"t": "Play in landscape. Reading and choosing stop the clock."
-},
-{
-"es": "No hay combate. Leer y elegir detiene el reloj.",
-"t": "No combat. Reading and choosing stop the clock."
-},
-{
 "es": "ANTES DEL JUICIO",
 "t": "BEFORE THE JUDGMENT"
 },
@@ -1055,6 +1039,10 @@
 {
 "es": "CUARENTA Y UNO.\nCUARENTA Y UNO.\nCUARENT",
 "t": "FORTY-ONE.\nFORTY-ONE.\nFORTY-O"
+},
+{
+"es": "HAGAS LO QUE HAGAS,\nNO MIRES AL TECHO.",
+"t": "WHATEVER YOU DO,\nDON'T LOOK AT THE CEILING."
 },
 {
 "es": "MÍRALO.\nLA LUZ LO SUJETA.",
