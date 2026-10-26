@@ -191,7 +191,12 @@ namespace LosQueQuedan
             material.SetTexture("_UI", ui);
             if (!mean)
             {
-                mean = new RenderTexture(256, 128, 0, RenderTextureFormat.ARGBHalf) { useMipMap = true, autoGenerateMips = true, hideFlags = HideFlags.HideAndDontSave };
+                #if UNITY_WEBGL
+                var meanFormat = RenderTextureFormat.ARGB32;   // browsers cannot always build mip chains of half-float targets
+#else
+                var meanFormat = RenderTextureFormat.ARGBHalf;
+#endif
+                mean = new RenderTexture(256, 128, 0, meanFormat) { useMipMap = true, autoGenerateMips = true, hideFlags = HideFlags.HideAndDontSave };
                 mean.Create();
             }
             Graphics.Blit(source, mean);

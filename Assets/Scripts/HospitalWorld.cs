@@ -56,6 +56,10 @@ namespace LosQueQuedan
             RenderSettings.ambientLight = new Color(.035f, .04f, .042f);
             RenderSettings.fog = true; RenderSettings.fogColor = Color.black;
             RenderSettings.fogMode = FogMode.ExponentialSquared; RenderSettings.fogDensity = .065f;
+            // Same look on every platform: WebGL defaults to a lower quality level with only two per-pixel lights,
+            // which turns the flashlight and the spot keys into flat vertex light.
+            QualitySettings.SetQualityLevel(QualitySettings.names.Length - 1, true);
+            QualitySettings.pixelLightCount = Application.isMobilePlatform ? 5 : 8;
             QualitySettings.shadows = ShadowQuality.All;
             QualitySettings.shadowResolution = ShadowResolution.High;
             QualitySettings.shadowDistance = 30;
