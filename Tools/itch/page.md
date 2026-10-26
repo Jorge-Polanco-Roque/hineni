@@ -24,7 +24,7 @@
 | Average session | About 15 minutes |
 | Content warning (al inicio de la descripción) | Blood, death, religious imagery, flashing images |
 | Cover image | `Tools/itch/cover.png` (630 × 500) |
-| Screenshots | `Docs/media/00-prologo.jpg`, `08-cielo.jpg`, `05c-testigo-rostro.jpg`, `11-ventana.jpg`, `final-juicio.jpg` |
+| Screenshots | `Tools/itch/screenshots/` (9, en inglés) |
 
 ## Tema de la página (Edit theme)
 
