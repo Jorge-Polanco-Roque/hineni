@@ -118,7 +118,7 @@ namespace LosQueQuedan
             nurse = Character("Ines", new Vector3(.9f, 0, -.7f), -153, u =>
             {
                 u.displayName = "INÉS"; u.blinkEvery = 3.5f; u.follow = .85f; u.fearNear = .1f;
-                u.repertoire = new[] { Uncanny.Gesture.WringHands, Uncanny.Gesture.TouchFace, Uncanny.Gesture.LookAtHand, Uncanny.Gesture.ScratchNeck };
+                u.repertoire = new[] { Uncanny.Gesture.WringHands, Uncanny.Gesture.TouchFace, Uncanny.Gesture.LookAtHand }; u.talkWithHands = true;
                 u.lines = new[] { "Ya casi. Ya casi.", "Te cambié las sábanas aunque no estuvieras dentro.", "La hora también tiene fiebre." };
             });
             Target(nurse, "ines", "Inés · enfermera", "Hablar");
@@ -136,7 +136,7 @@ namespace LosQueQuedan
             {
                 u.displayName = "LA MUJER DE LA SILLA"; u.blinkEvery = 9; u.follow = 1; u.followLimit = 45; u.tilt = 9;
                 u.fear = .55f; u.fearNear = .3f; u.scream = .1f; u.rock = .5f; u.sway = .15f;
-                u.restGesture = Uncanny.Gesture.Knees; u.repertoire = new[] { Uncanny.Gesture.TouchFace, Uncanny.Gesture.WringHands, Uncanny.Gesture.HugSelf };
+
                 u.lines = new[] { "Mi hijo vuelve a las siete. Son las siete desde ayer.", "No parpadees. Si parpadeas, se acomodan.",
                                   "Tienes la cara de alguien que ya se fue.", "Empújame hacia la ventana. No. Hacia la otra ventana." };
             });
@@ -145,7 +145,7 @@ namespace LosQueQuedan
             var doctor = doctorNpc = Character("Doctor", new Vector3(-1.58f, 0, 11.7f), -90, u =>
             {
                 u.displayName = "EL MÉDICO"; u.blinkEvery = 5; u.knock = .35f; u.tremor = .5f;
-                u.restGesture = Uncanny.Gesture.HandsOnWall; u.repertoire = new[] { Uncanny.Gesture.ScratchNeck };
+
                 u.fear = .5f; u.scream = .2f; u.whisperRadius = 3.8f;
                 u.lines = new[] { "Cuarenta y uno. Cuarenta y uno. Cuarenta y uno.", "La pared está tibia. Alguien la respira desde el otro lado.",
                                   "Ya firmé su alta. Firmé la de todos. También la mía.", "No me mire la nuca. Ahí es donde se me olvida la cara." };
@@ -179,13 +179,13 @@ namespace LosQueQuedan
             patient = Character("Paciente", new Vector3(2.78f, .07f, 22.7f), -90, u =>
             {
                 u.displayName = "EL HOMBRE"; u.blinkEvery = 5; u.follow = .5f; u.rock = 2; u.tremor = .6f; u.fear = .25f; u.fearNear = .2f;
-                u.restGesture = Uncanny.Gesture.Knees; u.repertoire = new[] { Uncanny.Gesture.WringHands, Uncanny.Gesture.TouchFace, Uncanny.Gesture.HugSelf };
+
                 u.lines = new[] { "Las sábanas cuentan hacia atrás.", "Ella me peinó con la otra mano.", "¿Ya pasó? Huele a que ya pasó." };
             });
             var corner = Character("Esquina", new Vector3(-3.98f, 0, 25.98f), -45, u =>
             {
                 u.displayName = "EL HOMBRE DE LA ESQUINA"; u.blinkEvery = 8; u.follow = .6f; u.followLimit = 22; u.tremor = .6f; u.sway = .25f;
-                u.restGesture = Uncanny.Gesture.ScratchWall; u.repertoire = new[] { Uncanny.Gesture.HugSelf, Uncanny.Gesture.ScratchNeck };
+
                 u.fear = .9f; u.scream = .6f; u.whisperRadius = 4.5f;
                 u.lines = new[] { "Ya nos ha visto.", "Tiene nuestra letra. Escribe con nuestra letra.", "Si me doy la vuelta, la esquina se queda sola." };
             });

@@ -22,12 +22,11 @@ namespace LosQueQuedan
         public string[] lines = new string[0];
         public float whisperRadius = 3.4f;
         public bool Talking { get; set; }
-        // Arms: an idle repertoire played one gesture at a time with eased transitions, on top of an optional resting
-        // gesture held all the time (hands on a wall, hands on the knees). Solved with two-bone IK, so poses are reached
-        // from wherever the body is.
-        public enum Gesture { None, WringHands, TouchFace, ScratchNeck, HugSelf, LookAtHand, HandsOnWall, ScratchWall, Knees }
-        public Gesture restGesture = Gesture.None;
-        public Gesture[] repertoire = { Gesture.WringHands, Gesture.TouchFace, Gesture.ScratchNeck, Gesture.LookAtHand };
+        // Arms: an idle repertoire played one gesture at a time with slow eased transitions (two-bone IK), only for
+        // characters that opt in; everyone else keeps the authored pose plus breathing and drift.
+        public enum Gesture { None, WringHands, TouchFace, LookAtHand }
+        public Gesture[] repertoire = new Gesture[0];   // opt-in per character; seated or wall-facing people keep their pose
+        public bool talkWithHands;
         Gesture current; int gestureSide = 1; float gestureStart, gestureLength, nextGesture;
         Transform handL, handR;
         [System.NonSerialized] public float talkUntil;   // a whispered line keeps the mouth moving
@@ -76,19 +75,14 @@ namespace LosQueQuedan
             if (current != Gesture.None)
             {
                 float k = Time.time - gestureStart;
-                g = Mathf.SmoothStep(0, 1, Mathf.Min(k / .8f, (gestureLength - k) / .8f));
+                g = Mathf.SmoothStep(0, 1, Mathf.Min(k / 1.2f, (gestureLength - k) / 1.2f)) * .9f;   // slow in, slow out, never fully
                 if (k > gestureLength) { current = Gesture.None; g = 0; nextGesture = Time.time + Random.Range(1.5f, 5f); }
             }
-            bool talk = Talking || Time.time < talkUntil;
+            bool talk = talkWithHands && (Talking || Time.time < talkUntil);
             for (int side = -1; side <= 1; side += 2)
             {
                 Transform upper = side < 0 ? armL : armR, lower = side < 0 ? foreL : foreR, hand = side < 0 ? handL : handR;
-                bool hasRest = Target(restGesture, side, t, out var restAt, out var restPole);
-                bool hasNow = Target(talk ? Gesture.LookAtHand : current, side, t, out var nowAt, out var nowPole, talk);
-                float w = talk ? .85f : g;
-                if (hasRest && hasNow) Reach(upper, lower, hand, Vector3.Lerp(restAt, nowAt, w), Vector3.Lerp(restPole, nowPole, w), 1);
-                else if (hasRest) Reach(upper, lower, hand, restAt, restPole, 1);
-                else if (hasNow) Reach(upper, lower, hand, nowAt, nowPole, w);
+                if (Target(talk ? Gesture.LookAtHand : current, side, t, out var at, out var pole, talk)) Reach(upper, lower, hand, at, pole, talk ? .8f : g);
             }
         }
 
@@ -97,7 +91,6 @@ namespace LosQueQuedan
         {
             Vector3 R = transform.right, F = transform.forward, U = Vector3.up;
             Vector3 c = chest.position, hd = head ? head.position : c + U * .45f, nk = neck ? neck.position : c + U * .3f;
-            Vector3 hip = pelvis ? pelvis.position : c - U * .5f;
             float s = side;
             pole = R * s - U * .7f - F * .2f; at = default;
             switch (gesture)
@@ -107,24 +100,12 @@ namespace LosQueQuedan
                 case Gesture.TouchFace:
                     if (side != gestureSide) return false;
                     at = hd + F * .1f + R * s * .07f - U * .05f + U * .008f * Mathf.Sin(t * 4); pole = R * s - U * .8f; return true;
-                case Gesture.ScratchNeck:
-                    if (side != gestureSide) return false;
-                    at = nk + R * s * .07f - F * .06f + U * (.03f + .015f * Mathf.Sin(t * 13)); pole = R * s + U * .4f - F * .2f; return true;
-                case Gesture.HugSelf:
-                    var other = side < 0 ? armR : armL;
-                    at = other.position + F * .1f - U * .07f - R * s * .02f; pole = F * .4f - U; return true;
                 case Gesture.LookAtHand:
                     if (!talking && side != gestureSide) return false;
                     at = c + F * .33f + R * s * (talking ? .17f : .1f) + U * (talking ? -.05f : .04f)
                        + (talking ? U * .05f * Mathf.Sin(t * 3 + s * 1.7f) + R * .04f * Mathf.Sin(t * 2.2f + s) : Vector3.zero);
                     if (talking && side == gestureSide) at -= U * .18f;   // one hand speaks, the other rests lower
                     return true;
-                case Gesture.HandsOnWall:
-                    at = hd + F * .3f + R * s * .23f - U * (.06f + .03f * Mathf.Sin(t * .7f + s)); pole = R * s - U * .4f - F * .3f; return true;
-                case Gesture.ScratchWall:
-                    at = c + F * .34f + R * s * .17f + U * (.06f + .06f * Mathf.Sin(t * 5.5f + s * 2)); pole = R * s - U * .5f; return true;
-                case Gesture.Knees:
-                    at = hip + F * .3f + R * s * .11f + U * .06f + F * .03f * Mathf.Sin(t * 1.6f + s); pole = R * s * .6f - U * .2f + F * .3f; return true;
             }
             return false;
         }
@@ -135,6 +116,9 @@ namespace LosQueQuedan
             if (weight <= .001f) return;
             Quaternion u0 = upper.rotation, l0 = lower.rotation;
             Vector3 s = upper.position;
+            // Hands do not go through walls: if the way from the shoulder to the target is blocked, stop at the surface.
+            if (Physics.Linecast(s, target, out var hit, ~0, QueryTriggerInteraction.Ignore) && !hit.collider.transform.IsChildOf(upper.root))
+                target = hit.point - (target - s).normalized * .04f;
             float a = Vector3.Distance(s, lower.position), b = Vector3.Distance(lower.position, hand.position);
             Vector3 to = target - s; float d = Mathf.Clamp(to.magnitude, Mathf.Abs(a - b) + .01f, a + b - .01f); Vector3 dir = to.normalized;
             float cos = Mathf.Clamp((a * a + d * d - b * b) / (2 * a * d), -1, 1), sin = Mathf.Sqrt(1 - cos * cos);

@@ -43,7 +43,22 @@ namespace LosQueQuedan
                 Debug.Log("QA_TEAR_START"); yield return new WaitForSeconds(.4f);
                 typeof(FirstPerson).GetField("pitch", f).SetValue(g.player, -80f); yield break;
             }
-            if (arg != "press" && arg != "sky" && arg != "lever" && arg != "acts")
+            if (arg == "gestures")
+            {
+                // Raw (no ASCII) frames of people moving, to check arms for twisting or passing through walls.
+                var f = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
+                g.Begin(); typeof(DemoGame).GetMethod("StartWalking", f).Invoke(g, null); typeof(DemoGame).GetMethod("OpenWard", f).Invoke(g, null);
+                typeof(DemoGame).GetField("fade", f).SetValue(g, 0f); DemoGame.HideInterface = true; g.Ink.enabledEffect = false; g.horror.Data.lightOn = true;
+                var pitch = typeof(FirstPerson).GetField("pitch", f);
+                g.player.Teleport(new Vector3(.25f, .06f, -2.0f), 27); pitch.SetValue(g.player, 6f);
+                for (int i = 0; i < 12; i++) { yield return new WaitForSeconds(1.6f); Debug.Log("QA_SNAP g-ines-" + i.ToString("00")); }
+                g.player.Teleport(new Vector3(1.2f, .06f, 22.7f), 90); pitch.SetValue(g.player, 10f); yield return new WaitForSeconds(2); Debug.Log("QA_SNAP g-paciente");
+                g.player.Teleport(new Vector3(-.4f, .06f, 11.2f), -70); pitch.SetValue(g.player, 4f); yield return new WaitForSeconds(2); Debug.Log("QA_SNAP g-medico");
+                g.player.Teleport(new Vector3(-2.7f, .06f, 24.7f), -45); pitch.SetValue(g.player, 2f); yield return new WaitForSeconds(2); Debug.Log("QA_SNAP g-esquina");
+                g.player.Teleport(new Vector3(1.35f, .06f, 7.4f), 0); pitch.SetValue(g.player, 12f); yield return new WaitForSeconds(2); Debug.Log("QA_SNAP g-mujer");
+                yield return new WaitForSeconds(1.5f); Debug.Log("QA_SNAP g-done"); yield break;
+            }
+            if (arg != "press" && arg != "sky" && arg != "lever" && arg != "acts" && arg != "gestures")
             {
                 g.Begin(); yield return null; g.EndWith(arg); yield return new WaitForSeconds(11); Debug.Log("QA_SNAP ending-" + arg); yield break;
             }
