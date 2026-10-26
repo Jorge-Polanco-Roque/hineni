@@ -152,25 +152,27 @@ Cada final tiene su propio tratamiento visual y se puede volver a ver desde **Fi
 
 ## Cómo está hecho
 
-**Render ASCII por forma.** El mundo es una escena 3D normal; solo su imagen se convierte en caracteres (`Assets/Shaders/Ink.shader`, `InkCamera.cs`). Cada celda de 6×12 píxeles físicos se divide en 2×3 subregiones y se compara con el vector de forma de cada glifo del atlas (Meslo LG, horneado con `Tools/BakeAsciiAtlas.swift`); las celdas planas usan una rampa tonal. Los contornos salen de las discontinuidades de profundidad y normales; el color de cada glifo es el tono de la escena bajo él. La interfaz se dibuja en una rejilla de texto aparte, con los mismos glifos.
+**Render ASCII por forma.** El mundo es una escena 3D normal; solo su imagen se convierte en caracteres (`Assets/Shaders/Ink.shader`, `InkCamera.cs`). El tamaño de celda se ajusta a la pantalla (≈165 filas; 5×10 px físicos a pantalla completa, 4×8 en ventanas pequeñas y teléfonos). Cada celda se divide en 2×3 subregiones y se compara con el vector de forma de cada glifo del atlas (Meslo LG S, horneado en 13 tamaños con `Tools/BakeAsciiAtlas.swift`); las celdas planas usan una rampa tonal. Los contornos salen de las discontinuidades de profundidad y normales; el color de cada glifo es el tono de la escena bajo él. La interfaz se dibuja en una rejilla de texto aparte, con los mismos glifos.
 
 **Una sola tubería, varias paletas.** El mismo shader produce el grabado (tinta sobre papel hueso con la sangre en rojo), el fósforo verde, el ámbar, el pan de oro y el rojo del Juicio; un parámetro de desgarro desplaza bandas de filas, revuelve glifos e invierte la imagen durante unos fotogramas.
 
 **El cielo** (`Heaven.cs`) se construye por código: ofanim (anillos con ojos sobre ejes distintos), cuerpos con seis alas y cuatro rostros (hombre, león, buey, águila) en postura de oración, lágrimas de sangre que caen hacia el jugador, coro y lenguas procesadas. El cielo guarda su propio tiempo: al bajar la mirada se detiene y al volver sigue exactamente donde estaba.
 
-**Gestos.** `Uncanny.cs` resuelve los brazos con cinemática inversa de dos huesos: cada personaje tiene una postura de reposo (las manos en la pared, en las rodillas, rascando la esquina) y un repertorio de gestos que alterna con entradas y salidas suaves; al hablar, gesticula.
+**Gestos.** `Uncanny.cs` resuelve los brazos con cinemática inversa de dos huesos, solo para quien está de pie en una pose neutra (Inés): alterna gestos lentos y gesticula al hablar. Un rayo del hombro a la mano impide atravesar paredes. Los demás conservan su pose con respiración, balanceo y temblor.
 
 **Personas.** Cinco personajes basados en los Universal Base Characters de Quaternius, vestidos, proporcionados y posados en Blender sin interfaz (`Tools/build_characters.py`), con *blend shapes* de parpadeo, miedo y grito. `Uncanny.cs` les da respiración, mirada repartida por la columna, temblor y susurros con límites anatómicos.
 
 **La ciudad.** El cielo de la ventana es una textura de fuego y humo que asciende, con llamas en los tejados, ventanas encendidas y explosiones que iluminan la sala. Su sonido (`Tools/city_sound.py`) mezcla fuego, disparos, gritos y risas de voces Kokoro deformadas y lejanas; sube al acercarse.
 
-**Voces.** 49 líneas generadas offline con [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) (`Tools/voices.py`): español con mezclas de estilo por personaje (mujer u hombre, edad, ritmo, tono), radio filtrada, el Testigo grabado al revés y lenguas angélicas a partir de sílabas inventadas, invertidas y con eco. Las acotaciones `[…]` quedan en el guion pero no se leen ni se muestran.
+**Voces.** 50 líneas por idioma (cinco idiomas) generadas offline con [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) (`Tools/voices.py`): mezclas de estilo por personaje (mujer u hombre, edad, ritmo, tono), radio filtrada, el Testigo grabado al revés, el prólogo con la voz más grave y eco de nave, y lenguas angélicas a partir de sílabas inventadas. Chino y japonés pasan por [misaki](https://github.com/hexgrad/misaki). Las acotaciones `[…]` quedan en el guion pero no se leen ni se muestran.
+
+**Idiomas.** `Loc.cs` busca cada texto español en `Resources/Lang/<código>.json`; texto y voz tienen idioma propio. `Tools/i18n.py` extrae los textos del código, construye las tablas y lista los caracteres que necesitan los atlas.
 
 **Validación automática.** El juego incluye sus propias pruebas, que se lanzan como argumentos del ejecutable: reglas de la amenaza, guardado, cada final, cada acto, la palanca de principio a fin, el cielo, la voz y una auditoría de escena que detecta objetos flotando, piezas que se atraviesan y pintadas tapadas por muebles.
 
 ## Compilar y probar
 
-Requisitos: Unity **6000.4.0f1** (módulos macOS y WebGL). Opcional: Blender 5.1 para personajes y `~/.venvs/kokoro` (kokoro-onnx) para voces.
+Requisitos: Unity **6000.4.0f1** (módulos macOS y WebGL). Opcional: Blender 5.1 para personajes y `~/.venvs/kokoro` (kokoro-onnx, `misaki[zh,ja]`, `unidic-lite`, fonttools) para voces y fuentes.
 
 ```bash
 UNITY=/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/MacOS/Unity
@@ -181,8 +183,15 @@ $UNITY -batchmode -quit -projectPath . -executeMethod BuildDemo.Build -logFile b
 # Web → Builds/WebGL (la página publicada usa Tools/web/index.html)
 $UNITY -batchmode -quit -projectPath . -buildTarget WebGL -executeMethod BuildDemo.BuildWeb -logFile web.log
 
-# Voces (solo regenera las líneas que cambiaron)
+# Publicar la web en GitHub Pages (rama gh-pages, URLs con sello por despliegue)
+Tools/web/deploy.sh
+
+# Textos: extraer, construir tablas, caracteres para los atlas
+python3 Tools/i18n.py extract && python3 Tools/i18n.py build && python3 Tools/i18n.py chars && python3 Tools/i18n.py narrow
+
+# Voces de los cinco idiomas (solo regenera las líneas que cambiaron) · sonido de la ciudad
 ~/.venvs/kokoro/bin/python Tools/voices.py
+~/.venvs/kokoro/bin/python Tools/city_sound.py
 ```
 
 | Prueba | Qué comprueba | Salida |
@@ -193,30 +202,32 @@ $UNITY -batchmode -quit -projectPath . -buildTarget WebGL -executeMethod BuildDe
 | `--lever-qa` | La palanca 41 de principio a fin (14) | `/tmp/spooky-layout-qa/lever.txt` |
 | `--ending-qa <id>` | Fotografía un final (`quedarse`, `voz`, `velas`, `armario`, `ojos`, `juicio`) | `/tmp/spooky-layout-qa` |
 | `--acts-qa` · `--sky-qa` · `--touch-qa --touch` | Velas, cielo en partida real, interfaz táctil | `/tmp/spooky-layout-qa` |
-| `--press-kit` | Las capturas de este README | `/tmp/spooky-press` |
-| `index.html?qa=press` · `?qa=ending-<id>` · `?qa=tear` | Las mismas capturas en la versión web (la página las fotografía con Playwright) | consola `QA_SNAP` |
+| `--press-kit` | Las capturas de este README (prólogo incluido) | `/tmp/spooky-press` |
+| `--lang <código>` · `--voice <código>` | Cualquier prueba en otro idioma de texto o de voz | — |
+| `index.html?qa=press` · `?qa=ending-<id>` · `?qa=tear` · `?qa=gestures` | Las mismas capturas en la versión web (la página las fotografía con Playwright) | consola `QA_SNAP` |
 
 ```bash
 Builds/macOS/Hineni.app/Contents/MacOS/Hineni --smoke-test
 ```
 
-Las pruebas pausan el juego si otra ventana roba el foco: ejecútalas sin otra instancia abierta.
+Las pruebas nativas necesitan la pantalla encendida (con la pantalla apagada macOS no da fotogramas al juego) y sin otra instancia abierta.
 
 ## Estructura
 
 | Archivo | Responsabilidad |
 |---|---|
-| `DemoGame.cs` | Flujo de partida, diálogos, reloj, guardado, interfaz, menú y galería |
+| `DemoGame.cs` | Flujo de partida, prólogo, diálogos, reloj, guardado, interfaz, menú (texto y voces) y galería |
+| `Loc.cs` | Idiomas de texto y de voz, tablas de traducción, ancho de caracteres CJK |
 | `HospitalWorld*.cs` | Arquitectura procedural, utilería, personajes, luces, pintadas y sus variantes, palanca 41 |
 | `HorrorDirector.cs` | El Testigo (regla de luz y mirada), puzle eléctrico, armario, puertas |
 | `Acts.cs` · `Endings.cs` | Los cinco actos y sus minijuegos · la puesta en escena de los seis finales |
 | `Heaven.cs` | El cielo, el desgarro, las lenguas y sus subtítulos |
-| `Watchers.cs` | Ojos en la oscuridad, huellas de manos, desgarros esporádicos |
+| `Watchers.cs` | Ojos en la oscuridad, huellas de manos, desgarros esporádicos, lágrimas de sangre (`Weeping`) |
 | `Controls.cs` | Entrada unificada: teclado y ratón, palancas táctiles, botones, orientación |
 | `InkCamera.cs` · `Ink.shader` | El render ASCII y la rejilla de texto de la interfaz |
 | `Uncanny.cs` | Vida procedural de los personajes |
 | `LayoutAudit.cs` · `EndingAudit.cs` · `*Test.cs` | Validación automática |
-| `Tools/` | Atlas de glifos, personajes, utilería, voces, página web |
+| `Tools/` | Atlas de glifos (latino y CJK), personajes, utilería, traducciones (`i18n.py`, `i18n/`), voces, sonido de la ciudad, página web y despliegue |
 
 ## Créditos y licencias
 
