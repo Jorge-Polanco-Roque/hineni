@@ -9,7 +9,7 @@ namespace LosQueQuedan
     // The picture changes with it: dark ink on bone paper, like an engraving.
     public sealed class Heaven : MonoBehaviour
     {
-        const float Recede = 5, UpEnter = .85f, UpLeave = .7f, TearInTime = .35f, TearOutTime = .22f, Height = 15;
+        const float Recede = 1, MenuRecede = 14, UpEnter = .85f, UpLeave = .7f, TearInTime = .35f, TearOutTime = .22f, Height = 15;
         enum Phase { Earth, TearIn, Sky, TearOut }
         Phase phase;
         float clock, gazeUp;
@@ -161,7 +161,8 @@ namespace LosQueQuedan
             if (on)
             {
                 // The sky opens toward wherever you are looking, so they are always in front of you.
-                var c = cam.transform; root.SetPositionAndRotation(c.position + c.forward * Recede, Quaternion.FromToRotation(Vector3.up, c.forward));   // set back so the whole host fits the frame
+                var c = cam.transform; var axis = menu ? Vector3.Slerp(Vector3.up, new Vector3(.47f, .88f, 0).normalized, .2f) : c.forward;   // title: centred in the right half (DemoGame tilts the view to .47, .88)
+                root.SetPositionAndRotation(c.position + axis * (menu ? MenuRecede : Recede), Quaternion.FromToRotation(Vector3.up, axis));   // set back so the whole host fits the frame
                 if (facing)
                 {
                     // A vision: the hospital gone for an instant.
