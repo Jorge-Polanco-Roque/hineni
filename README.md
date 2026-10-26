@@ -33,8 +33,8 @@ Despiertas de un coma. Te llamas Álex, llevas diecinueve días en el Hospital d
 </div>
 
 <div align="center">
-<img src="Docs/media/00-prologo.jpg" alt="El prólogo: Apocalipsis 6:12–17 en rojo, sangrando, con desgarros" width="100%">
-<br><sub>Antes de despertar: el sexto sello (Apocalipsis 6:12–17), leído por la voz más grave, hasta que eliges continuar.</sub>
+<img src="Docs/media/00-prologo.jpg" alt="El prólogo: Apocalipsis 6:8 y 9:6 en rojo, sangrando, con desgarros" width="100%">
+<br><sub>Antes de despertar: el caballo amarillo y la muerte que huye (Apocalipsis 6:8 · 9:6), leídos por la voz más grave entre campanas, hasta que eliges continuar.</sub>
 </div>
 
 ## Índice
@@ -242,7 +242,7 @@ Las pruebas nativas necesitan la pantalla encendida (con la pantalla apagada mac
 | Pintadas (web) | [Rubik Wet Paint](https://github.com/NaN-xyz/Rubik-Filtered) | SIL OFL 1.1 |
 | Chino y japonés | Noto Sans SC/JP, Ma Shan Zheng, Yuji Syuku | SIL OFL 1.1 |
 | Fonemas chino/japonés | [misaki](https://github.com/hexgrad/misaki) (herramienta, no se distribuye) | Apache 2.0 |
-| Apocalipsis 6:12–17 | Reina-Valera 1909, King James, 和合本, 口語訳 (dominio público); Almeida Revista e Corrigida (cita breve, © SBB) | — |
+| Apocalipsis 6:8 · 9:6 | Reina-Valera 1909, King James, 和合本, 口語訳 (dominio público); Almeida Revista e Corrigida (cita breve, © SBB) | — |
 
 El código, el guion y los textos originales están bajo [licencia MIT](LICENSE). Los recursos de terceros conservan sus propias licencias (tabla de arriba), y la música se incluye con permiso de su autor. Detalle en [`Assets/Resources/THIRD_PARTY.txt`](Assets/Resources/THIRD_PARTY.txt). En macOS las pintadas usan la fuente del sistema Chalkduster, que no se distribuye.
 

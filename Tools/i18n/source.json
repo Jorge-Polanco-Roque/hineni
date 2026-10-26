@@ -1,10 +1,10 @@
 [
  {
-  "es": "APOCALIPSIS 6:12–17 · Reina-Valera 1909",
+  "es": "APOCALIPSIS 6:8 · 9:6",
   "ctx": "DemoGame:22"
  },
  {
-  "es": "12 Y miré cuando él abrió el sexto sello, y he aquí fué hecho un gran terremoto; y el sol se puso negro como un saco de cilicio, y la luna se puso toda como sangre;\n13 Y las estrellas del cielo cayeron sobre la tierra, como la higuera echa sus higos cuando es movida de gran viento.\n14 Y el cielo se apartó como un libro que es envuelto; y todo monte y las islas fueron movidas de sus lugares.\n15 Y los reyes de la tierra, y los príncipes, y los ricos, y los capitanes, y los fuertes, y todo siervo y todo libre, se escondieron en las cuevas y entre las peñas de los montes;\n16 Y decían á los montes y á las peñas: Caed sobre nosotros, y escondednos de la cara de aquél que está sentado sobre el trono, y de la ira del Cordero:\n17 Porque el gran día de su ira es venido; ¿y quién podrá estar firme?",
+  "es": "Y miré, y he aquí un caballo amarillo: y el que estaba sentado sobre él tenía por nombre Muerte; y el infierno le seguía: y le fué dada potestad sobre la cuarta parte de la tierra, para matar con espada, con hambre, con mortandad, y con las bestias de la tierra.\nY en aquellos días buscarán los hombres la muerte, y no la hallarán; y desearán morir, y la muerte huirá de ellos.",
   "ctx": "DemoGame:23"
  },
  {
@@ -433,251 +433,251 @@
  },
  {
   "es": "Continuar",
-  "ctx": "DemoGame:559"
- },
- {
-  "es": "HINENI",
-  "ctx": "DemoGame:568"
- },
- {
-  "es": "HOSPITAL DEL UMBRAL",
-  "ctx": "DemoGame:568"
- },
- {
-  "es": "01 · Habla con Inés",
-  "ctx": "DemoGame:569"
- },
- {
-  "es": "Acompaña al hombre de la sala común",
-  "ctx": "DemoGame:569"
- },
- {
-  "es": "Mira por la ventana",
-  "ctx": "DemoGame:569"
- },
- {
-  "es": "En las manos: un vaso de agua",
   "ctx": "DemoGame:572"
  },
  {
+  "es": "HINENI",
+  "ctx": "DemoGame:581"
+ },
+ {
+  "es": "HOSPITAL DEL UMBRAL",
+  "ctx": "DemoGame:581"
+ },
+ {
+  "es": "01 · Habla con Inés",
+  "ctx": "DemoGame:582"
+ },
+ {
+  "es": "Acompaña al hombre de la sala común",
+  "ctx": "DemoGame:582"
+ },
+ {
+  "es": "Mira por la ventana",
+  "ctx": "DemoGame:582"
+ },
+ {
+  "es": "En las manos: un vaso de agua",
+  "ctx": "DemoGame:585"
+ },
+ {
   "es": "LO ESTÁS SUJETANDO CON LA LUZ. RETROCEDE.",
-  "ctx": "DemoGame:577"
+  "ctx": "DemoGame:590"
  },
  {
   "es": "LOS PASOS ESTÁN MÁS CERCA.",
-  "ctx": "DemoGame:578"
+  "ctx": "DemoGame:591"
  },
  {
   "es": "DENTRO DEL ARMARIO · E PARA SALIR",
-  "ctx": "DemoGame:583"
+  "ctx": "DemoGame:596"
  },
  {
   "es": "ESTÁS AQUÍ   ·   E levantarte",
-  "ctx": "DemoGame:599"
+  "ctx": "DemoGame:612"
  },
  {
   "es": "WASD",
-  "ctx": "DemoGame:604"
+  "ctx": "DemoGame:617"
  },
  {
   "es": "caminar",
-  "ctx": "DemoGame:604"
+  "ctx": "DemoGame:617"
  },
  {
   "es": "RATÓN",
-  "ctx": "DemoGame:604"
+  "ctx": "DemoGame:617"
  },
  {
   "es": "mirar",
-  "ctx": "DemoGame:604"
+  "ctx": "DemoGame:617"
  },
  {
   "es": "interactuar",
-  "ctx": "DemoGame:604"
+  "ctx": "DemoGame:617"
  },
  {
   "es": "ESC",
-  "ctx": "DemoGame:604"
+  "ctx": "DemoGame:617"
  },
  {
   "es": "pausa",
-  "ctx": "DemoGame:604"
+  "ctx": "DemoGame:617"
  },
  {
   "es": "guardar",
-  "ctx": "DemoGame:604"
+  "ctx": "DemoGame:617"
  },
  {
   "es": "detenido",
-  "ctx": "DemoGame:619"
+  "ctx": "DemoGame:632"
  },
  {
   "es": "espacio · clic para continuar",
-  "ctx": "DemoGame:634"
+  "ctx": "DemoGame:647"
  },
  {
   "es": "El reloj se detiene mientras lees y eliges.",
-  "ctx": "DemoGame:637"
- },
- {
-  "es": "LOS ÚLTIMOS QUINCE MINUTOS",
-  "ctx": "DemoGame:646"
- },
- {
-  "es": "«Heme aquí.» Lo dijo Isaías cuando vio a los serafines. Isaías 6:8",
-  "ctx": "DemoGame:649"
- },
- {
-  "es": "Vuelves a abrir los ojos.",
   "ctx": "DemoGame:650"
  },
  {
-  "es": "Al mundo le quedan quince minutos. Lo último que hagas decide cómo terminan.",
-  "ctx": "DemoGame:651"
+  "es": "LOS ÚLTIMOS QUINCE MINUTOS",
+  "ctx": "DemoGame:659"
  },
  {
-  "es": "Despertar",
-  "ctx": "DemoGame:654"
+  "es": "«Heme aquí.» Lo dijo Isaías cuando vio a los serafines. Isaías 6:8",
+  "ctx": "DemoGame:662"
  },
  {
-  "es": "Continuar el último despertar",
-  "ctx": "DemoGame:655"
- },
- {
-  "es": "Finales",
-  "ctx": "DemoGame:657"
- },
- {
-  "es": "{0} de {1} vistos",
-  "ctx": "DemoGame:657"
- },
- {
-  "es": "Texto",
-  "ctx": "DemoGame:661"
- },
- {
-  "es": "Voces",
+  "es": "Vuelves a abrir los ojos.",
   "ctx": "DemoGame:663"
  },
  {
-  "es": "Salir",
-  "ctx": "DemoGame:665"
+  "es": "Al mundo le quedan quince minutos. Lo último que hagas decide cómo terminan.",
+  "ctx": "DemoGame:664"
  },
  {
-  "es": "PROTOTIPO JUGABLE · 0.3",
-  "ctx": "DemoGame:669"
+  "es": "Despertar",
+  "ctx": "DemoGame:667"
  },
  {
-  "es": "Hospitalización · muerte · fin del mundo",
+  "es": "Continuar el último despertar",
+  "ctx": "DemoGame:668"
+ },
+ {
+  "es": "Finales",
   "ctx": "DemoGame:670"
  },
  {
+  "es": "{0} de {1} vistos",
+  "ctx": "DemoGame:670"
+ },
+ {
+  "es": "Texto",
+  "ctx": "DemoGame:674"
+ },
+ {
+  "es": "Voces",
+  "ctx": "DemoGame:676"
+ },
+ {
+  "es": "Salir",
+  "ctx": "DemoGame:678"
+ },
+ {
+  "es": "PROTOTIPO JUGABLE · 0.3",
+  "ctx": "DemoGame:682"
+ },
+ {
+  "es": "Hospitalización · muerte · fin del mundo",
+  "ctx": "DemoGame:683"
+ },
+ {
   "es": "Juega en horizontal. Leer y elegir detiene el reloj.",
-  "ctx": "DemoGame:671"
+  "ctx": "DemoGame:684"
  },
  {
   "es": "No hay combate. Leer y elegir detiene el reloj.",
-  "ctx": "DemoGame:671"
+  "ctx": "DemoGame:684"
  },
  {
   "es": "ANTES DEL JUICIO",
-  "ctx": "DemoGame:677"
- },
- {
-  "es": "A TU RITMO",
-  "ctx": "DemoGame:684"
- },
- {
-  "es": "EL TIEMPO ESTÁ DETENIDO.",
-  "ctx": "DemoGame:684"
- },
- {
-  "es": "· tu ausencia no consume esta hora.",
-  "ctx": "DemoGame:686"
- },
- {
-  "es": "Sensibilidad del ratón",
   "ctx": "DemoGame:690"
  },
  {
-  "es": "Volumen",
-  "ctx": "DemoGame:691"
- },
- {
-  "es": "Texto grande",
-  "ctx": "DemoGame:693"
- },
- {
-  "es": "sí",
-  "ctx": "DemoGame:693"
- },
- {
-  "es": "no",
-  "ctx": "DemoGame:693"
- },
- {
-  "es": "Mundo en ASCII",
-  "ctx": "DemoGame:694"
- },
- {
-  "es": "Invertir mirada vertical",
-  "ctx": "DemoGame:695"
- },
- {
-  "es": "Movimiento y parpadeos",
-  "ctx": "DemoGame:696"
- },
- {
-  "es": "reducidos",
-  "ctx": "DemoGame:696"
- },
- {
-  "es": "suaves",
-  "ctx": "DemoGame:696"
- },
- {
-  "es": "Volver",
+  "es": "A TU RITMO",
   "ctx": "DemoGame:697"
  },
  {
-  "es": "Opciones",
-  "ctx": "DemoGame:702"
+  "es": "EL TIEMPO ESTÁ DETENIDO.",
+  "ctx": "DemoGame:697"
  },
  {
-  "es": "Guardar partida",
+  "es": "· tu ausencia no consume esta hora.",
+  "ctx": "DemoGame:699"
+ },
+ {
+  "es": "Sensibilidad del ratón",
   "ctx": "DemoGame:703"
  },
  {
-  "es": "Volver al inicio",
+  "es": "Volumen",
   "ctx": "DemoGame:704"
  },
  {
-  "es": "Guardar y salir",
-  "ctx": "DemoGame:705"
- },
- {
-  "es": "No hay una respuesta perfecta que desbloquear.",
+  "es": "Texto grande",
   "ctx": "DemoGame:706"
  },
  {
-  "es": "FINALES",
-  "ctx": "DemoGame:712"
+  "es": "sí",
+  "ctx": "DemoGame:706"
  },
  {
-  "es": "visto",
+  "es": "no",
+  "ctx": "DemoGame:706"
+ },
+ {
+  "es": "Mundo en ASCII",
+  "ctx": "DemoGame:707"
+ },
+ {
+  "es": "Invertir mirada vertical",
+  "ctx": "DemoGame:708"
+ },
+ {
+  "es": "Movimiento y parpadeos",
+  "ctx": "DemoGame:709"
+ },
+ {
+  "es": "reducidos",
+  "ctx": "DemoGame:709"
+ },
+ {
+  "es": "suaves",
+  "ctx": "DemoGame:709"
+ },
+ {
+  "es": "Volver",
+  "ctx": "DemoGame:710"
+ },
+ {
+  "es": "Opciones",
+  "ctx": "DemoGame:715"
+ },
+ {
+  "es": "Guardar partida",
+  "ctx": "DemoGame:716"
+ },
+ {
+  "es": "Volver al inicio",
   "ctx": "DemoGame:717"
  },
  {
+  "es": "Guardar y salir",
+  "ctx": "DemoGame:718"
+ },
+ {
+  "es": "No hay una respuesta perfecta que desbloquear.",
+  "ctx": "DemoGame:719"
+ },
+ {
+  "es": "FINALES",
+  "ctx": "DemoGame:725"
+ },
+ {
+  "es": "visto",
+  "ctx": "DemoGame:730"
+ },
+ {
   "es": "Alguien recibió un vaso de agua.",
-  "ctx": "DemoGame:733"
+  "ctx": "DemoGame:746"
  },
  {
   "es": "Lucía supo que estabas al otro lado.",
-  "ctx": "DemoGame:734"
+  "ctx": "DemoGame:747"
  },
  {
   "es": "Volver a los finales",
-  "ctx": "DemoGame:744"
+  "ctx": "DemoGame:757"
  },
  {
   "es": "Capilla · recupera el fusible del altar",

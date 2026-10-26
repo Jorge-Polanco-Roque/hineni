@@ -18,10 +18,10 @@ namespace LosQueQuedan
         public bool Started => started;
         public int Stage => stage;
         public bool SimulationActive => started&&!paused&&!DialogueOpen&&!ended&&!prologue;
-        // Before Inés speaks: the sixth seal (Revelation 6:12-17), quoted, read aloud, on black, until "Continue".
-        const string PassageRef="APOCALIPSIS 6:12–17 · Reina-Valera 1909";
-        const string Passage="12 Y miré cuando él abrió el sexto sello, y he aquí fué hecho un gran terremoto; y el sol se puso negro como un saco de cilicio, y la luna se puso toda como sangre;\n13 Y las estrellas del cielo cayeron sobre la tierra, como la higuera echa sus higos cuando es movida de gran viento.\n14 Y el cielo se apartó como un libro que es envuelto; y todo monte y las islas fueron movidas de sus lugares.\n15 Y los reyes de la tierra, y los príncipes, y los ricos, y los capitanes, y los fuertes, y todo siervo y todo libre, se escondieron en las cuevas y entre las peñas de los montes;\n16 Y decían á los montes y á las peñas: Caed sobre nosotros, y escondednos de la cara de aquél que está sentado sobre el trono, y de la ira del Cordero:\n17 Porque el gran día de su ira es venido; ¿y quién podrá estar firme?";
-        bool prologue;float prologueStart;
+        // Before Inés speaks: the pale horse and the death that flees (Revelation 6:8, 9:6), quoted, read aloud, on black, until "Continue".
+        const string PassageRef="APOCALIPSIS 6:8 · 9:6";
+        const string Passage="Y miré, y he aquí un caballo amarillo: y el que estaba sentado sobre él tenía por nombre Muerte; y el infierno le seguía: y le fué dada potestad sobre la cuarta parte de la tierra, para matar con espada, con hambre, con mortandad, y con las bestias de la tierra.\nY en aquellos días buscarán los hombres la muerte, y no la hallarán; y desearán morir, y la muerte huirá de ellos.";
+        bool prologue;float prologueStart,nextBell;AudioSource bells;
         public float MasterVolume => volume;
         public HorrorDirector horror;
         public Heaven heaven;
@@ -136,7 +136,7 @@ namespace LosQueQuedan
                 if(Controls.Down(KeyCode.E)&&player.Focus)Interact(player.Focus.actionId);
                 if(Input.GetKeyDown(KeyCode.F5))Save();
             }
-            float musicVolume=volume*(paused?.45f:1)*(heaven&&heaven.InSky?.3f:1)*(voice.isPlaying?.6f:1);effects.volume=volume;voice.volume=volume*1.6f;
+            float musicVolume=volume*(paused?.45f:1)*(heaven&&heaven.InSky?.3f:1)*(voice.isPlaying?.6f:1)*(prologue?0:1);effects.volume=volume;voice.volume=volume*1.6f;
             if(atmosphere.isPlaying)musicClock+=Time.unscaledDeltaTime;
             if(atmosphereNext&&atmosphere.clip.loadState==AudioDataLoadState.Loaded&&atmosphere.clip.length>MusicCrossfade*4&&atmosphere.clip.length-musicClock<=MusicCrossfade&&!atmosphereNext.isPlaying)
             {(atmosphere,atmosphereNext)=(atmosphereNext,atmosphere);atmosphere.Play();musicClock=0;}
@@ -283,7 +283,7 @@ namespace LosQueQuedan
         // Lines said under the breath arrive as subtitles; the speaker's mouth moves while they last.
         public void Whisper(Uncanny who,string text)
         {
-            if(!started||paused||ended)return;
+            if(!started||paused||ended||prologue)return;
             who.talkUntil=Time.time+2.6f;
             var clip=Voice(who.displayName,text);
             if(clip)
@@ -519,54 +519,62 @@ namespace LosQueQuedan
             Controls.Draw(ink,C,R);   // last: on a phone held upright it asks to be turned
         }
         // Black, red words bleeding downwards, the image tearing now and then. Leaves only through "Continue".
+        // One centred column: lines of a verse together, a blank row between verses (where the blood runs).
         void DrawPrologue(int C,int R)
         {
             float t=Time.unscaledTime-prologueStart;
-            ink.largeText=true;   // the passage in large letters (restored on Continue)
+            // Bells far off behind the voice: irregular, some low, some cracked high.
+            if(!bells){bells=gameObject.AddComponent<AudioSource>();bells.spatialBlend=0;bells.clip=Heaven.Bell();}
+            if(Time.unscaledTime>nextBell){bells.pitch=UnityEngine.Random.value<.7f?UnityEngine.Random.Range(.42f,.6f):UnityEngine.Random.Range(.9f,1.1f);bells.PlayOneShot(bells.clip,.45f*volume);nextBell=Time.unscaledTime+UnityEngine.Random.Range(1.6f,4.2f);}
             ink.Fill(0,0,C,R+1,InkCamera.Panel);
             string head=Loc.T(PassageRef);
-            int w=Mathf.Min(88,C-8),x0=Mathf.Max(2,(C-w)/2);
-            var lines=Wrap(Loc.T(Passage),w);
-            int y0=Mathf.Max(1,(R-(lines.Count*2+7))/2);
-            float pulse=Mathf.PerlinNoise(t*1.4f,3)>.7f?.3f+.5f*Mathf.PerlinNoise(t*11,1):.04f;
-            if(!reduceEffects)ink.glitch=pulse;
-            ink.Put(x0,y0,head,.5f+.2f*Mathf.PerlinNoise(t*3,7),true);
-            ink.Put(x0,y0+1,new string('─',Mathf.Min(w,Loc.W(head)+4)),.25f,true);
-            int left=Mathf.FloorToInt(t*34),total=0;
-            foreach(var l in lines)total+=l.Length;
-            bool typing=left<total;
-            if(typing&&(Input.GetMouseButtonDown(0)||Controls.Down(KeyCode.Space)||Input.GetKeyDown(KeyCode.Return))){prologueStart-=999;consumed=true;}
-            for(int i=0;i<lines.Count;i++)
+            int w=Mathf.Min(72,C-8),x0=Mathf.Max(2,(C-w)/2);
+            var rows=new System.Collections.Generic.List<(string text,bool lastOfVerse)>();
+            foreach(var verse in Loc.T(Passage).Split('\n'))
             {
-                string line=lines[i];int n=Mathf.Clamp(left,0,line.Length);left-=line.Length;if(n<=0)break;
-                int y=y0+3+i*2,shake=Hash(i,Mathf.FloorToInt(t*14))<pulse*.6f?Mathf.RoundToInt((Hash(i+9,Mathf.FloorToInt(t*14))-.5f)*6):0;
-                float flicker=.78f+.22f*Mathf.PerlinNoise(t*6,i);
-                // The ink runs: a faint copy of the line slides one row down, broken in places.
-                var ghost=line.Substring(0,n).ToCharArray();
-                for(int k=0;k<ghost.Length;k++)if(Hash(i*977+k,Mathf.FloorToInt(t*2))>.55f)ghost[k]=' ';
-                ink.Put(x0+shake,y+1,new string(ghost),.16f,true);
-                ink.Put(x0+shake,y,line.Substring(0,n),flicker,true);
-                // Blood runs from some letters: it starts once the letter is written and keeps growing, slowly.
-                float written=(t*34-(total-left-line.Length+0));
-                for(int k=0;k<n;k++)
-                {
-                    if(line[k]==' '||Hash(i*131+k,3)>.11f)continue;
-                    float age=Mathf.Max(0,(Time.unscaledTime-prologueStart)-(SumBefore(lines,i)+k)/34f);
-                    int max=i==lines.Count-1?2+Mathf.FloorToInt(Hash(k,i)*6):1+Mathf.FloorToInt(Hash(k,i+3)*1.6f);
-                    int len=Mathf.Min(max,Mathf.FloorToInt(age*(.25f+Hash(k,i+5)*.5f)));
-                    int cx=x0+shake+Loc.W(line.Substring(0,k));
-                    for(int d=1;d<=len;d++)ink.Put(cx,y+d,d==1?"▓":d==len?"░":"▒",.95f-.5f*d/(max+1f),true);
-                }
+                var wrapped=Wrap(verse,w);
+                for(int k=0;k<wrapped.Count;k++)rows.Add((wrapped[k],k==wrapped.Count-1));
             }
-            if(!typing&&t>1.5f)
+            int verses=0;foreach(var r in rows)if(r.lastOfVerse)verses++;
+            int height=3+rows.Count+verses-1+5,y0=Mathf.Max(1,(R-height)/2);
+            float pulse=Mathf.PerlinNoise(t*1.2f,3)>.76f?.18f+.3f*Mathf.PerlinNoise(t*11,1):0;
+            if(!reduceEffects)ink.glitch=pulse;
+            ink.Put(x0,y0,head,.6f,true);
+            ink.Put(x0,y0+1,new string('─',Mathf.Min(w,Loc.W(head))),.22f,true);
+            int total=0;foreach(var r in rows)total+=r.text.Length;
+            float chars=t*34;bool typing=chars<total;
+            if(typing&&(Input.GetMouseButtonDown(0)||Controls.Down(KeyCode.Space)||Input.GetKeyDown(KeyCode.Return))){prologueStart-=999;consumed=true;}
+            int y=y0+3,before=0;
+            for(int i=0;i<rows.Count;i++)
             {
-                int by=y0+3+lines.Count*2+4;
-                if(Button(x0,Mathf.Min(by,R-3),26,1,"Continuar")){prologue=false;voice.Stop();ink.glitch=0;ink.largeText=false;Lock();WakeUp();}
+                var (line,last)=rows[i];
+                int n=Mathf.Clamp(Mathf.FloorToInt(chars)-before,0,line.Length);
+                if(n>0)
+                {
+                    int shake=Hash(i,Mathf.FloorToInt(t*14))<pulse*.5f?(Hash(i+9,Mathf.FloorToInt(t*14))<.5f?-1:1):0;
+                    ink.Put(x0+shake,y,line.Substring(0,n),.82f+.18f*Mathf.PerlinNoise(t*5,i),true);
+                    // Blood runs from a few letters into the gap below a verse; the last verse bleeds longer.
+                    if(last)
+                        for(int k=0;k<n;k++)
+                        {
+                            if(line[k]==' '||Hash(i*131+k,3)>(i==rows.Count-1?.12f:.07f))continue;
+                            float age=t-(before+k)/34f;
+                            int max=i==rows.Count-1?1+Mathf.FloorToInt(Hash(k,i)*3):1;
+                            int len=Mathf.Min(max,Mathf.FloorToInt(age*(.3f+Hash(k,i+5)*.4f)));
+                            int cx=x0+Loc.W(line.Substring(0,k));
+                            for(int d=1;d<=len;d++)ink.Put(cx,y+d,d==len&&d>1?"·":"│",.7f-.35f*d/(max+1f),true);
+                        }
+                }
+                before+=line.Length;y+=last?2:1;
+            }
+            if(!typing&&t>1.2f)
+            {
+                string label=Loc.T("Continuar");int bw=Loc.W(label)+12;
+                if(Button((C-bw)/2,Mathf.Min(y+2,R-2),bw,1,"Continuar")){prologue=false;voice.Stop();if(bells)bells.Stop();ink.glitch=0;atmosphere.Stop();if(atmosphereNext)atmosphereNext.Stop();atmosphere.Play();musicClock=0;Lock();WakeUp();}
             }
         }
         static float Hash(int a,int b){unchecked{uint h=(uint)(a*73856093^b*19349663);h^=h>>13;h*=0x5bd1e995;h^=h>>15;return (h&0xffff)/65535f;}}
-        static int SumBefore(System.Collections.Generic.List<string> lines,int i){int s=0;for(int k=0;k<i;k++)s+=lines[k].Length;return s;}
-        void DrawHud(int C,int R)
+                void DrawHud(int C,int R)
         {
             string clock="T−"+ClockText();
             ink.Fill(0,0,C,2,InkCamera.Panel);
