@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
-using LosQueQuedan;
+using HINENI;
 
 public static class BuildDemo
 {
@@ -12,8 +12,8 @@ public static class BuildDemo
         Directory.CreateDirectory("Assets/Scenes");
         var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
         var root=new GameObject("Los que quedan");var game=root.AddComponent<DemoGame>();
-        game.inkShader=Shader.Find("Hidden/LosQueQuedan/Ink");
-        game.worldTextShader=Shader.Find("LosQueQuedan/WorldText");
+        game.inkShader=Shader.Find("Hidden/HINENI/Ink");
+        game.worldTextShader=Shader.Find("HINENI/WorldText");
         const string materialPath="Assets/Scenes/SurfaceTemplate.mat";
         var material=AssetDatabase.LoadAssetAtPath<Material>(materialPath);
         if(!material)
@@ -54,7 +54,7 @@ public static class BuildDemo
         PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
         PlayerSettings.runInBackground=false;
         PlayerSettings.SetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Standalone,ScriptingImplementation.Mono2x);
-        PlayerSettings.SetApplicationIdentifier(UnityEditor.Build.NamedBuildTarget.Standalone,"com.spookygamejam.losquequedan");
+        PlayerSettings.SetApplicationIdentifier(UnityEditor.Build.NamedBuildTarget.Standalone,"com.roqueio.hineni");
         QualitySettings.vSyncCount=1;QualitySettings.antiAliasing=2;
         AssetDatabase.SaveAssets();
         Debug.Log("SPOOKY_PREPARE_OK");

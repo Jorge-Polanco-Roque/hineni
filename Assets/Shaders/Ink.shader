@@ -1,4 +1,4 @@
-Shader "Hidden/LosQueQuedan/Ink"
+Shader "Hidden/HINENI/Ink"
 {
  // Everything on screen is a character cell. Pass 0 picks, per world cell, the glyph whose shape best matches
  // the image under it (2x3 sub-regions, contrast-enhanced), with geometry contours drawn in as strokes.

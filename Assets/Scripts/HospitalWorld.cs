@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // Builds the hospital at runtime: architecture is procedural, props and people are CC0 models
     // loaded from Resources (see Tools/fetch_props.py and Tools/build_characters.py).

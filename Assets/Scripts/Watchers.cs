@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // Small dread that never resolves: pairs of eyes in the dark that go out when light or a direct look finds them
     // (and open again somewhere else), bloody hands dragged along the corridor, and, now and then, the image tearing
@@ -106,7 +106,7 @@ namespace LosQueQuedan
     }
 }
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // Blood from the eyes: two runs down the face, following the head, and drops that let go and fall.
     public sealed class Weeping : MonoBehaviour

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // Art director: walks a shot list, measures every shot on the real ASCII grid against the rules in
     // Docs/DIRECCION_DE_ARTE.md, and writes a contact sheet and a report with concrete notes.

@@ -3,7 +3,7 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // --ending-qa <id>: plays one ending and photographs it; --acts-qa: lights the seven candles through real interactions.
     public sealed class EndingAudit : MonoBehaviour

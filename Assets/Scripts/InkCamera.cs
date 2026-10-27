@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // Full-screen ASCII pass plus the text grid the interface writes into.
     // The world stays a normal 3D scene; only its image becomes characters.

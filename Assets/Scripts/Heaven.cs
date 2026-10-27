@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // Looking straight up tears the image. For as long as the player keeps looking, there is no ceiling: the sky holds
     // what the old texts actually describe. Wheels within wheels, their rims full of eyes. Bodies with six wings and four

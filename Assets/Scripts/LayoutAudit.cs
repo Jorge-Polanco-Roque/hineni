@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // --layout-qa: checks the built hospital for floating objects, interpenetrating props and covered wall text,
     // and photographs every interactable and every wall message. Report: /tmp/spooky-layout-qa/report.txt

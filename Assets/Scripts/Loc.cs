@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // Languages. Spanish is the source: every visible string is written in Spanish in the code and looked up here
     // (Resources/Lang/<code>.json, built by Tools/i18n.py). A missing entry falls back to the Spanish text.

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     [RequireComponent(typeof(CharacterController))]
     public sealed class FirstPerson : MonoBehaviour

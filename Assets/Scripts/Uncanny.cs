@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // Procedural life for a character, kept inside anatomical limits so nothing reads as a puppet:
     // a gaze shared by spine, neck and head with damping; breathing that lifts chest and shoulders;

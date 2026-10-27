@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-namespace LosQueQuedan {
+namespace HINENI {
 public sealed class VisualAudit:MonoBehaviour {
  [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)] static void Boot(){if(Array.IndexOf(Environment.GetCommandLineArgs(),"--visual-qa")>=0){Application.runInBackground=true;new GameObject("Visual audit").AddComponent<VisualAudit>();}}
  readonly List<string> report=new List<string>();

@@ -1,4 +1,4 @@
-Shader "LosQueQuedan/WorldText"
+Shader "HINENI/WorldText"
 {
  Properties { _MainTex ("Font Atlas",2D)="white"{} }
  SubShader

@@ -3,7 +3,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     public sealed class DemoGame : MonoBehaviour
     {

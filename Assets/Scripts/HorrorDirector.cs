@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // The threat obeys one readable rule: light + direct sight hold it in place.
     // Dialogue/pause stop the simulation. Capture costs time, never inventory or puzzle progress.

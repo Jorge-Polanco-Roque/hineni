@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // One input layer for keyboard + mouse and for phones. On a phone (or as soon as the screen is touched) the game shows
     // two floating sticks — left half moves, right half looks — a contextual USE / BREATHE button, and a CONTROLES button

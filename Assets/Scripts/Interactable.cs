@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     public sealed class Interactable : MonoBehaviour
     {

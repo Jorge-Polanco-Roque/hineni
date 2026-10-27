@@ -5,7 +5,7 @@ using System.IO;
 using System.Reflection;
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     public sealed class HorrorPlaytest : MonoBehaviour
     {

@@ -5,7 +5,7 @@ using System.IO;
 using System.Reflection;
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // Explicit opt-in diagnostic. Never runs during an ordinary play session.
     public sealed class DemoSmokeTest : MonoBehaviour

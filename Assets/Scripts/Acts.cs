@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // The five last things a person can do in this hospital. Whichever one you finish is how the world ends for you.
     //  0 Quedarse  · breathe with the man until he no longer needs it (SPACE at the top of each breath)

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LosQueQuedan
+namespace HINENI
 {
     // Six ways the last fifteen minutes end. Each one stages the world once more and prints it differently:
     // amber embers, green phosphor, gold leaf, the slits of a cabinet, an engraving full of eyes, a red sky.
