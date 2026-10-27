@@ -1,0 +1,25 @@
+<h2>ROQUE.IO</h2>
+<p><em>Jorge Polanco · building a portfolio, one strange game at a time.</em></p>
+
+<hr>
+
+<blockquote><p>I'm on my way to becoming a <strong>game development engineer</strong>. This page is where that road gets documented: every project here is a step, shipped, finished and open to play.</p></blockquote>
+
+<h3>NOW</h3>
+<p><strong><a href="https://roqueio.itch.io/hineni">HINENI</a></strong> — the last fifteen minutes before the Judgment, in a hospital that kept working. A first-person horror game rendered entirely in ASCII. Six endings, five languages, every line voiced. Playable in the browser, on Windows, macOS and Linux.</p>
+
+<h3>WHAT I'M LEARNING BY BUILDING</h3>
+<ul>
+  <li><strong>Engines &amp; code:</strong> Unity and C#, gameplay systems, state and save data, cross-platform builds (desktop, WebGL, mobile).</li>
+  <li><strong>Rendering:</strong> custom shaders and post-processing, an ASCII renderer that matches characters by shape, procedural skies and effects.</li>
+  <li><strong>Worlds:</strong> procedural level construction, character rigging and inverse kinematics, lighting for atmosphere.</li>
+  <li><strong>Sound &amp; voice:</strong> dialogue pipelines with text-to-speech, spatial audio, adaptive ambience.</li>
+  <li><strong>Shipping:</strong> localization, automated tests and screenshot pipelines, publishing and updates.</li>
+</ul>
+
+<h3>NEXT</h3>
+<p>More small games, each one testing something I don't know how to do yet. Follow along if you like seeing a portfolio grow in public.</p>
+
+<hr>
+
+<p>Source code: <a href="https://github.com/Jorge-Polanco-Roque">github.com/Jorge-Polanco-Roque</a></p>
