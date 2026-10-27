@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0b0c0d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ctext y=%2213%22 font-size=%2214%22 fill=%22%23c2362c%22%3E%E2%97%8B%3C/text%3E%3C/svg%3E">
+<title>HINENI — los últimos quince minutos</title>
+<meta name="description" content="Terror filosófico en ASCII: los últimos quince minutos antes del Juicio, en un hospital que sigue atendiendo pacientes.">
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0c0d; color: #d9d5c9; overflow: hidden;
+    font: 14px/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace; -webkit-user-select: none; user-select: none; }
+  canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; display: block; outline: none; touch-action: none; }
+  #veil { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+    background: #0b0c0d; text-align: center; padding: 24px; transition: opacity .8s; }
+  h1 { margin: 0; font-size: clamp(36px, 8vw, 72px); letter-spacing: .32em; font-weight: 700; padding-left: .32em; }
+  .verse { color: #8d887c; }
+  .bar { width: min(420px, 70vw); height: 2px; background: #24262a; }
+  .bar i { display: block; height: 100%; width: 0; background: #c2362c; transition: width .2s; }
+  .hint { color: #6d6a62; max-width: 560px; }
+  .red { color: #c2362c; }
+  #turn { display: none; position: fixed; inset: 0; background: #0b0c0d; align-items: center; justify-content: center; text-align: center; z-index: 9; }
+  @media (orientation: portrait) and (pointer: coarse) { #turn { display: flex; } }
+</style>
+</head>
+<body>
+<canvas id="unity-canvas" tabindex="-1"></canvas>
+<div id="veil">
+  <h1>HINENI</h1>
+  <div class="verse">«Heme aquí.» — Isaías 6:8</div>
+  <div class="bar"><i id="progress"></i></div>
+  <div class="hint" id="status">Cargando ~70 MB · usa auriculares · haz clic en el juego para capturar el ratón</div>
+</div>
+<div id="turn"><div><div class="red">GIRA EL TELÉFONO</div><div class="verse">HINENI se juega en horizontal</div></div></div>
+<script src="Build/WebGL.loader.js?v=20261026214348"></script>
+<script>
+  const mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Mac/.test(navigator.platform));
+  const canvas = document.querySelector("#unity-canvas");
+  const config = {
+    // Every deploy stamps its URLs, so a browser can never mix files from two different builds.
+    dataUrl: "Build/WebGL.data.unityweb?v=20261026214348", frameworkUrl: "Build/WebGL.framework.js.unityweb?v=20261026214348", codeUrl: "Build/WebGL.wasm.unityweb?v=20261026214348",
+    companyName: "SpookyGameJam", productName: "Hineni", productVersion: "0.3.0", autoSyncPersistentDataPath: true,
+    devicePixelRatio: mobile ? Math.min(window.devicePixelRatio, 1.5) : window.devicePixelRatio,   // phones: keep the frame rate
+  };
+  if (mobile) {
+    document.getElementById("status").textContent = "Cargando ~70 MB · juega en horizontal · dos palancas y el botón CONTROLES";
+    // First touch: go full screen and hold landscape where the browser allows it.
+    addEventListener("touchend", function once() {
+      removeEventListener("touchend", once);
+      const el = document.documentElement;
+      (el.requestFullscreen ? el.requestFullscreen() : Promise.resolve()).then(() => screen.orientation && screen.orientation.lock && screen.orientation.lock("landscape")).catch(() => {});
+    }, { passive: true });
+  }
+  createUnityInstance(canvas, config, p => document.getElementById("progress").style.width = (100 * p) + "%")
+    .then(() => { const v = document.getElementById("veil"); v.style.opacity = 0; setTimeout(() => v.remove(), 900); canvas.focus(); })
+    .catch(e => { document.getElementById("status").innerHTML = '<span class="red">No se pudo iniciar.</span> ' + e; });
+</script>
+</body>
+</html>
