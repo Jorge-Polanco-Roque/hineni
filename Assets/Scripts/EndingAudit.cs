@@ -105,6 +105,9 @@ namespace LosQueQuedan
                 g.Begin(); typeof(DemoGame).GetField("fade", f).SetValue(g, 0f); yield return new WaitForSeconds(5.5f); yield return Snap("02-ines");
                 Call("StartWalking"); typeof(DemoGame).GetField("toastTime", f).SetValue(g, 0f);
                 g.player.Teleport(new Vector3(.3f, .06f, 1.6f), 0); pitch.SetValue(g.player, 2f); yield return new WaitForSeconds(1.2f); yield return Snap("02b-puerta");
+                // The warning on the wall of the first room, facing it (store: the embed background).
+                g.player.Teleport(new Vector3(1.0f, .06f, 1.2f), 27); pitch.SetValue(g.player, -10f); yield return new WaitForSeconds(1.5f); yield return Snap("02c-techo");
+                g.player.Teleport(new Vector3(2.0f, .06f, 2.4f), 20); pitch.SetValue(g.player, -14f); yield return new WaitForSeconds(1.2f); yield return Snap("02d-techo-cerca");
                 Call("OpenWard"); typeof(DemoGame).GetField("toastTime", f).SetValue(g, 0f);
                 g.player.Teleport(new Vector3(.2f, .06f, 6.2f), 4); pitch.SetValue(g.player, 4f); yield return new WaitForSeconds(1.2f); yield return Snap("03-pasillo");
                 g.Interact("mujer"); yield return new WaitForSeconds(5); yield return Snap("04-mujer"); g.CloseDialog();
