@@ -16,8 +16,8 @@ sed "s/__BUILD__/$(date +%Y%m%d%H%M%S)/g" Tools/web/index.html > $OUT/web/index.
 (cd $OUT/web && zip -qr ../hineni-web.zip .)
 ditto -c -k --keepParent Builds/macOS/Hineni.app $OUT/Hineni-macOS.zip
 
-$BUTLER push $OUT/web "$USER_NAME/$GAME:html5" --userversion "$VERSION"
-$BUTLER push Builds/macOS "$USER_NAME/$GAME:osx" --userversion "$VERSION"
-$BUTLER push Builds/Windows "$USER_NAME/$GAME:windows" --userversion "$VERSION"
-$BUTLER push Builds/Linux "$USER_NAME/$GAME:linux" --userversion "$VERSION"
+$BUTLER push $OUT/web "${USER_NAME}/${GAME}:html5" --userversion "$VERSION"
+$BUTLER push Builds/macOS "${USER_NAME}/${GAME}:osx" --userversion "$VERSION"
+$BUTLER push Builds/Windows "${USER_NAME}/${GAME}:windows" --userversion "$VERSION"
+$BUTLER push Builds/Linux "${USER_NAME}/${GAME}:linux" --userversion "$VERSION"
 echo "Publicado $VERSION → https://$USER_NAME.itch.io/$GAME"
