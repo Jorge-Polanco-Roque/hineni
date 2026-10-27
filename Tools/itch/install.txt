@@ -1,0 +1,7 @@
+<p><strong>No installation needed.</strong> Unzip and run. Nothing else to install.</p>
+<ul>
+  <li><strong>Windows:</strong> run <code>Hineni.exe</code>. If SmartScreen says “Windows protected your PC”, click <em>More info → Run anyway</em> (the game is not signed).</li>
+  <li><strong>macOS:</strong> unzip and move <code>Hineni.app</code> to Applications. The first time, right-click it → <em>Open</em> → <em>Open</em> (the app is not signed with an Apple certificate). Apple Silicon and Intel.</li>
+  <li><strong>Linux:</strong> run <code>./Hineni.x86_64</code>. If it does not start, make it executable first: <code>chmod +x Hineni.x86_64</code>.</li>
+</ul>
+<p>Or play it right here in the browser. Headphones recommended. Progress is saved with F5 and in the pause menu.</p>

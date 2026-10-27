@@ -1,0 +1,14 @@
+TITLE: HINENI is out: fifteen minutes before the Judgment
+TYPE: Release
+
+<p><strong>HINENI</strong> is out, free, in the browser and for Windows, macOS and Linux.</p>
+<p>You wake from a coma in the Threshold Hospital with fifteen minutes left before the end of the world. The nurses still change the sheets. A man in the corner begs you not to look at the ceiling.</p>
+<p>A few things about how it was made:</p>
+<ul>
+  <li><strong>Everything you see is text.</strong> A real 3D hospital is rendered and every cell of the screen is replaced by the character whose shape matches it best, with outlines from depth and normals. It reads like an engraving that moves.</li>
+  <li><strong>The sky is built in code:</strong> wheels full of eyes and four-faced bodies that pray, weep blood and speak in tongues, and pick up exactly where they left off when you look back up.</li>
+  <li><strong>Every line is voiced</strong> in English, Spanish, Portuguese, Chinese and Japanese, and text and voice languages can be chosen separately.</li>
+  <li><strong>Six endings</strong>, each decided by the last thing you do.</li>
+</ul>
+<p>It takes about fifteen minutes. Play it with headphones, in the dark. If you find an ending, tell me which one in the comments.</p>
+<p>Source code (MIT): <a href="https://github.com/Jorge-Polanco-Roque/hineni">github.com/Jorge-Polanco-Roque/hineni</a></p>
