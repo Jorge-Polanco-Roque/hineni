@@ -9,13 +9,14 @@
 *Terror filosófico en ASCII. Los últimos quince minutos antes del Juicio, en un hospital que sigue atendiendo pacientes.*
 
 [![Jugar en el navegador](https://img.shields.io/badge/▶_Jugar-en_el_navegador-c2362c?style=for-the-badge)](https://jorge-polanco-roque.github.io/hineni/)
+[![itch.io](https://img.shields.io/badge/itch.io-roqueio-fa5c5c?style=for-the-badge&logo=itchdotio&logoColor=white)](https://roqueio.itch.io/)
 [![macOS](https://img.shields.io/badge/Descargar-macOS-2b2b2b?style=for-the-badge&logo=apple)](https://github.com/Jorge-Polanco-Roque/hineni/releases/latest)
 
 ![Unity](https://img.shields.io/badge/Unity-6000.4-black?logo=unity)
 ![Render](https://img.shields.io/badge/render-ASCII_por_forma-c2362c)
 ![Duración](https://img.shields.io/badge/partida-15_min-555)
 ![Finales](https://img.shields.io/badge/finales-6-555)
-![Plataformas](https://img.shields.io/badge/plataformas-macOS_·_Web_·_móvil-555)
+![Plataformas](https://img.shields.io/badge/plataformas-Web_·_Windows_·_macOS_·_Linux_·_móvil-555)
 ![Idiomas](https://img.shields.io/badge/idiomas-ES_·_EN_·_PT_·_中文_·_日本語-555)
 [![Licencia MIT](https://img.shields.io/badge/licencia-MIT-555)](LICENSE)
 
@@ -53,7 +54,8 @@ Despiertas de un coma. Te llamas Álex, llevas diecinueve días en el Hospital d
 
 | | |
 |---|---|
-| **Navegador** | [jorge-polanco-roque.github.io/hineni](https://jorge-polanco-roque.github.io/hineni/) · ~75 MB · Chrome, Edge, Firefox, Safari |
+| **itch.io** | [roqueio.itch.io/hineni](https://roqueio.itch.io/hineni) · en el navegador o descargable para Windows, macOS y Linux |
+| **Navegador** | [jorge-polanco-roque.github.io/hineni](https://jorge-polanco-roque.github.io/hineni/) · ~63 MB · Chrome, Edge, Firefox, Safari |
 | **macOS** | [Descargar desde *Releases*](https://github.com/Jorge-Polanco-Roque/hineni/releases/latest) · build de desarrollo sin firmar: clic derecho → *Abrir* la primera vez |
 | **Móvil** | El mismo enlace del navegador. Se juega en horizontal |
 
