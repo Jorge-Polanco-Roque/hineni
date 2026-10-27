@@ -58,9 +58,10 @@ namespace LosQueQuedan
                 g.player.Teleport(new Vector3(1.35f, .06f, 7.4f), 0); pitch.SetValue(g.player, 12f); yield return new WaitForSeconds(2); Debug.Log("QA_SNAP g-mujer");
                 yield return new WaitForSeconds(1.5f); Debug.Log("QA_SNAP g-done"); yield break;
             }
-            if (arg != "press" && arg != "sky" && arg != "lever" && arg != "acts" && arg != "gestures")
+            if (arg != "press" && arg != "store" && arg != "sky" && arg != "lever" && arg != "acts" && arg != "gestures")
             {
-                g.Begin(); yield return null; g.EndWith(arg); yield return new WaitForSeconds(11); Debug.Log("QA_SNAP ending-" + arg); yield break;
+                g.Begin(); yield return null; g.EndWith(arg); yield return new WaitForSeconds(11); Debug.Log("QA_SNAP ending-" + arg);
+                yield return new WaitForSeconds(16); Debug.Log("QA_SNAP ending-" + arg + "-full"); yield break;   // once every line is written
             }
 #endif
             if (arg == "touch")
@@ -79,7 +80,7 @@ namespace LosQueQuedan
                 Screen.SetResolution(2880, 1800, false); yield return new WaitForSeconds(1f);   // do not leave a portrait window in the prefs
                 Application.Quit(); yield break;
             }
-            if (arg == "press")
+            if (arg == "press" || arg == "store")   // store: the same tour for the itch.io page, the world shots without the HUD
             {
                 // Curated screenshots for the README: /tmp/spooky-press
                 const string P = "/tmp/spooky-press/"; Directory.CreateDirectory(P);
@@ -88,11 +89,14 @@ namespace LosQueQuedan
                 void Call(string m) => typeof(DemoGame).GetMethod(m, f).Invoke(g, null);
                 IEnumerator Snap(string name)
                 {
+                    bool clean = arg == "store" && !(name.StartsWith("00") || name.StartsWith("01") || name == "02-ines" || name == "04-mujer" || name == "07-esquina");
+                    if (clean) { DemoGame.HideInterface = true; typeof(DemoGame).GetField("toastTime", f).SetValue(g, 0f); yield return null; }
 #if UNITY_WEBGL
                     Debug.Log("QA_SNAP " + name); yield return new WaitForSecondsRealtime(1.2f);   // the page photographs on this line
 #else
                     yield return new WaitForEndOfFrame(); var img = ScreenCapture.CaptureScreenshotAsTexture(); File.WriteAllBytes(P + name + ".png", img.EncodeToPNG()); Destroy(img);
 #endif
+                    if (clean) DemoGame.HideInterface = false;
                 }
                 yield return new WaitForSeconds(3); yield return Snap("01-menu");
                 // The opening passage, early and once the blood has run.
